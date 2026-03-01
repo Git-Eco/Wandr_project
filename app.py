@@ -18,66 +18,95 @@ def get_weather_status(city, api_key):
         return "Unknown", None
 
 def predict_total_budget(num_days, selected_activities_df):
-    if selected_activities_df.empty: return 0
-    actual_activity_sum = selected_activities_df['cost'].sum()
-    daily_base_cost = 150 
+    if selected_activities_df.empty: 
+        return 0
+
+    temp_df = selected_activities_df.copy()
+    temp_df.loc[temp_df.duplicated(subset=['day_num', 'name']), 'cost'] = 0
+    actual_activity_sum = temp_df['cost'].sum()
+    daily_base_cost = 40 
+    
     days_train = np.array([[num_days-1], [num_days], [num_days+1]])
-    costs_train = np.array([(d * daily_base_cost + actual_activity_sum) for d in [num_days-1, num_days, num_days+1]])
+    costs_train = np.array([
+        (d * daily_base_cost + actual_activity_sum) 
+        for d in [num_days-1, num_days, num_days+1]
+    ])
+    
     model = LinearRegression().fit(days_train, costs_train)
-    return model.predict([[num_days]])[0]
+    prediction = model.predict([[num_days]])[0]
+    
+    return round(float(prediction), 2)
 
-def organize_itinerary(filtered_df, days, target_city, full_database):
-    total_needed = days * 3 
-    
-    # 1. Get all spots for this city (including Food/Cafes)
-    city_pool = full_database[full_database['city'] == target_city].copy()
-    
-    # Start with user preferences, then add everything else from the city to reach total_needed
-    final_plan = pd.concat([filtered_df, city_pool[~city_pool['name'].isin(filtered_df['name'])]])
-    
-    # If still not enough, repeat the pool (fallback)
-    while len(final_plan) < total_needed:
-        final_plan = pd.concat([final_plan, city_pool])
-    
-    final_plan = final_plan.head(total_needed).reset_index(drop=True)
+def organize_itinerary(filtered_df, days, target_city, full_database, rest_mode):
+    # Identify the 'Home Base' (Hotel)
+    hotel_pool = full_database[(full_database['city'] == target_city) & (full_database['category'] == 'Hotel')]
+    hotel = hotel_pool.iloc[0].to_dict() if not hotel_pool.empty else {
+        "name": "Central Hotel", "lat": full_database[full_database['city'] == target_city]['lat'].mean(),
+        "lon": full_database[full_database['city'] == target_city]['lon'].mean(), "category": "Hotel", "cost": 0
+    }
 
-    # 2. NEAREST NEIGHBOR SORTING (Prevents Wonky Routes)
-    ordered_spots = []
-    remaining_spots = final_plan.to_dict('records')
+    food_pool = full_database[(full_database['city'] == target_city) & (full_database['category'] == 'Food')].to_dict('records')
+    sight_pool = filtered_df[filtered_df['category'] != 'Food'].to_dict('records')
     
-    # Start with the first spot in the list
-    current_spot = remaining_spots.pop(0)
-    ordered_spots.append(current_spot)
-    
-    while remaining_spots:
-        # Find the spot closest to the current one
-        idx = 0
-        min_dist = float('inf')
-        for i, spot in enumerate(remaining_spots):
-            # Simple Euclidean distance for sorting (Lat/Lon)
-            d = ((current_spot['lat'] - spot['lat'])**2 + (current_spot['lon'] - spot['lon'])**2)**0.5
-            if d < min_dist:
-                min_dist = d
-                idx = i
-        current_spot = remaining_spots.pop(idx)
-        ordered_spots.append(current_spot)
-
-    optimized_df = pd.DataFrame(ordered_spots)
-
-    # 3. Assign Days and Slots
-    day_nums = []
-    slot_assignments = []
-    slot_names = ["Morning 🌅", "Afternoon ☀️", "Evening 🌙"]
+    final_itinerary = []
+    slots = ["Breakfast ☕", "Morning 🌅", "Lunch 🍔", "Afternoon ☀️", "Dinner 🍷", "Evening 🌙"]
     
     for d in range(1, days + 1):
-        for s in range(3):
-            day_nums.append(d)
-            slot_assignments.append(slot_names[s])
+        current_loc = hotel 
+        
+        for slot in slots:
+            # REST MODE (Day 1 Morning only)
+            if "Morning" in slot and d == 1 and rest_mode:
+                chosen_spot = hotel.copy()
+                chosen_spot['name'] = f"{hotel['name']} (Rest & Settle)"
+                chosen_spot['cost'] = 0 
+            
+            # BREAKFAST (Always Hotel)
+            elif "Breakfast" in slot:
+                chosen_spot = hotel.copy()
+            
+            # LUNCH/DINNER
+            elif "Lunch" in slot or "Dinner" in slot:
+                pool = food_pool if food_pool else sight_pool
+                best_idx = 0
+                min_dist = float('inf')
+                for i, s in enumerate(pool):
+                    dist = ((current_loc['lat'] - s['lat'])**2 + (current_loc['lon'] - s['lon'])**2)**0.5
+                    if dist < min_dist:
+                        min_dist = dist
+                        best_idx = i
+                chosen_spot = pool.pop(best_idx).copy() if pool else hotel.copy()
+            
+            # SIGHTSEEING (Morning/Afternoon/Evening)
+            else:
+                pool = [s for s in sight_pool if s['name'] != hotel['name']]
+                if not pool: pool = sight_pool 
+                
+                best_idx = 0
+                min_dist = float('inf')
+                for i, s in enumerate(pool):
+                    dist = ((current_loc['lat'] - s['lat'])**2 + (current_loc['lon'] - s['lon'])**2)**0.5
+                    if dist < min_dist:
+                        min_dist = dist
+                        best_idx = i
+                
+                chosen_spot = pool.pop(best_idx).copy()
+                sight_pool = [s for s in sight_pool if s['name'] != chosen_spot['name']]
 
-    optimized_df['day_num'] = day_nums[:len(optimized_df)]
-    optimized_df['slot'] = pd.Categorical(slot_assignments[:len(optimized_df)], categories=slot_names, ordered=True)
+            chosen_spot['day_num'] = d
+            chosen_spot['slot'] = slot
+            final_itinerary.append(chosen_spot)
+            current_loc = chosen_spot
+
+    df_result = pd.DataFrame(final_itinerary)
     
-    return optimized_df.sort_values(by=['day_num', 'slot'])
+    df_result['slot'] = pd.Categorical(
+        df_result['slot'], 
+        categories=slots, 
+        ordered=True
+    )
+    
+    return df_result.sort_values(by=['day_num', 'slot']).reset_index(drop=True)
 
 # --- 2. INITIALIZATION & DATA ---
 st.set_page_config(page_title="Wandr", page_icon="✈️", layout="wide")
@@ -116,12 +145,15 @@ def trip_creator_dialog():
     st.markdown("---")
     allow_out = st.checkbox("Show outdoor spots even if it's raining", value=False)
 
+    st.markdown("---")
+    st.subheader("✈️ Rest Upon Arrival")
+    rest_on_arrival = st.toggle("Rest on Day 1 Morning?", value=True, help="Stay at the hotel for the first morning to recover from travel.")
+
     if st.button("Generate My Plan", use_container_width=True, type="primary"):
-            # 1. WEATHER API CALL
+            # WEATHER API CALL
             API_KEY = "d572bff0064eb6c677271a9e9cde858d"
             cond, temp = get_weather_status(target_city, API_KEY)
             
-            # 2. DATA GUARD
             city_data = df[df['city'] == target_city]
             available_count = len(city_data)
             max_possible_days = available_count // 3
@@ -129,12 +161,11 @@ def trip_creator_dialog():
             final_days = trip_days
             if available_count < (trip_days * 3):
                 final_days = max(1, max_possible_days)
-                # --- THE FIX: Use st.toast and a tiny sleep ---
                 st.toast(f"ℹ️ Adjusted to {final_days} days based on available spots in {target_city}.", icon="💡")
             import time
-            time.sleep(1.5) # Gives the user 1.5 seconds to read the toast
+            time.sleep(2.5) # Gives the user 1.5 seconds to read the toast
 
-            # 3. FILTERING (Smart Combination of Preferences + Weather)
+            # FILTERING 
             is_raining = cond in ["Rain", "Drizzle", "Thunderstorm"]
             
             # Start with spots in the target city
@@ -148,11 +179,10 @@ def trip_creator_dialog():
             if is_raining and not allow_out:
                 filtered = filtered[filtered['type'] == 'Indoor']
 
-            # 4. ORGANIZE (The Brain)
-            # We pass 'final_days' (the guarded number) to ensure the loops work perfectly
-            final_itinerary = organize_itinerary(filtered, final_days, target_city, df)
+            # ORGANIZE ITINERARY
+            final_itinerary = organize_itinerary(filtered, final_days, target_city, df, rest_on_arrival)
             
-            # 5. BUDGET & SAVE
+            # BUDGET & SAVE
             total_cost = predict_total_budget(final_days, final_itinerary)
             
             st.session_state.all_trips.append({
@@ -160,7 +190,7 @@ def trip_creator_dialog():
                 "plan_df": final_itinerary, 
                 "cost": total_cost, 
                 "weather": {"condition": cond, "temp": temp}, 
-                "days": final_days # Save the adjusted day count
+                "days": final_days 
             })
             
             st.rerun()
@@ -202,95 +232,141 @@ def show_details():
                 st.rerun()
 
     st.title(f"Trip Details: {trip['city']}")
-    tab1, tab2, tab3 = st.tabs(["🗺️ Map", "📅 Daily Itinerary", "🌤️ Weather"])
-    
-    with tab1:
-        plan_df = trip['plan_df']
+    with st.container():
+        tab1, tab2, tab3 = st.tabs(["🗺️ Map", "📅 Daily Itinerary", "🌤️ Weather"])
         
-        if not plan_df.empty:
-            center_lat = plan_df['lat'].mean()
-            center_lon = plan_df['lon'].mean()
+        with tab1:
+            plan_df = trip['plan_df']
             
-            m = folium.Map(
-                location=[center_lat, center_lon], 
-                zoom_start=12, 
-                tiles='CartoDB positron'
-            )
+            if not plan_df.empty:
+                # Show the Overview Map 
+                m = folium.Map(
+                    location=[plan_df['lat'].mean(), plan_df['lon'].mean()], 
+                    zoom_start=12, 
+                    tiles='https://mt1.google.com/vt/lyrs=m&hl=en&x={x}&y={y}&z={z}',
+                    attr='Google'
+                )
+                
+                for _, row in plan_df.iterrows():
+                    # Logic for Colors & Icons
+                    if row['category'] == 'Hotel':
+                        color = "#d32f2f"  
+                        icon_char = "🏨"
+                    elif row['category'] == 'Food':
+                        color = "#f57c00"  
+                        icon_char = "🍴"
+                    else:
+                        color = "#1976d2"  
+                        icon_char = "📍"
+
+                    folium.Marker(
+                        [row['lat'], row['lon']], 
+                        popup=folium.Popup(f"<b>Day {row['day_num']}</b><br>{row['slot']}: {row['name']}", max_width=200),
+                        icon=folium.DivIcon(html=f"""
+                            <div style="
+                                background-color: {color}; 
+                                color: white; 
+                                border-radius: 50%; 
+                                width: 32px; 
+                                height: 32px; 
+                                display: flex; 
+                                align-items: center; 
+                                justify-content: center; 
+                                border: 2px solid white; 
+                                font-weight: bold;
+                                font-size: 11px;
+                                box-shadow: 0px 2px 4px rgba(0,0,0,0.3);
+                            ">
+                                {row['day_num']}
+                            </div>""")
+                    ).add_to(m)
+                
+                st_folium(m, width=None, height=400, key=f"map_overview_{trip_index}")
+
+                st.markdown("---") 
+                st.subheader("📋 Trip Schedule")
+                
+                total_days = int(plan_df['day_num'].max())
+                for day in range(1, total_days + 1):
+                    with st.expander(f"📅 Day {day}", expanded=(day == 1)):
+                        day_data = plan_df[plan_df['day_num'] == day].copy()
+                        day_data = day_data.sort_values('slot')
+                        
+                        for _, row in day_data.iterrows():
+                            icon = "🏨" if row['category'] == 'Hotel' else "🍴" if row['category'] == 'Food' else "📍"
+                            st.write(f"{icon} **{row['slot']}**: {row['name']} — `${row['cost']}`")
+
+            else:
+                st.warning("No spots available to show for this trip.")
+
+        with tab2:
+            st.header(f"💰 Estimated Budget: ${trip['cost']:,.2f}")
             
-            for _, row in plan_df.iterrows():
-                folium.Marker(
-                    [row['lat'], row['lon']], 
-                    popup=f"({row['slot']}) {row['name']}", 
-                    icon=folium.Icon(color="blue", icon="info-sign")
-                ).add_to(m)
+            # 1. Day Selection
+            unique_days = plan_df['day_num'].unique()
+            selected_day = st.selectbox("Select Day to View:", [f"Day {d}" for d in unique_days], key=f"day_select_{trip_index}")
+            day_num = int(selected_day.split(" ")[1])
             
-            st_folium(m, width=800, height=500, key=f"map_{trip['city']}")
-        else:
-            st.warning("No spots available to show on the map for this trip.")
-
-    with tab2:
-        st.header(f"💰 Estimated Budget: ${trip['cost']:,.2f}")
-        
-        # 1. Day Selection
-        unique_days = plan_df['day_num'].unique()
-        selected_day = st.selectbox("Select Day to View:", [f"Day {d}" for d in unique_days])
-        day_num = int(selected_day.split(" ")[1])
-        
-        day_data = plan_df[plan_df['day_num'] == day_num].sort_values('slot')
-        
-        # 2. Map Section
-        if not day_data.empty:
-            st.subheader(f"🗺️ {selected_day} Route")
+            day_data = plan_df[plan_df['day_num'] == day_num].sort_values('slot')
             
-            m_day = folium.Map(
-                location=[day_data['lat'].mean(), day_data['lon'].mean()], 
-                zoom_start=14, 
-                tiles='https://mt1.google.com/vt/lyrs=m&hl=en&x={x}&y={y}&z={z}',
-                attr='Google'
-            )
+            # 2. Map Section
+            if not day_data.empty:
+                st.subheader(f"🗺️ {selected_day} Route")
+                
+                m_day = folium.Map(
+                    location=[day_data['lat'].mean(), day_data['lon'].mean()], 
+                    zoom_start=14, 
+                    tiles='https://mt1.google.com/vt/lyrs=m&hl=en&x={x}&y={y}&z={z}',
+                    attr='Google'
+                )
+                
+                coords = [f"{r['lon']},{r['lat']}" for _, r in day_data.iterrows()]
+                total_km = 0.0
+
+                if len(coords) > 1:
+                    route_url = f"http://router.project-osrm.org/route/v1/driving/{';'.join(coords)}?overview=full&geometries=geojson"
+                    try:
+                        import requests
+                        r = requests.get(route_url, timeout=5).json()
+                        if r.get('routes'):
+                            total_km = r['routes'][0]['distance'] / 1000
+                            geometry = r['routes'][0]['geometry']['coordinates']
+                            folium.PolyLine([[p[1], p[0]] for p in geometry], color="#1a73e8", weight=6, opacity=0.8).add_to(m_day)
+                    except:
+                        pass
+
+                st.metric("🚗 Est. Travel Distance", f"{total_km:.2f} km")
+
+                # Markers
+                for i, (_, row) in enumerate(day_data.iterrows()):
+                    icon_char = "🏨" if row['category'] == 'Hotel' else "🍴" if row['category'] == 'Food' else "📍"
+                    color = "#d32f2f" if row['category'] == 'Hotel' else "#f57c00" if row['category'] == 'Food' else "#1976d2"
+                    
+                    folium.Marker(
+                        [row['lat'], row['lon']],
+                        popup=folium.Popup(f"<b>{row['slot']}</b><br>{row['name']}", max_width=200),
+                        icon=folium.DivIcon(html=f"""
+                            <div style="background-color:{color}; color:white; border-radius:50%; 
+                            width:32px; height:32px; display:flex; align-items:center; justify-content:center; 
+                            border:2px solid white; font-size:14px; box-shadow: 0 2px 5px rgba(0,0,0,0.2);">
+                            {icon_char}</div>""")
+                    ).add_to(m_day)
+
+                st_folium(m_day, width=None, height=450, key=f"map_daily_{trip_index}_{day_num}")
+
+            st.markdown("---")
             
-            coords = [f"{r['lon']},{r['lat']}" for _, r in day_data.iterrows()]
-            total_km = 0.0
+            # 3. ITINERARY CARDS
+            st.subheader("📋 Schedule Details")
+            for _, row in day_data.iterrows():
+                with st.container(border=True):
+                    c_icon, c_info = st.columns([1, 4])
+                    c_icon.subheader(row['slot'].split(" ")[0])
+                    c_info.markdown(f"**{row['name']}**")
+                    c_info.write(f"Category: {row['category']} | Cost: ${row['cost']}")
 
-            if len(coords) > 1:
-                # Use 'driving' instead of 'foot' for general travel distance
-                route_url = f"http://router.project-osrm.org/route/v1/driving/{';'.join(coords)}?overview=full&geometries=geojson"
-                try:
-                    import requests
-                    r = requests.get(route_url, timeout=5).json()
-                    if r.get('routes'):
-                        total_km = r['routes'][0]['distance'] / 1000
-                        geometry = r['routes'][0]['geometry']['coordinates']
-                        folium.PolyLine([[p[1], p[0]] for p in geometry], color="#1a73e8", weight=6, opacity=0.8).add_to(m_day)
-                except:
-                    pass
-
-            # Display the Distance (Generic "Travel" instead of "Walking")
-            st.metric("🚗 Est. Travel Distance", f"{total_km:.2f} km")
-
-            # Markers
-            for i, (_, row) in enumerate(day_data.iterrows()):
-                folium.Marker(
-                    [row['lat'], row['lon']],
-                    popup=f"{row['slot']}: {row['name']}",
-                    icon=folium.DivIcon(html=f'<div style="background-color:#1a73e8; color:white; border-radius:50%; width:28px; height:28px; display:flex; align-items:center; justify-content:center; font-weight:bold; border:2px solid white;">{i+1}</div>')
-                ).add_to(m_day)
-
-            st_folium(m_day, width=None, height=450, key=f"map_{day_num}_{trip['city']}")
-
-        st.markdown("---")
-        
-        # 3. ITINERARY CARDS - Guaranteed to show now!
-        st.subheader("📋 Schedule Details")
-        for _, row in day_data.iterrows():
-            with st.container(border=True):
-                c_icon, c_info = st.columns([1, 4])
-                c_icon.subheader(row['slot'].split(" ")[0]) # Show only emoji/icon
-                c_info.markdown(f"**{row['name']}**")
-                c_info.write(f"Category: {row['category']} | Cost: ${row['cost']}")
-
-    with tab3:
-        st.metric("Current Weather", f"{trip['weather']['temp']}°C", trip['weather']['condition'])
+        with tab3:
+            st.metric("Current Weather", f"{trip['weather']['temp']}°C", trip['weather']['condition'])
 
 # --- 6. MAIN CONTROLLER ---
 if st.session_state.view == "dashboard":
