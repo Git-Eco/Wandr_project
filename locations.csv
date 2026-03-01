@@ -8,6 +8,18 @@ Musée d'Orsay,Paris,Indoor,Art,48.8599,2.3266,16
 Catacombs of Paris,Paris,Indoor,History,48.8338,2.3324,29
 Luxembourg Gardens,Paris,Outdoor,Nature,48.8462,2.3371,0
 Sainte-Chapelle,Paris,Indoor,History,48.8554,2.3355,11
+Arc de Triomphe,Paris,Outdoor,Sightseeing,48.8738,2.2950,13
+Centre Pompidou,Paris,Indoor,Art,48.8606,2.3522,15
+Place de la Concorde,Paris,Outdoor,History,48.8655,2.3212,0
+Père Lachaise Cemetery,Paris,Outdoor,History,48.8614,2.3933,0
+Shakespeare and Company,Paris,Indoor,Culture,48.8525,2.3471,0
+Canal Saint-Martin,Paris,Outdoor,Nature,48.8715,2.3675,0
+Pantheon,Paris,Indoor,History,48.8462,2.3464,11
+Musée de l'Orangerie,Paris,Indoor,Art,48.8637,2.3227,12
+Pont Neuf,Paris,Outdoor,Sightseeing,48.8566,2.3413,0
+Opera Garnier,Paris,Indoor,Culture,48.8719,2.3316,14
+Montmartre Vineyard,Paris,Outdoor,Nature,48.8887,2.3409,0
+Picasso Museum,Paris,Indoor,Art,48.8598,2.3623,14
 Senso-ji Temple,Tokyo,Outdoor,Culture,35.7148,139.7967,0
 Tokyo Skytree,Tokyo,Indoor,Sightseeing,35.7101,139.8107,25
 Ueno Park,Tokyo,Outdoor,Nature,35.7126,139.7712,0
@@ -17,6 +29,18 @@ Shinjuku Gyoen,Tokyo,Outdoor,Nature,35.6852,139.7101,4
 Tokyo National Museum,Tokyo,Indoor,History,35.7189,139.7765,7
 Ghibli Museum,Tokyo,Indoor,Art,35.6963,139.5704,8
 Shibuya Crossing,Tokyo,Outdoor,Sightseeing,35.6595,139.7005,0
+Imperial Palace Gardens,Tokyo,Outdoor,History,35.6852,139.7528,0
+Akihabara Electric Town,Tokyo,Outdoor,Sightseeing,35.6997,139.7713,0
+Tokyo Tower,Outdoor,Sightseeing,35.6586,139.7454,10
+Zojo-ji Temple,Tokyo,Outdoor,Culture,35.6575,139.7483,0
+Edo-Tokyo Museum,Tokyo,Indoor,History,35.6962,139.7961,5
+Harajuku Takeshita Street,Tokyo,Outdoor,Culture,35.6715,139.7032,0
+Roppongi Hills Deck,Tokyo,Outdoor,Sightseeing,35.6605,139.7291,15
+Yoyogi Park,Tokyo,Outdoor,Nature,35.6717,139.6949,0
+Nezu Museum,Tokyo,Indoor,Art,35.6622,139.7161,11
+Toyosu Fish Market,Tokyo,Indoor,Food,35.6492,139.7898,0
+Inokashira Park,Tokyo,Outdoor,Nature,35.6997,139.5731,0
+Sunshine City Aquarium,Tokyo,Indoor,Nature,35.7289,139.7193,18
 Empire State Building,New York,Indoor,Sightseeing,40.7484,-73.9857,44
 Central Park,New York,Outdoor,Nature,40.7829,-73.9654,0
 The MET,New York,Indoor,Art,40.7794,-73.9632,25
@@ -26,3 +50,100 @@ MoMA,New York,Indoor,Art,40.7614,-73.9776,25
 9/11 Memorial,New York,Outdoor,History,40.7115,-74.0132,0
 Grand Central Terminal,New York,Indoor,Sightseeing,40.7527,-73.9772,0
 Times Square,New York,Outdoor,Sightseeing,40.7580,-73.9855,0
+Brooklyn Bridge,New York,Outdoor,Sightseeing,40.7061,-73.9969,0
+American Museum of Natural History,New York,Indoor,History,40.7813,-73.9740,28
+The Edge Observation Deck,New York,Outdoor,Sightseeing,40.7538,-74.0017,38
+Top of the Rock,New York,Outdoor,Sightseeing,40.7587,-73.9787,40
+Chelsea Market,New York,Indoor,Food,40.7423,-74.0060,0
+Vessel at Hudson Yards,New York,Outdoor,Art,40.7538,-74.0018,0
+Whitney Museum,New York,Indoor,Art,40.7396,-74.0089,25
+St. Patrick's Cathedral,New York,Indoor,Culture,40.7585,-73.9763,0
+Bryant Park,New York,Outdoor,Nature,40.7536,-73.9832,0
+Washington Square Park,New York,Outdoor,Culture,40.7308,-73.9973,0
+Summit One Vanderbilt,New York,Indoor,Sightseeing,40.7529,-73.9785,42
+London Eye,London,Outdoor,Sightseeing,51.5033,-0.1195,35
+British Museum,London,Indoor,History,51.5194,-0.1270,0
+Tower Bridge,London,Outdoor,History,51.5055,-0.0754,12
+Buckingham Palace,London,Outdoor,Culture,51.5014,-0.1419,0
+Tate Modern,London,Indoor,Art,51.5076,-0.0994,0
+Hyde Park,London,Outdoor,Nature,51.5073,-0.1657,0
+Westminster Abbey,London,Indoor,History,51.4994,-0.1273,27
+Piccadilly Circus,London,Outdoor,Sightseeing,51.5101,-0.1342,0
+Covent Garden,London,Indoor,Culture,51.5117,-0.1240,0
+Natural History Museum,London,Indoor,History,51.4967,-0.1764,0
+Sky Garden,London,Indoor,Nature,51.5111,-0.0837,0
+Camden Market,London,Outdoor,Culture,51.5417,-0.1461,0
+The Shard,London,Indoor,Sightseeing,51.5045,-0.0865,32
+Greenwich Park,London,Outdoor,Nature,51.4769,0.0005,0
+Borough Market,London,Outdoor,Food,51.5055,-0.0905,0
+St. Paul's Cathedral,London,Indoor,History,51.5138,-0.0984,20
+Big Ben,London,Outdoor,Sightseeing,51.5007,-0.1246,0
+Colosseum,Rome,Outdoor,History,41.8902,12.4922,16
+Vatican Museums,Rome,Indoor,Art,41.9065,12.4536,17
+Trevi Fountain,Rome,Outdoor,Sightseeing,41.9009,12.4833,0
+Pantheon Rome,Rome,Indoor,History,41.8986,12.4769,0
+Roman Forum,Rome,Outdoor,History,41.8925,12.4853,16
+Spanish Steps,Rome,Outdoor,Sightseeing,41.9059,12.4828,0
+Borghese Gallery,Rome,Indoor,Art,41.9142,12.4921,15
+Piazza Navona,Rome,Outdoor,Culture,41.8989,12.4731,0
+Trastevere District,Rome,Outdoor,Culture,41.8894,12.4703,0
+Castel Sant'Angelo,Rome,Indoor,History,41.9031,12.4663,15
+Villa Borghese Park,Rome,Outdoor,Nature,41.9128,12.4851,0
+Capuchin Crypt,Rome,Indoor,History,41.9050,12.4886,8
+Janiculum Hill,Rome,Outdoor,Nature,41.8913,12.4608,0
+Altar of the Fatherland,Rome,Outdoor,History,41.8946,12.4828,0
+National Roman Museum,Rome,Indoor,Art,41.9013,12.4962,10
+Pyramid of Cestius,Rome,Outdoor,History,41.8765,12.4808,0
+Mouth of Truth,Rome,Outdoor,History,41.8882,12.4814,0
+Largo di Torre Argentina,Rome,Outdoor,History,41.8954,12.4769,0
+Appian Way,Rome,Outdoor,Nature,41.8519,12.5152,0
+Opera House Rome,Rome,Indoor,Culture,41.9009,12.4952,30
+Keyhole of the Knights of Malta,Rome,Outdoor,Sightseeing,41.8829,12.4785,0
+Opera House,Sydney,Outdoor,Sightseeing,-33.8568,151.2153,0
+Bondi Beach,Sydney,Outdoor,Nature,-33.8908,151.2743,0
+Taronga Zoo,Sydney,Outdoor,Nature,-33.8435,151.2413,49
+Sydney Harbour Bridge,Sydney,Outdoor,History,-33.8523,151.2108,0
+Royal Botanic Garden,Sydney,Outdoor,Nature,-33.8642,151.2166,0
+Art Gallery of NSW,Sydney,Indoor,Art,-33.8688,151.2174,0
+Museum of Contemporary Art,Sydney,Indoor,Art,-33.8596,151.2087,0
+Manly Ferry,Sydney,Outdoor,Sightseeing,-33.8617,151.2100,10
+The Rocks District,Sydney,Outdoor,History,-33.8587,151.2075,0
+Darling Harbour,Sydney,Outdoor,Sightseeing,-33.8749,151.2009,0
+Sea Life Sydney Aquarium,Sydney,Indoor,Nature,-33.8696,151.2023,48
+Sydney Tower Eye,Sydney,Indoor,Sightseeing,-33.8705,151.2088,25
+Chinese Garden of Friendship,Sydney,Outdoor,Nature,-33.8768,151.2024,8
+Luna Park Sydney,Sydney,Outdoor,Sightseeing,-33.8478,151.2096,0
+Australian Museum,Sydney,Indoor,History,-33.8743,151.2135,15
+Hyde Park Sydney,Sydney,Outdoor,Nature,-33.8732,151.2113,0
+St Mary's Cathedral,Sydney,Indoor,Culture,-33.8712,151.2132,0
+Barangaroo Reserve,Sydney,Outdoor,Nature,-33.8576,151.2015,0
+Cockatoo Island,Sydney,Outdoor,History,-33.8471,151.1717,0
+Circular Quay,Sydney,Outdoor,Sightseeing,-33.8613,151.2108,0
+Powerhouse Museum,Sydney,Indoor,Culture,-33.8785,151.1995,0
+Burj Khalifa,Dubai,Indoor,Sightseeing,25.1972,55.2744,45
+Dubai Mall,Dubai,Indoor,Sightseeing,25.1974,55.2796,0
+Palm Jumeirah,Dubai,Outdoor,Sightseeing,25.1124,55.1390,0
+Burj Al Arab,Dubai,Outdoor,Sightseeing,25.1412,55.1852,0
+Dubai Fountain,Dubai,Outdoor,Sightseeing,25.1975,55.2785,0
+Dubai Museum,Dubai,Indoor,History,25.2635,55.2972,1
+The Frame,Dubai,Outdoor,Sightseeing,25.2355,55.3003,14
+Miracle Garden,Dubai,Outdoor,Nature,25.0597,55.2445,15
+Global Village,Dubai,Outdoor,Culture,25.0680,55.3050,5
+Museum of the Future,Dubai,Indoor,Culture,25.2191,55.2819,40
+Dubai Creek,Dubai,Outdoor,History,25.2624,55.3117,0
+Gold Souk,Dubai,Outdoor,Culture,25.2736,55.2981,0
+Jumeirah Mosque,Dubai,Indoor,Culture,25.2339,55.2655,10
+Kite Beach,Dubai,Outdoor,Nature,25.1648,55.2078,0
+Ski Dubai,Dubai,Indoor,Adventure,25.1181,55.2006,60
+Dubai Aquarium,Dubai,Indoor,Nature,25.1974,55.2796,40
+Al Fahidi Historical,Dubai,Outdoor,History,25.2647,55.3003,0
+Etihad Museum,Dubai,Indoor,History,25.2411,55.2714,7
+Dubai Opera,Dubai,Indoor,Culture,25.1963,55.2774,0
+Madinat Jumeirah,Dubai,Outdoor,Culture,25.1330,55.1855,0
+Legoland Dubai,Dubai,Outdoor,Adventure,24.9188,55.0080,80
+Angelina Paris,Paris,Indoor,Food,48.8650,2.3281,25
+Cafe de Flore,Paris,Outdoor,Food,48.8542,2.3331,20
+Ichiran Ramen Shinjuku,Tokyo,Indoor,Food,35.6909,139.7018,15
+Blue Bottle Coffee,Tokyo,Indoor,Food,35.6622,139.7135,10
+Katz's Delicatessen,New York,Indoor,Food,40.7222,-73.9874,25
+Joe's Pizza Times Square,New York,Indoor,Food,40.7558,-73.9868,5
