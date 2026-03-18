@@ -5,6 +5,7 @@ import folium
 from streamlit_folium import st_folium
 import requests
 from sklearn.linear_model import LinearRegression
+import random
 
 # --- 1. CORE FUNCTIONS ---
 def get_weather_status(city, api_key):
@@ -48,50 +49,69 @@ def organize_itinerary(filtered_df, days, target_city, full_database, rest_mode)
     food_pool = full_database[(full_database['city'] == target_city) & (full_database['category'] == 'Food')].to_dict('records')
     sight_pool = filtered_df[filtered_df['category'] != 'Food'].to_dict('records')
     
+    used_sightseeing = []
+    used_food = []
     final_itinerary = []
     slots = ["Breakfast ☕", "Morning 🌅", "Lunch 🍔", "Afternoon ☀️", "Dinner 🍷", "Evening 🌙"]
-    
+
     for d in range(1, days + 1):
         current_loc = hotel 
         
         for slot in slots:
-            # REST MODE (Day 1 Morning only)
+            # --- 1. REST MODE ---
             if "Morning" in slot and d == 1 and rest_mode:
                 chosen_spot = hotel.copy()
                 chosen_spot['name'] = f"{hotel['name']} (Rest & Settle)"
                 chosen_spot['cost'] = 0 
             
-            # BREAKFAST (Always Hotel)
+            # --- 2. BREAKFAST ---
             elif "Breakfast" in slot:
                 chosen_spot = hotel.copy()
             
-            # LUNCH/DINNER
+            # --- 3. LUNCH/DINNER ---
             elif "Lunch" in slot or "Dinner" in slot:
-                pool = food_pool if food_pool else sight_pool
-                best_idx = 0
-                min_dist = float('inf')
-                for i, s in enumerate(pool):
-                    dist = ((current_loc['lat'] - s['lat'])**2 + (current_loc['lon'] - s['lon'])**2)**0.5
-                    if dist < min_dist:
-                        min_dist = dist
-                        best_idx = i
-                chosen_spot = pool.pop(best_idx).copy() if pool else hotel.copy()
-            
-            # SIGHTSEEING (Morning/Afternoon/Evening)
-            else:
-                pool = [s for s in sight_pool if s['name'] != hotel['name']]
-                if not pool: pool = sight_pool 
+                pool = [f for f in food_pool if f['name'] not in used_food]
+                if not pool:
+                    pool = [f for f in food_pool]
+                    random.shuffle(pool) 
                 
                 best_idx = 0
                 min_dist = float('inf')
                 for i, s in enumerate(pool):
-                    dist = ((current_loc['lat'] - s['lat'])**2 + (current_loc['lon'] - s['lon'])**2)**0.5
+                    jitter = random.uniform(0, 0.0001)
+                    dist = (((current_loc['lat'] - s['lat'])**2 + (current_loc['lon'] - s['lon'])**2)**0.5) + jitter
+                    if dist < min_dist:
+                        min_dist = dist
+                        best_idx = i
+                
+                chosen_spot = pool.pop(best_idx).copy() if pool else hotel.copy()
+                used_food.append(chosen_spot['name'])
+            
+            # --- 4. SIGHTSEEING ---
+            else:
+                pool = [s for s in sight_pool if s['name'] not in used_sightseeing and s['name'] != hotel['name']]
+                
+                if not pool:
+                    pool = full_database[
+                        (full_database['city'] == target_city) & 
+                        (full_database['category'] != 'Food') &
+                        (full_database['category'] != 'Hotel')
+                    ].to_dict('records')
+                    random.shuffle(pool)
+                    
+                    if not pool: pool = [hotel]
+
+                best_idx = 0
+                min_dist = float('inf')
+                for i, s in enumerate(pool):
+                    jitter = random.uniform(0, 0.0001)
+                    dist = (((current_loc['lat'] - s['lat'])**2 + (current_loc['lon'] - s['lon'])**2)**0.5) + jitter
                     if dist < min_dist:
                         min_dist = dist
                         best_idx = i
                 
                 chosen_spot = pool.pop(best_idx).copy()
-                sight_pool = [s for s in sight_pool if s['name'] != chosen_spot['name']]
+                used_sightseeing.append(chosen_spot['name'])
 
             chosen_spot['day_num'] = d
             chosen_spot['slot'] = slot
@@ -99,13 +119,7 @@ def organize_itinerary(filtered_df, days, target_city, full_database, rest_mode)
             current_loc = chosen_spot
 
     df_result = pd.DataFrame(final_itinerary)
-    
-    df_result['slot'] = pd.Categorical(
-        df_result['slot'], 
-        categories=slots, 
-        ordered=True
-    )
-    
+    df_result['slot'] = pd.Categorical(df_result['slot'], categories=slots, ordered=True)
     return df_result.sort_values(by=['day_num', 'slot']).reset_index(drop=True)
 
 # --- 2. INITIALIZATION & DATA ---
@@ -155,15 +169,12 @@ def trip_creator_dialog():
             cond, temp = get_weather_status(target_city, API_KEY)
             
             city_data = df[df['city'] == target_city]
-            available_count = len(city_data)
-            max_possible_days = available_count // 3
-            
-            final_days = trip_days
-            if available_count < (trip_days * 3):
-                final_days = max(1, max_possible_days)
-                st.toast(f"ℹ️ Adjusted to {final_days} days based on available spots in {target_city}.", icon="💡")
+            city_data = df[df['city'] == target_city]
+            final_days = trip_days 
+
+            st.toast(f"✨ Planning your {final_days}-day adventure in {target_city}...", icon="🚀")
             import time
-            time.sleep(2.5) # Gives the user 1.5 seconds to read the toast
+            time.sleep(2.0)
 
             # FILTERING 
             is_raining = cond in ["Rain", "Drizzle", "Thunderstorm"]
