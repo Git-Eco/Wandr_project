@@ -5,6 +5,7 @@
 ```
 .
 ├── app.py              # Main application file (single-file architecture)
+├── style.css           # All custom CSS styles
 ├── locations.csv       # Static location database
 ├── README.md           # Project documentation (minimal)
 ├── venv/               # Python virtual environment
