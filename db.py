@@ -84,6 +84,12 @@ def get_trips(user_id: str) -> list[dict]:
 
 def save_trip(user_id: str, trip: dict) -> str:
     """Insert a trip and its spots. Returns the new trip id."""
+    from datetime import date as date_type
+    def to_str(d):
+        if d is None: return None
+        if isinstance(d, date_type): return d.isoformat()
+        return str(d)
+
     trip_row = {
         "user_id": user_id,
         "title": trip["title"],
@@ -91,8 +97,8 @@ def save_trip(user_id: str, trip: dict) -> str:
         "days": trip["days"],
         "cost": trip["cost"],
         "status": trip.get("status", "Upcoming"),
-        "start_date": trip.get("start_date"),
-        "end_date": trip.get("end_date"),
+        "start_date": to_str(trip.get("start_date")),
+        "end_date": to_str(trip.get("end_date")),
         "weather_condition": trip["weather"]["condition"],
         "weather_temp": trip["weather"]["temp"],
         "forecast": trip.get("forecast", {}),

@@ -363,12 +363,12 @@ hr { border-color: #92C4C6; }
 /* ── Navbar ───────────────────────────────────── */
 .navbar {
     background: linear-gradient(135deg, #20878E 0%, #0d5a60 100%);
-    border-radius: 16px 0 0 16px;
+    border-radius: 16px;
     padding: 0.85rem 1.6rem;
     display: flex;
     align-items: center;
     box-shadow: 0 2px 12px rgba(32,135,142,0.18);
-    height: 58px;
+    margin-bottom: 0.6rem;
 }
 .navbar-brand {
     font-size: 1.5rem;
@@ -377,35 +377,27 @@ hr { border-color: #92C4C6; }
     letter-spacing: -0.01em;
 }
 
-/* Profile button column — same teal background, rounded right side */
-.profile-btn-wrap {
-    background: linear-gradient(135deg, #1a7078 0%, #0d5a60 100%);
-    border-radius: 0 16px 16px 0;
-    height: 58px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 0 0.8rem;
-    box-shadow: 0 2px 12px rgba(32,135,142,0.18);
-    margin-top: -58px; /* pull up to align with navbar */
-}
-.profile-btn-wrap .stButton > button {
-    background: rgba(255,255,255,0.18) !important;
-    border: 1.5px solid rgba(255,255,255,0.4) !important;
+/* Profile button — only on dashboard, scoped tightly */
+body[data-view="dashboard"] .dashboard-profile-btn .stButton > button,
+body[data-view="dashboard"] .dashboard-profile-btn .stButton > button:hover,
+body[data-view="dashboard"] .dashboard-profile-btn .stButton > button:focus,
+body[data-view="dashboard"] .dashboard-profile-btn .stButton > button:active {
+    background: #20878E !important;
+    border: 2px solid #92C4C6 !important;
     border-radius: 50% !important;
-    width: 38px !important;
-    height: 38px !important;
-    min-height: 38px !important;
+    width: 44px !important;
+    height: 44px !important;
+    min-height: 44px !important;
+    max-width: 44px !important;
     padding: 0 !important;
-    font-size: 1.1rem !important;
+    font-size: 1.2rem !important;
     color: white !important;
-    box-shadow: none !important;
-    line-height: 1 !important;
-}
-.profile-btn-wrap .stButton > button:hover {
-    background: rgba(255,255,255,0.32) !important;
+    box-shadow: 0 2px 8px rgba(32,135,142,0.3) !important;
     transform: none !important;
-    color: white !important;
+}
+body[data-view="dashboard"] .dashboard-profile-btn .stButton > button:hover {
+    background: #0d5a60 !important;
+    border-color: white !important;
 }
 
 /* ── Auth page ────────────────────────────────── */
@@ -553,4 +545,24 @@ div[data-testid="stDialog"] > div > div {
         padding: 1.5rem !important;
     }
     
+}
+
+/* ── Sidebar styling ──────────────────────────── */
+section[data-testid="stSidebar"] {
+    background-color: white !important;
+    border-right: 1px solid #e8e8e8 !important;
+}
+section[data-testid="stSidebar"] > div {
+    padding-top: 0.5rem !important;
+}
+section[data-testid="stSidebar"] .stButton > button {
+    background: transparent !important;
+    border: 1.5px solid #D66F29 !important;
+    color: #D66F29 !important;
+    border-radius: 10px !important;
+}
+section[data-testid="stSidebar"] .stButton > button:hover {
+    background: #D66F29 !important;
+    color: white !important;
+    transform: none !important;
 }

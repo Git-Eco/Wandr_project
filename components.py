@@ -41,8 +41,17 @@ def render_trip_card(trip, index):
     days = trip['days']
     title = trip.get('title', trip['city'])
     status = trip.get('status', 'Upcoming')
+    max_budget = trip.get('max_budget')
     status_colors = {"Upcoming": "#92C4C6", "Ongoing": "#F3C375", "Completed": "#20878E"}
     sc = status_colors.get(status, "#92C4C6")
+    budget_line = f'<div class="budget">Estimated: ${trip["cost"]:,.0f}'
+    if max_budget:
+        over = trip['cost'] - max_budget
+        if over > 0:
+            budget_line += f' &nbsp;<span style="color:#e53935;font-size:0.78rem;">(${over:,.0f} over budget)</span>'
+        else:
+            budget_line += f' &nbsp;<span style="color:#20878E;font-size:0.78rem;">(within budget ✓)</span>'
+    budget_line += '</div>'
     st.markdown(f"""
     <div class="trip-card">
         <div style="display:flex;justify-content:space-between;align-items:flex-start;">
@@ -57,7 +66,7 @@ def render_trip_card(trip, index):
             <span class="badge badge-days">{days} day{'s' if days > 1 else ''}</span>
             <span class="badge badge-weather">{icon} {cond} · {temp}°C</span>
         </div>
-        <div class="budget">Estimated Budget: ${trip['cost']:,.0f}</div>
+        {budget_line}
     </div>
     """, unsafe_allow_html=True)
 
@@ -147,11 +156,42 @@ def render_section_title(text, extra_style=""):
     st.markdown(f'<div class="section-title" style="{extra_style}">{text}</div>', unsafe_allow_html=True)
 
 def make_map_marker(color, label):
+    """Teardrop-shaped pin — distinct from Google Maps default pins."""
+    # Teardrop: rounded top, pointed bottom, label inside
     return folium.DivIcon(
-        html=f"""<div style="background-color:{color};color:white;border-radius:50%;
-            width:30px;height:30px;display:flex;align-items:center;justify-content:center;
-            border:2px solid white;font-weight:700;font-size:12px;
-            box-shadow:0 2px 6px rgba(0,0,0,0.3);">{label}</div>""",
-        icon_size=(30, 30),
-        icon_anchor=(15, 15)
+        html=f"""
+        <div style="
+            position: relative;
+            width: 36px;
+            height: 48px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        ">
+            <!-- Pin body -->
+            <div style="
+                width: 36px;
+                height: 36px;
+                background: {color};
+                border-radius: 50% 50% 50% 0;
+                transform: rotate(-45deg);
+                border: 2.5px solid white;
+                box-shadow: 0 3px 8px rgba(0,0,0,0.35);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            ">
+                <span style="
+                    transform: rotate(45deg);
+                    color: white;
+                    font-weight: 800;
+                    font-size: 12px;
+                    line-height: 1;
+                    font-family: Inter, sans-serif;
+                ">{label}</span>
+            </div>
+        </div>
+        """,
+        icon_size=(36, 48),
+        icon_anchor=(18, 48)  # anchor at the tip of the pin
     )
