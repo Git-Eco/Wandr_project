@@ -1,0 +1,224 @@
+/* ── Page shell ── */
+.page {
+  min-height: 100vh;
+  background: var(--bg);
+  font-family: var(--font-body);
+}
+
+.center {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+}
+
+/* ── Header ── */
+.header {
+  background: var(--bg-nav);
+  border-bottom: 1px solid var(--border-soft);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.headerInner {
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 0 1.2rem;
+  height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.brand {
+  font-family: var(--font-display);
+  font-size: 1.3rem;
+  font-weight: 800;
+  color: var(--primary);
+}
+
+.signInBtn { font-size: 0.85rem; padding: 0.55rem 1.1rem; }
+
+/* ── Hero ── */
+.hero {
+  background: var(--hero-grad);
+  padding: 2.5rem 1.2rem 3rem;
+}
+
+.heroInner {
+  max-width: 860px;
+  margin: 0 auto;
+}
+
+.heroBadgeRow {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin-bottom: 0.8rem;
+  flex-wrap: wrap;
+}
+
+.sharedBadge {
+  background: rgba(255,255,255,0.2);
+  color: white;
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 3px 10px;
+  border-radius: 99px;
+}
+
+.statusPill {
+  padding: 3px 10px;
+  border-radius: 99px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  border: 1.5px solid;
+}
+
+.heroCity {
+  font-family: var(--font-display);
+  font-size: clamp(1.6rem, 5vw, 2.4rem);
+  font-weight: 800;
+  color: white;
+  margin: 0 0 0.2rem;
+}
+
+.heroTitle {
+  font-size: 0.9rem;
+  color: rgba(255,255,255,0.72);
+  font-style: italic;
+  margin-bottom: 0.75rem;
+}
+
+.heroMeta {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  font-size: 0.85rem;
+  color: rgba(255,255,255,0.82);
+  font-weight: 600;
+}
+
+/* ── Content ── */
+.content {
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 1.5rem 1rem 5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+
+/* ── Section ── */
+.section {
+  background: var(--bg-card);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 1.2rem 1.3rem;
+}
+
+.sectionTitle {
+  font-size: 0.95rem;
+  font-weight: 800;
+  color: var(--text);
+  margin: 0 0 1rem;
+}
+
+/* ── Budget ── */
+.budgetGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0.7rem;
+}
+
+@media (max-width: 560px) { .budgetGrid { grid-template-columns: repeat(2, 1fr); } }
+
+.budgetBox    { border-radius: var(--radius-sm); padding: 0.85rem; color: white; }
+.budgetLabel  { font-size: 0.68rem; opacity: 0.85; margin-bottom: 0.2rem; }
+.budgetAmount { font-size: 1.2rem; font-weight: 800; }
+
+/* ── Map legend ── */
+.mapLegend {
+  display: flex;
+  gap: 1rem;
+  margin-top: 0.6rem;
+  font-size: 0.78rem;
+  color: var(--text-soft);
+  flex-wrap: wrap;
+}
+
+.dot {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 18px; height: 18px;
+  border-radius: 50%;
+  color: white;
+  font-size: 0.58rem;
+  font-weight: 800;
+  margin-right: 3px;
+}
+
+/* ── Day accordions ── */
+.dayGroup { margin-bottom: 0.4rem; }
+
+.dayToggle {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.65rem 1rem;
+  background: var(--bg-subtle);
+  border: none;
+  border-radius: var(--radius-sm);
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: var(--text);
+  cursor: pointer;
+  margin-bottom: 0.3rem;
+  font-family: var(--font-body);
+}
+.toggleArrow { font-size: 0.7rem; opacity: 0.5; }
+
+/* ── Error ── */
+.errorBox {
+  text-align: center;
+  padding: 2rem;
+}
+.errorIcon { font-size: 3rem; margin-bottom: 0.75rem; }
+.errorBox h2 { font-size: 1.3rem; font-weight: 800; margin-bottom: 0.4rem; color: var(--text); }
+.errorBox p  { color: var(--muted); font-size: 0.9rem; }
+
+/* ── CTA card ── */
+.ctaCard {
+  background: var(--hero-grad);
+  border-radius: var(--radius);
+  padding: 1.4rem 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.ctaHeading {
+  font-size: 1rem;
+  font-weight: 800;
+  color: white;
+  margin-bottom: 0.2rem;
+}
+
+.ctaSub {
+  font-size: 0.82rem;
+  color: rgba(255,255,255,0.78);
+}
+
+.ctaBtn {
+  background: white !important;
+  color: var(--primary) !important;
+  font-weight: 800;
+  white-space: nowrap;
+  flex-shrink: 0;
+}

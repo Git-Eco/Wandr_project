@@ -5,8 +5,11 @@ import folium
 from streamlit_folium import st_folium
 import requests
 from sklearn.linear_model import LinearRegression
+from sklearn.preprocessing import MultiLabelBinarizer
+from sklearn.metrics.pairwise import cosine_similarity
 import random
 import time
+import math
 from datetime import date, timedelta, datetime
 
 import db
@@ -69,8 +72,43 @@ def compute_status(start_dt, days):
         return "Completed"
     return "Ongoing"
 
+
+def score_spots(spots_df, user_preferences):
+    """
+    Content-based recommendation using cosine similarity.
+    Scores each spot by how well its category matches the user's stated preferences.
+    Returns the DataFrame with a 'rec_score' column added, sorted best-first.
+    """
+    if spots_df.empty or not user_preferences:
+        # No preferences — return as-is with neutral score
+        spots_df = spots_df.copy()
+        spots_df['rec_score'] = 1.0
+        return spots_df
+
+    all_categories = spots_df['category'].unique().tolist()
+
+    # User preference vector — 1 for each preferred category
+    user_vec = np.array([[1 if cat in user_preferences else 0 for cat in all_categories]])
+
+    # Spot feature vectors — one-hot encoded by category
+    spot_vecs = np.array([
+        [1 if row['category'] == cat else 0 for cat in all_categories]
+        for _, row in spots_df.iterrows()
+    ])
+
+    # Cosine similarity between user vector and each spot
+    if user_vec.sum() == 0 or spot_vecs.sum() == 0:
+        scores = np.ones(len(spots_df))
+    else:
+        scores = cosine_similarity(user_vec, spot_vecs)[0]
+
+    spots_df = spots_df.copy()
+    spots_df['rec_score'] = scores
+    return spots_df.sort_values('rec_score', ascending=False)
+
 def organize_itinerary(filtered_df, days, target_city, full_database, rest_mode,
-                       previously_used=None, exclude_visited=False, chosen_hotel=None):
+                       previously_used=None, exclude_visited=False, chosen_hotel=None,
+                       user_preferences=None):
     if previously_used is None:
         previously_used = set()
     hotel_pool = full_database[(full_database['city'] == target_city) & (full_database['category'] == 'Hotel')]
@@ -85,6 +123,16 @@ def organize_itinerary(filtered_df, days, target_city, full_database, rest_mode,
                  "lon": full_database[full_database['city'] == target_city]['lon'].mean(),
                  "category": "Hotel", "cost": 0}
     food_pool = full_database[(full_database['city'] == target_city) & (full_database['category'] == 'Food')].to_dict('records')
+
+    # Build full city sightseeing pool (all categories, not just selected interests)
+    # This is the fallback pool when preferred spots run out
+    full_sight_pool = full_database[
+        (full_database['city'] == target_city) &
+        (full_database['category'] != 'Food') &
+        (full_database['category'] != 'Hotel')
+    ].to_dict('records')
+
+    # Preferred pool — only spots matching selected interests
     sight_pool = filtered_df[(filtered_df['category'] != 'Food') & (filtered_df['category'] != 'Hotel')].to_dict('records')
 
     def filter_pool(pool):
@@ -97,41 +145,123 @@ def organize_itinerary(filtered_df, days, target_city, full_database, rest_mode,
         return fresh + seen
 
     sight_pool = filter_pool(sight_pool)
+    full_sight_pool = filter_pool(full_sight_pool)
     food_pool  = filter_pool(food_pool)
-    random.shuffle(sight_pool); random.shuffle(food_pool)
-    used_sightseeing, used_food, final_itinerary = [], [], []
+
+    # Apply recommendation scoring — preferred spots first, then fallback
+    if user_preferences and sight_pool:
+        sight_df = pd.DataFrame(sight_pool)
+        sight_df = score_spots(sight_df, user_preferences)
+        mid = max(1, len(sight_df) // 2)
+        top = sight_df.iloc[:mid].to_dict('records')
+        bottom = sight_df.iloc[mid:].to_dict('records')
+        random.shuffle(top); random.shuffle(bottom)
+        sight_pool = top + bottom
+    else:
+        random.shuffle(sight_pool)
+
+    random.shuffle(food_pool)
+
+    # Master set of all used sightseeing names (never repeat until full cycle)
+    used_sightseeing_names = set()
+    used_food_names = set()
+    final_itinerary = []
+    recent_sightseeing = []  # last 4 picks (~2 days) — avoid back-to-back
+    # All available spot names for cycle tracking
+    all_sight_names = set(s['name'] for s in full_sight_pool)
     slots = ["Breakfast ☕", "Morning 🌅", "Lunch 🍔", "Afternoon ☀️", "Dinner 🍷", "Evening 🌙"]
 
     for d in range(1, days + 1):
         current_loc = hotel
+        # Vary the day's starting anchor so proximity picks different neighborhoods
+        # Use a random spot from the full pool as the day's anchor (not always hotel)
+        if d > 1 and full_sight_pool:
+            anchor_candidates = [s for s in full_sight_pool if s['name'] not in used_today]
+            if anchor_candidates:
+                current_loc = random.choice(anchor_candidates)
+        used_today = set()
+
         for slot in slots:
             if "Morning" in slot and d == 1 and rest_mode:
                 chosen = hotel.copy(); chosen['name'] = f"{hotel['name']} (Rest & Settle)"; chosen['cost'] = 0
+
             elif "Breakfast" in slot:
                 chosen = hotel.copy()
+
             elif "Lunch" in slot or "Dinner" in slot:
-                pool = [f for f in food_pool if f['name'] not in used_food]
+                pool = [f for f in food_pool if f['name'] not in used_food_names and f['name'] not in used_today]
                 if not pool:
-                    used_food.clear(); pool = list(food_pool); random.shuffle(pool)
+                    pool = [f for f in food_pool if f['name'] not in used_today]
+                if not pool:
+                    used_food_names.clear(); pool = list(food_pool); random.shuffle(pool)
                 best_idx, min_dist = 0, float('inf')
                 for i, s in enumerate(pool):
                     dist = (((current_loc['lat']-s['lat'])**2+(current_loc['lon']-s['lon'])**2)**0.5)+random.uniform(0,0.005)
                     if dist < min_dist: min_dist, best_idx = dist, i
-                chosen = pool.pop(best_idx).copy() if pool else hotel.copy()
-                used_food.append(chosen['name'])
+                chosen = pool[best_idx].copy()
+                used_food_names.add(chosen['name'])
+                used_today.add(chosen['name'])
+
             else:
-                pool = [s for s in sight_pool if s['name'] not in used_sightseeing and s['name'] != hotel['name']]
+                # If we've seen all spots, reset the global cycle
+                if all_sight_names.issubset(used_sightseeing_names):
+                    used_sightseeing_names.clear()
+                    recent_sightseeing.clear()
+
+                # Slot-aware filtering — some categories don't suit evening
+                is_evening = "Evening" in slot
+                is_morning = "Morning" in slot
+
+                def slot_ok(s):
+                    cat = s.get('category', '')
+                    if is_evening and cat == 'Nature':
+                        return False  # parks/gardens not great after dark
+                    if is_evening and cat in ('History', 'Art'):
+                        return False  # most museums/historic sites closed at night
+                    return True
+
+                # Tier 1: preferred + not used today + not recent + not used this cycle + slot-appropriate
+                pool = [s for s in sight_pool
+                        if s['name'] not in used_today
+                        and s['name'] not in recent_sightseeing
+                        and s['name'] not in used_sightseeing_names
+                        and slot_ok(s)]
+                # Tier 2: preferred + not used today + not used this cycle (relax recent)
                 if not pool:
-                    used_sightseeing.clear()
-                    pool = [s for s in sight_pool if s['name'] != hotel['name']]
+                    pool = [s for s in sight_pool
+                            if s['name'] not in used_today
+                            and s['name'] not in used_sightseeing_names
+                            and slot_ok(s)]
+                # Tier 3: full city + not used today + not recent + not used this cycle + slot-appropriate
+                if not pool:
+                    pool = [s for s in full_sight_pool
+                            if s['name'] not in used_today
+                            and s['name'] not in recent_sightseeing
+                            and s['name'] not in used_sightseeing_names
+                            and slot_ok(s)]
+                # Tier 4: full city + not used today + not used this cycle
+                if not pool:
+                    pool = [s for s in full_sight_pool
+                            if s['name'] not in used_today
+                            and s['name'] not in used_sightseeing_names
+                            and slot_ok(s)]
+                # Tier 5: relax slot constraint — just avoid same-day repeat
+                if not pool:
+                    pool = [s for s in full_sight_pool if s['name'] not in used_today]
                     random.shuffle(pool)
                     if not pool: pool = [hotel]
+
                 best_idx, min_dist = 0, float('inf')
                 for i, s in enumerate(pool):
                     dist = (((current_loc['lat']-s['lat'])**2+(current_loc['lon']-s['lon'])**2)**0.5)+random.uniform(0,0.005)
                     if dist < min_dist: min_dist, best_idx = dist, i
-                chosen = pool.pop(best_idx).copy()
-                used_sightseeing.append(chosen['name'])
+                chosen = pool[best_idx].copy()
+                used_sightseeing_names.add(chosen['name'])
+                used_today.add(chosen['name'])
+                recent_sightseeing.append(chosen['name'])
+                if len(recent_sightseeing) > 4:
+                    recent_sightseeing.pop(0)
+
             chosen['day_num'] = d; chosen['slot'] = slot
             final_itinerary.append(chosen); current_loc = chosen
 
@@ -391,7 +521,7 @@ def trip_creator_dialog():
         time.sleep(1.5)
         itinerary = organize_itinerary(filtered, trip_days, target_city, df, rest_on_arrival,
                                        previously_used=previously_used, exclude_visited=exclude_visited,
-                                       chosen_hotel=chosen_hotel)
+                                       chosen_hotel=chosen_hotel, user_preferences=user_pref)
         cost = predict_total_budget(trip_days, itinerary)
         auto_status = compute_status(start_date, trip_days)
 
@@ -515,7 +645,10 @@ def show_details():
             fc_cond, fc_temp = forecast.get(forecast_dates[day_num - 1], (cond, temp))
         else:
             fc_cond, fc_temp = cond, temp
-        coords = [f"{r['lon']},{r['lat']}" for _, r in day_data.iterrows()]
+        # Exclude hotel rows from routing coords — hotel pin shown separately
+        route_data = day_data[day_data['category'] != 'Hotel']
+        hotel_data = day_data[day_data['category'] == 'Hotel'].drop_duplicates(subset=['name'])
+        coords = [f"{r['lon']},{r['lat']}" for _, r in route_data.iterrows()]
         total_km, route_geometry = 0.0, None
         snapped_coords = []
         if len(coords) > 1:
@@ -544,8 +677,8 @@ def show_details():
                 color="#D66F29", weight=4, opacity=0.9
             ).add_to(m_day)
 
-        # Dotted connector from snapped road point to actual pin
-        for i, (_, row) in enumerate(day_data.iterrows()):
+        # Dotted connector from snapped road point to actual pin (non-hotel stops only)
+        for i, (_, row) in enumerate(route_data.iterrows()):
             if snapped_coords and i < len(snapped_coords):
                 snapped = snapped_coords[i]
                 actual = (row['lat'], row['lon'])
@@ -555,12 +688,38 @@ def show_details():
                         color="#D66F29", weight=4, opacity=0.8, dash_array="6 6"
                     ).add_to(m_day)
 
-        for i, (_, row) in enumerate(day_data.iterrows()):
-            label = "H" if row['category'] == 'Hotel' else str(i + 1)
-            color = "#D66F29" if row['category'] == 'Hotel' else "#c8860a" if row['category'] == 'Food' else "#20878E"
-            folium.Marker([row['lat'], row['lon']],
-                popup=folium.Popup(f"<b>{row['slot']}</b><br>{row['name']}", max_width=200),
-                icon=make_map_marker(color, label)).add_to(m_day)
+        # All stop markers — every slot gets a pin
+        # Slightly offset pins that share the same coordinates so both are visible
+        coord_offset_count = {}
+        stop_num = 1
+        hotel_pinned = False
+
+        for _, row in day_data.iterrows():
+            lat, lon = row['lat'], row['lon']
+            coord_key = (round(lat, 5), round(lon, 5))
+
+            # Apply small offset if this coordinate already has a pin
+            offset_idx = coord_offset_count.get(coord_key, 0)
+            if offset_idx > 0:
+                # Spiral offset: each duplicate gets nudged slightly
+                angle = offset_idx * 90
+                offset = 0.0003 * offset_idx
+                lat = lat + offset * math.cos(math.radians(angle))
+                lon = lon + offset * math.sin(math.radians(angle))
+            coord_offset_count[coord_key] = offset_idx + 1
+
+            if row['category'] == 'Hotel':
+                if not hotel_pinned:
+                    folium.Marker([lat, lon],
+                        popup=folium.Popup(f"<b>🏨 {row['name']}</b>", max_width=200),
+                        icon=make_map_marker("#D66F29", "H")).add_to(m_day)
+                    hotel_pinned = True
+            else:
+                color = "#c8860a" if row['category'] == 'Food' else "#20878E"
+                folium.Marker([lat, lon],
+                    popup=folium.Popup(f"<b>{row['slot']}</b><br>{row['name']}", max_width=200),
+                    icon=make_map_marker(color, str(stop_num))).add_to(m_day)
+                stop_num += 1
         st_folium(m_day, width=None, height=420, returned_objects=[], key=f"map_day_{trip_index}_{day_num}")
         render_section_title("Schedule")
         for _, row in day_data.iterrows():

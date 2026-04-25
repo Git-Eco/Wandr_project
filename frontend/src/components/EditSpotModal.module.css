@@ -1,0 +1,83 @@
+.catFilter {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+  margin-bottom: 0.9rem;
+}
+
+.currentSpot {
+  background: var(--bg-subtle);
+  border-radius: var(--radius-sm);
+  padding: 0.85rem 1rem;
+  margin-bottom: 1rem;
+  border-left: 4px solid var(--primary);
+}
+.currentLabel {
+  font-size: 0.68rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--muted);
+  margin-bottom: 0.2rem;
+}
+.currentName {
+  font-weight: 800;
+  font-size: 0.95rem;
+  color: var(--text);
+}
+.currentMeta {
+  font-size: 0.75rem;
+  color: var(--muted);
+  margin-top: 0.1rem;
+}
+
+.empty {
+  text-align: center;
+  color: var(--muted);
+  font-style: italic;
+  font-size: 0.85rem;
+  padding: 1.5rem 0;
+}
+
+.candidateList {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  max-height: 280px;
+  overflow-y: auto;
+  padding-right: 2px;
+}
+
+.candidate {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.75rem 0.9rem;
+  border-radius: var(--radius-sm);
+  border: 1.5px solid var(--border);
+  background: var(--bg-subtle);
+  cursor: pointer;
+  text-align: left;
+  font-family: var(--font-body);
+  transition: all 0.15s;
+  position: relative;
+}
+.candidate:hover { border-color: var(--primary); background: var(--bg-card); }
+.candidateActive {
+  border-color: var(--primary) !important;
+  background: var(--bg-card) !important;
+  box-shadow: 0 0 0 3px rgba(32,135,142,0.12);
+}
+
+.candIcon { font-size: 1.2rem; flex-shrink: 0; }
+.candBody { flex: 1; min-width: 0; }
+.candName { font-weight: 700; font-size: 0.88rem; color: var(--text); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.candMeta { font-size: 0.72rem; color: var(--muted); }
+.candCost { font-size: 0.82rem; font-weight: 700; color: var(--primary); flex-shrink: 0; }
+.candCheck {
+  position: absolute;
+  top: 6px; right: 8px;
+  font-size: 0.72rem;
+  font-weight: 800;
+  color: var(--primary);
+}

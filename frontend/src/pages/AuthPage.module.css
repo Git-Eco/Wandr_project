@@ -1,0 +1,117 @@
+.page {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+  background: var(--bg);
+}
+
+.card {
+  display: flex;
+  width: 100%;
+  max-width: 820px;
+  background: var(--bg-card);
+  border-radius: 22px;
+  box-shadow: var(--shadow-lg);
+  overflow: hidden;
+  animation: slideUp 0.4s ease;
+}
+
+.formSide {
+  flex: 1;
+  padding: 3rem 2.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.title {
+  font-size: 1.65rem;
+  font-weight: 800;
+  color: var(--text);
+}
+
+.subtitle {
+  color: var(--muted);
+  font-size: 0.85rem;
+  margin-top: -0.5rem;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+}
+
+.submitBtn {
+  margin-top: 0.3rem;
+  height: 3rem;
+  font-size: 0.95rem;
+}
+
+.switchRow {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.88rem;
+  color: var(--muted);
+}
+
+.switchLink {
+  background: none;
+  border: none;
+  color: var(--primary);
+  font-weight: 700;
+  font-size: 0.88rem;
+  cursor: pointer;
+  text-decoration: underline;
+  padding: 0;
+}
+.switchLink:hover { color: var(--primary-dark); text-decoration: none; }
+
+/* Brand panel — hidden on mobile */
+.brandSide {
+  width: 300px;
+  flex-shrink: 0;
+  background: var(--hero-grad);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2.5rem;
+}
+
+.brandInner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  color: white;
+}
+
+.plane       { font-size: 2.6rem; margin-bottom: 0.5rem; }
+.brandName   { font-family: var(--font-display); font-size: 2rem; font-weight: 800; margin-bottom: 0.3rem; }
+.brandHeadline { font-size: 1.05rem; font-weight: 700; margin-bottom: 0.7rem; }
+.brandBody   { font-size: 0.85rem; opacity: 0.82; line-height: 1.65; max-width: 240px; }
+
+/* ── Mobile ── */
+@media (max-width: 640px) {
+  .page     { padding: 0; align-items: flex-end; }
+  .card     { border-radius: 22px 22px 0 0; min-height: 90vh; flex-direction: column; }
+  .brandSide { display: none; }
+  .formSide {
+    padding: 2.5rem 1.5rem 3rem;
+    /* Small brand header on mobile since panel is hidden */
+    background: var(--hero-grad);
+    color: white;
+  }
+  .title    { color: white; font-family: var(--font-display); font-style: italic; }
+  .subtitle { color: rgba(255,255,255,0.75); }
+  .switchRow { color: rgba(255,255,255,0.8); }
+  .switchLink { color: white; }
+}
+
+@media (min-width: 641px) and (max-width: 900px) {
+  .brandSide { width: 240px; }
+  .formSide  { padding: 2.5rem 2rem; }
+}

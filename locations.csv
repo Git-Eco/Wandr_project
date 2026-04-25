@@ -1,82 +1,84 @@
-name,city,type,category,lat,lon,cost
-Hôtel Ritz Paris,Paris,Indoor,Hotel,48.8681,2.3289,180
-Eiffel Tower,Paris,Outdoor,Sightseeing,48.8584,2.2945,25
-Louvre Museum,Paris,Indoor,Culture,48.8606,2.3376,20
+﻿name,city,type,category,lat,lon,cost
+Hotel Ritz Paris,Paris,Indoor,Hotel,48.8681,2.3289,600
+Hotel de Crillon,Paris,Indoor,Hotel,48.8675,2.3213,900
+Hotel Lutetia,Paris,Indoor,Hotel,48.8521,2.3389,500
+Ibis Paris Tour Eiffel,Paris,Indoor,Hotel,48.8502,2.2950,130
+Generator Paris Hostel,Paris,Indoor,Hotel,48.8767,2.3499,35
+Eiffel Tower,Paris,Outdoor,Sightseeing,48.8584,2.2945,28
+Louvre Museum,Paris,Indoor,Culture,48.8606,2.3376,22
 Tuileries Garden,Paris,Outdoor,Nature,48.8635,2.3275,0
-Palace of Versailles,Paris,Outdoor,History,48.8049,2.1204,18
+Palace of Versailles,Paris,Outdoor,History,48.8049,2.1204,20
 Sacre-Coeur,Paris,Outdoor,Culture,48.8867,2.3431,0
-Musée d'Orsay,Paris,Indoor,Art,48.8599,2.3266,16
+Musee dOrsay,Paris,Indoor,Art,48.8599,2.3266,16
 Catacombs of Paris,Paris,Indoor,History,48.8338,2.3324,29
 Luxembourg Gardens,Paris,Outdoor,Nature,48.8462,2.3371,0
-Sainte-Chapelle,Paris,Indoor,History,48.8554,2.3355,11
+Sainte-Chapelle,Paris,Indoor,History,48.8554,2.3355,13
 Arc de Triomphe,Paris,Outdoor,Sightseeing,48.8738,2.2950,13
 Centre Pompidou,Paris,Indoor,Art,48.8606,2.3522,15
 Place de la Concorde,Paris,Outdoor,History,48.8655,2.3212,0
-Père Lachaise Cemetery,Paris,Outdoor,History,48.8614,2.3933,0
+Pere Lachaise Cemetery,Paris,Outdoor,History,48.8614,2.3933,0
 Shakespeare and Company,Paris,Indoor,Culture,48.8525,2.3471,0
 Canal Saint-Martin,Paris,Outdoor,Nature,48.8715,2.3675,0
-Pantheon,Paris,Indoor,History,48.8462,2.3464,11
-Musée de l'Orangerie,Paris,Indoor,Art,48.8637,2.3227,12
+Pantheon,Paris,Indoor,History,48.8462,2.3464,13
+Musee de lOrangerie,Paris,Indoor,Art,48.8637,2.3227,12
 Pont Neuf,Paris,Outdoor,Sightseeing,48.8566,2.3413,0
 Opera Garnier,Paris,Indoor,Culture,48.8719,2.3316,14
 Montmartre Vineyard,Paris,Outdoor,Nature,48.8887,2.3409,0
 Picasso Museum,Paris,Indoor,Art,48.8598,2.3623,14
-Angelina Paris,Paris,Indoor,Food,48.8650,2.3281,25
-Cafe de Flore,Paris,Outdoor,Food,48.8542,2.3331,20
-Le Comptoir du Relais,Paris,Indoor,Food,48.8521,2.3389,45
-L'As du Fallafel,Paris,Outdoor,Food,48.8575,2.3591,12
-Pink Mamma,Paris,Indoor,Food,48.8824,2.3338,35
-Septime,Paris,Indoor,Food,48.8517,2.3768,95
-Les Cocottes,Paris,Indoor,Food,48.8578,2.3021,40
-Le Jules Verne,Paris,Indoor,Food,48.8584,2.2945,150
+Musee Rodin,Paris,Outdoor,Art,48.8555,2.3157,14
+Palais Royal Gardens,Paris,Outdoor,Culture,48.8638,2.3368,0
+Musee Carnavalet,Paris,Indoor,History,48.8566,2.3622,0
+Angelina Paris,Paris,Indoor,Food,48.8650,2.3281,22
+Cafe de Flore,Paris,Outdoor,Food,48.8542,2.3331,18
+Le Comptoir du Relais,Paris,Indoor,Food,48.8521,2.3389,42
+LAs du Fallafel,Paris,Outdoor,Food,48.8575,2.3591,10
+Pink Mamma,Paris,Indoor,Food,48.8824,2.3338,38
+Septime,Paris,Indoor,Food,48.8517,2.3768,110
+Le Jules Verne,Paris,Indoor,Food,48.8584,2.2945,180
 Kodawari Ramen,Paris,Indoor,Food,48.8530,2.3392,18
-L'Avenue,Paris,Outdoor,Food,48.8660,2.3015,70
-Chez Janou,Paris,Outdoor,Food,48.8569,2.3655,30
-Boulangerie Utopie,Paris,Indoor,Food,48.8634,2.3670,8
-Holybelly 5,Paris,Indoor,Food,48.8723,2.3618,22
-Le Train Bleu,Paris,Indoor,Food,48.8471,2.3735,60
-Park Hyatt Tokyo,Tokyo,Indoor,Hotel,35.6845,139.6917,450
+Boulangerie Utopie,Paris,Indoor,Food,48.8634,2.3670,6
+Holybelly 5,Paris,Indoor,Food,48.8723,2.3618,18
+Le Train Bleu,Paris,Indoor,Food,48.8471,2.3735,65
+Park Hyatt Tokyo,Tokyo,Indoor,Hotel,35.6845,139.6917,550
+Shinjuku Granbell Hotel,Tokyo,Indoor,Hotel,35.6909,139.7018,120
+Dormy Inn Akihabara,Tokyo,Indoor,Hotel,35.6997,139.7713,75
 Senso-ji Temple,Tokyo,Outdoor,Culture,35.7148,139.7967,0
-Tokyo Skytree,Tokyo,Indoor,Sightseeing,35.7101,139.8107,25
+Tokyo Skytree,Tokyo,Indoor,Sightseeing,35.7101,139.8107,24
 Ueno Park,Tokyo,Outdoor,Nature,35.7126,139.7712,0
-TeamLab Borderless,Tokyo,Indoor,Art,35.6271,139.7753,30
+TeamLab Planets,Tokyo,Indoor,Art,35.6540,139.7951,32
 Meiji Jingu Shrine,Tokyo,Outdoor,Culture,35.6764,139.6993,0
-Shinjuku Gyoen,Tokyo,Outdoor,Nature,35.6852,139.7101,4
+Shinjuku Gyoen National Garden,Tokyo,Outdoor,Nature,35.6852,139.7101,4
 Tokyo National Museum,Tokyo,Indoor,History,35.7189,139.7765,7
-Ghibli Museum,Tokyo,Indoor,Art,35.6963,139.5704,8
+Ghibli Museum,Tokyo,Indoor,Art,35.6963,139.5704,7
 Shibuya Crossing,Tokyo,Outdoor,Sightseeing,35.6595,139.7005,0
-Imperial Palace Gardens,Tokyo,Outdoor,History,35.6852,139.7528,0
+Imperial Palace East Gardens,Tokyo,Outdoor,History,35.6852,139.7528,0
 Akihabara Electric Town,Tokyo,Outdoor,Sightseeing,35.6997,139.7713,0
-Tokyo Tower,Tokyo,Outdoor,Sightseeing,35.6586,139.7454,10
-Zojo-ji Temple,Tokyo,Outdoor,Culture,35.6575,139.7483,0
-Edo-Tokyo Museum,Tokyo,Indoor,History,35.6962,139.7961,5
+Tokyo Tower,Tokyo,Outdoor,Sightseeing,35.6586,139.7454,12
+Edo-Tokyo Museum,Tokyo,Indoor,History,35.6962,139.7961,4
 Harajuku Takeshita Street,Tokyo,Outdoor,Culture,35.6715,139.7032,0
-Roppongi Hills Deck,Tokyo,Outdoor,Sightseeing,35.6605,139.7291,15
+Roppongi Hills Observation Deck,Tokyo,Indoor,Sightseeing,35.6605,139.7291,18
 Yoyogi Park,Tokyo,Outdoor,Nature,35.6717,139.6949,0
-Nezu Museum,Tokyo,Indoor,Art,35.6622,139.7161,11
-Toyosu Fish Market,Tokyo,Indoor,Food,35.6492,139.7898,0
+Nezu Museum,Tokyo,Indoor,Art,35.6622,139.7161,13
 Inokashira Park,Tokyo,Outdoor,Nature,35.6997,139.5731,0
-Sunshine City Aquarium,Tokyo,Indoor,Nature,35.7289,139.7193,18
+Sunshine City Aquarium,Tokyo,Indoor,Nature,35.7289,139.7193,20
+Sushi Dai Toyosu,Tokyo,Indoor,Food,35.6492,139.7898,55
+Sukiyabashi Jiro Honten,Tokyo,Indoor,Food,35.6723,139.7641,350
 Ichiran Ramen Shinjuku,Tokyo,Indoor,Food,35.6909,139.7018,15
-Blue Bottle Coffee,Tokyo,Indoor,Food,35.6622,139.7135,10
-Sushi Dai,Tokyo,Indoor,Food,35.6492,139.7898,50
-Sukiyabashi Jiro,Tokyo,Indoor,Food,35.6723,139.7641,300
-Genki Sushi,Tokyo,Indoor,Food,35.6605,139.6990,20
-Ippudo Ramen,Tokyo,Indoor,Food,35.6700,139.7600,14
-Rokurinsha,Tokyo,Indoor,Food,35.6811,139.7671,12
-Maisen Tonkatsu,Tokyo,Indoor,Food,35.6661,139.7081,25
-Afuri Ramen,Tokyo,Indoor,Food,35.6441,139.7111,13
-Kanda Matsuya,Tokyo,Indoor,Food,35.6961,139.7702,18
-Narisawa,Tokyo,Indoor,Food,35.6720,139.7230,250
-Kaikaya,Tokyo,Indoor,Food,35.6575,139.6950,45
-The Knickerbocker,New York,Indoor,Hotel,40.7558,-73.9863,350
+Ippudo Ramen Shibuya,Tokyo,Indoor,Food,35.6605,139.7005,14
+Maisen Tonkatsu Omotesando,Tokyo,Indoor,Food,35.6661,139.7081,22
+Narisawa,Tokyo,Indoor,Food,35.6720,139.7230,280
+Afuri Ramen Ebisu,Tokyo,Indoor,Food,35.6441,139.7111,14
+Kaikaya by the Sea,Tokyo,Indoor,Food,35.6575,139.6950,45
+The Knickerbocker New York,New York,Indoor,Hotel,40.7558,-73.9863,350
+Margaritaville Resort Times Square,New York,Indoor,Hotel,40.7580,-73.9855,180
+Pod 39 Hotel,New York,Indoor,Hotel,40.7475,-73.9814,95
 Empire State Building,New York,Indoor,Sightseeing,40.7484,-73.9857,44
 Central Park,New York,Outdoor,Nature,40.7829,-73.9654,0
-The MET,New York,Indoor,Art,40.7794,-73.9632,25
+The Metropolitan Museum of Art,New York,Indoor,Art,40.7794,-73.9632,30
 Statue of Liberty,New York,Outdoor,History,40.6892,-74.0445,24
 High Line Park,New York,Outdoor,Nature,40.7480,-74.0048,0
 MoMA,New York,Indoor,Art,40.7614,-73.9776,25
-9/11 Memorial,New York,Outdoor,History,40.7115,-74.0132,0
+9/11 Memorial and Museum,New York,Outdoor,History,40.7115,-74.0132,17
 Grand Central Terminal,New York,Indoor,Sightseeing,40.7527,-73.9772,0
 Times Square,New York,Outdoor,Sightseeing,40.7580,-73.9855,0
 Brooklyn Bridge,New York,Outdoor,Sightseeing,40.7061,-73.9969,0
@@ -84,452 +86,726 @@ American Museum of Natural History,New York,Indoor,History,40.7813,-73.9740,28
 The Edge Observation Deck,New York,Outdoor,Sightseeing,40.7538,-74.0017,38
 Top of the Rock,New York,Outdoor,Sightseeing,40.7587,-73.9787,40
 Chelsea Market,New York,Indoor,Food,40.7423,-74.0060,0
-Vessel at Hudson Yards,New York,Outdoor,Art,40.7538,-74.0018,0
-Whitney Museum,New York,Indoor,Art,40.7396,-74.0089,25
-St. Patrick's Cathedral,New York,Indoor,Culture,40.7585,-73.9763,0
+Whitney Museum of American Art,New York,Indoor,Art,40.7396,-74.0089,25
 Bryant Park,New York,Outdoor,Nature,40.7536,-73.9832,0
 Washington Square Park,New York,Outdoor,Culture,40.7308,-73.9973,0
 Summit One Vanderbilt,New York,Indoor,Sightseeing,40.7529,-73.9785,42
-Katz's Delicatessen,New York,Indoor,Food,40.7222,-73.9874,25
-Joe's Pizza Times Square,New York,Indoor,Food,40.7558,-73.9868,5
-Shake Shack,New York,Outdoor,Food,40.7415,-73.9882,15
-Eleven Madison Park,New York,Indoor,Food,40.7417,-73.9872,300
-Peter Luger,New York,Indoor,Food,40.7099,-73.9625,90
-Carbone,New York,Indoor,Food,40.7280,-74.0001,80
-Buvette,New York,Indoor,Food,40.7326,-74.0035,30
-Levain Bakery,New York,Indoor,Food,40.7801,-73.9813,6
-Mamoun's Falafel,New York,Indoor,Food,40.7301,-73.9992,8
-Los Tacos No.1,New York,Indoor,Food,40.7423,-74.0060,12
-Russ & Daughters,New York,Indoor,Food,40.7224,-73.9882,22
-L'Industrie Pizza,New York,Indoor,Food,40.7116,-73.9578,5
-Keens Steakhouse,New York,Indoor,Food,40.7507,-73.9863,75
-Savoy Hotel,London,Indoor,Hotel,51.5104,-0.1204,400
+Katzs Delicatessen,New York,Indoor,Food,40.7222,-73.9874,25
+Joes Pizza Bleecker Street,New York,Indoor,Food,40.7311,-74.0025,5
+Eleven Madison Park,New York,Indoor,Food,40.7417,-73.9872,365
+Peter Luger Steak House,New York,Indoor,Food,40.7099,-73.9625,95
+Carbone,New York,Indoor,Food,40.7280,-74.0001,85
+Levain Bakery Upper West Side,New York,Indoor,Food,40.7801,-73.9813,5
+Los Tacos No 1,New York,Indoor,Food,40.7423,-74.0060,12
+Russ and Daughters Cafe,New York,Indoor,Food,40.7224,-73.9882,25
+Savoy Hotel London,London,Indoor,Hotel,51.5104,-0.1204,500
+The Ned London,London,Indoor,Hotel,51.5170,-0.0932,280
+Premier Inn London City,London,Indoor,Hotel,51.5150,-0.0900,100
 London Eye,London,Outdoor,Sightseeing,51.5033,-0.1195,35
 British Museum,London,Indoor,History,51.5194,-0.1270,0
-Tower Bridge,London,Outdoor,History,51.5055,-0.0754,12
+Tower Bridge Exhibition,London,Outdoor,History,51.5055,-0.0754,15
 Buckingham Palace,London,Outdoor,Culture,51.5014,-0.1419,0
 Tate Modern,London,Indoor,Art,51.5076,-0.0994,0
 Hyde Park,London,Outdoor,Nature,51.5073,-0.1657,0
-Westminster Abbey,London,Indoor,History,51.4994,-0.1273,27
+Westminster Abbey,London,Indoor,History,51.4994,-0.1273,34
 Piccadilly Circus,London,Outdoor,Sightseeing,51.5101,-0.1342,0
 Covent Garden,London,Indoor,Culture,51.5117,-0.1240,0
 Natural History Museum,London,Indoor,History,51.4967,-0.1764,0
-Sky Garden,London,Indoor,Nature,51.5111,-0.0837,0
+Sky Garden London,London,Indoor,Nature,51.5111,-0.0837,0
 Camden Market,London,Outdoor,Culture,51.5417,-0.1461,0
-The Shard,London,Indoor,Sightseeing,51.5045,-0.0865,32
-Greenwich Park,London,Outdoor,Nature,51.4769,0.0005,0
+The Shard View from the Top,London,Indoor,Sightseeing,51.5045,-0.0865,40
 Borough Market,London,Outdoor,Food,51.5055,-0.0905,0
-St. Paul's Cathedral,London,Indoor,History,51.5138,-0.0984,20
-Big Ben,London,Outdoor,Sightseeing,51.5007,-0.1246,0
-Dishoom,London,Indoor,Food,51.5124,-0.1268,25
-Duck & Waffle,London,Indoor,Food,51.5161,-0.0809,35
-Padella,London,Indoor,Food,51.5052,-0.0905,18
-The Ledbury,London,Indoor,Food,51.5170,-0.2010,180
-Sketch,London,Indoor,Food,51.5128,-0.1415,60
-Hotel Danieli,Rome,Indoor,Hotel,41.8900,12.4900,350
-Colosseum,Rome,Outdoor,History,41.8902,12.4922,16
-Vatican Museums,Rome,Indoor,Art,41.9065,12.4536,17
+St Pauls Cathedral,London,Indoor,History,51.5138,-0.0984,27
+Tower of London,London,Indoor,History,51.5081,-0.0759,42
+Kensington Palace,London,Indoor,History,51.5050,-0.1877,22
+Churchill War Rooms,London,Indoor,History,51.5019,-0.1294,33
+Tate Britain,London,Indoor,Art,51.4913,-0.1276,0
+Portobello Road Market,London,Outdoor,Culture,51.5170,-0.2010,0
+Hampstead Heath,London,Outdoor,Nature,51.5650,-0.1783,0
+Dishoom Kings Cross,London,Indoor,Food,51.5351,-0.1232,20
+Duck and Waffle,London,Indoor,Food,51.5161,-0.0809,40
+Padella Borough Market,London,Indoor,Food,51.5052,-0.0905,15
+The Ledbury,London,Indoor,Food,51.5170,-0.2010,220
+Sketch London,London,Indoor,Food,51.5128,-0.1415,60
+Bao Soho,London,Indoor,Food,51.5128,-0.1342,18
+St John Restaurant,London,Indoor,Food,51.5200,-0.1017,50
+Hotel Danieli Rome,Rome,Indoor,Hotel,41.8953,12.5086,550
+Bettoja Hotels Rome,Rome,Indoor,Hotel,41.9030,12.5000,130
+Generator Rome Hostel,Rome,Indoor,Hotel,41.8939,12.4806,40
+Colosseum,Rome,Outdoor,History,41.8902,12.4922,18
+Vatican Museums,Rome,Indoor,Art,41.9065,12.4536,20
 Trevi Fountain,Rome,Outdoor,Sightseeing,41.9009,12.4833,0
-Pantheon Rome,Rome,Indoor,History,41.8986,12.4769,0
-Roman Forum,Rome,Outdoor,History,41.8925,12.4853,16
+Pantheon Rome,Rome,Indoor,History,41.8986,12.4769,5
+Roman Forum,Rome,Outdoor,History,41.8925,12.4853,18
 Spanish Steps,Rome,Outdoor,Sightseeing,41.9059,12.4828,0
 Borghese Gallery,Rome,Indoor,Art,41.9142,12.4921,15
 Piazza Navona,Rome,Outdoor,Culture,41.8989,12.4731,0
 Trastevere District,Rome,Outdoor,Culture,41.8894,12.4703,0
-Castel Sant'Angelo,Rome,Indoor,History,41.9031,12.4663,15
+Castel SantAngelo,Rome,Indoor,History,41.9031,12.4663,15
 Villa Borghese Park,Rome,Outdoor,Nature,41.9128,12.4851,0
-Capuchin Crypt,Rome,Indoor,History,41.9050,12.4886,8
-Janiculum Hill,Rome,Outdoor,Nature,41.8913,12.4608,0
-Roscioli,Rome,Indoor,Food,41.8937,12.4739,40
-Bonci Pizzarium,Rome,Outdoor,Food,41.9075,12.4475,15
-Da Enzo al 29,Rome,Outdoor,Food,41.8885,12.4789,30
-Armando al Pantheon,Rome,Indoor,Food,41.8990,12.4760,45
-Hotel Arts Barcelona,Barcelona,Indoor,Hotel,41.3851,2.1974,280
-Sagrada Familia,Barcelona,Outdoor,Culture,41.4036,2.1744,26
-Park Güell,Barcelona,Outdoor,Nature,41.4145,2.1527,10
-Gothic Quarter,Barcelona,Outdoor,History,41.3833,2.1762,0
-Camp Nou,Barcelona,Indoor,Sightseeing,41.3809,2.1228,26
-La Boqueria Market,Barcelona,Indoor,Food,41.3816,2.1718,0
-Barceloneta Beach,Barcelona,Outdoor,Nature,41.3762,2.1897,0
-Picasso Museum Barcelona,Barcelona,Indoor,Art,41.3851,2.1806,12
-Casa Batlló,Barcelona,Indoor,Art,41.3916,2.1649,35
-Palau de la Música,Barcelona,Indoor,Culture,41.3875,2.1752,20
-Montjuïc Castle,Barcelona,Outdoor,History,41.3641,2.1660,5
-MACBA,Barcelona,Indoor,Art,41.3833,2.1668,10
-Tibidabo Amusement Park,Barcelona,Outdoor,Sightseeing,41.4219,2.1186,28
-El Nacional,Barcelona,Indoor,Food,41.3908,2.1649,40
-Bar Calders,Barcelona,Outdoor,Food,41.3762,2.1590,15
-Cerveceria Catalana,Barcelona,Indoor,Food,41.3930,2.1620,25
-Tickets,Barcelona,Indoor,Food,41.3762,2.1590,80
-Bodega Sepúlveda,Barcelona,Indoor,Food,41.3833,2.1590,20
-Hotel Vier Jahreszeiten,Munich,Indoor,Hotel,48.1391,11.5753,220
-Marienplatz,Munich,Outdoor,Sightseeing,48.1374,11.5755,0
-Englischer Garten,Munich,Outdoor,Nature,48.1642,11.6050,0
-Deutsches Museum,Munich,Indoor,History,48.1299,11.5833,14
-Nymphenburg Palace,Munich,Outdoor,History,48.1583,11.5033,8
-BMW Welt,Munich,Indoor,Sightseeing,48.1775,11.5561,0
-Viktualienmarkt,Munich,Outdoor,Food,48.1350,11.5762,0
-Hofbräuhaus,Munich,Indoor,Food,48.1378,11.5799,20
-Alte Pinakothek,Munich,Indoor,Art,48.1483,11.5700,7
-Residenz Munich,Munich,Indoor,History,48.1408,11.5789,9
-Augustiner Bräustuben,Munich,Indoor,Food,48.1383,11.5508,18
-Fraunhofer,Munich,Indoor,Food,48.1283,11.5667,22
-Tantris,Munich,Indoor,Food,48.1667,11.5833,120
-Hotel Okura Amsterdam,Amsterdam,Indoor,Hotel,52.3547,4.8917,200
-Rijksmuseum,Amsterdam,Indoor,Art,52.3600,4.8852,22
-Anne Frank House,Amsterdam,Indoor,History,52.3752,4.8839,16
-Van Gogh Museum,Amsterdam,Indoor,Art,52.3584,4.8811,20
-Vondelpark,Amsterdam,Outdoor,Nature,52.3583,4.8683,0
-Jordaan District,Amsterdam,Outdoor,Culture,52.3750,4.8833,0
-Heineken Experience,Amsterdam,Indoor,Culture,52.3578,4.8922,21
-Stedelijk Museum,Amsterdam,Indoor,Art,52.3580,4.8797,20
-NEMO Science Museum,Amsterdam,Indoor,Sightseeing,52.3741,4.9122,17
-Keukenhof Gardens,Amsterdam,Outdoor,Nature,52.2697,4.5469,19
-De Hallen,Amsterdam,Indoor,Food,52.3667,4.8667,0
-Brouwerij 't IJ,Amsterdam,Indoor,Food,52.3661,4.9194,8
-Café de Jaren,Amsterdam,Indoor,Food,52.3683,4.8972,20
-Moeders,Amsterdam,Indoor,Food,52.3750,4.8833,30
-Foodhallen,Amsterdam,Indoor,Food,52.3667,4.8667,15
-Hotel Sacher Vienna,Vienna,Indoor,Hotel,48.2033,16.3697,300
-Schönbrunn Palace,Vienna,Outdoor,History,48.1845,16.3122,16
-Belvedere Palace,Vienna,Indoor,Art,48.1914,16.3806,16
-St. Stephen's Cathedral,Vienna,Indoor,Culture,48.2083,16.3731,0
-Vienna State Opera,Vienna,Indoor,Culture,48.2031,16.3694,10
-Prater Park,Vienna,Outdoor,Nature,48.2167,16.3978,0
-Kunsthistorisches Museum,Vienna,Indoor,Art,48.2036,16.3614,16
-Naschmarkt,Vienna,Outdoor,Food,48.1983,16.3617,0
-Café Central,Vienna,Indoor,Food,48.2100,16.3658,15
-Figlmüller,Vienna,Indoor,Food,48.2083,16.3750,35
-Café Hawelka,Vienna,Indoor,Food,48.2083,16.3694,12
-Steirereck,Vienna,Indoor,Food,48.2028,16.3939,120
-The Ritz-Carlton Bangkok,Bangkok,Indoor,Hotel,13.7244,100.5292,180
-Grand Palace,Bangkok,Outdoor,Culture,13.7500,100.4913,15
-Wat Pho,Bangkok,Outdoor,Culture,13.7465,100.4930,5
-Wat Arun,Bangkok,Outdoor,Culture,13.7437,100.4888,5
-Chatuchak Weekend Market,Bangkok,Outdoor,Sightseeing,13.7999,100.5500,0
-Lumphini Park,Bangkok,Outdoor,Nature,13.7308,100.5411,0
-Jim Thompson House,Bangkok,Indoor,History,13.7472,100.5297,6
-MOCA Bangkok,Bangkok,Indoor,Art,13.8833,100.5667,5
-Asiatique The Riverfront,Bangkok,Outdoor,Sightseeing,13.7000,100.5000,0
-Erawan Shrine,Bangkok,Outdoor,Culture,13.7444,100.5397,0
-Floating Market Damnoen Saduak,Bangkok,Outdoor,Culture,13.5219,99.9578,0
-Khao San Road,Bangkok,Outdoor,Culture,13.7583,100.4972,0
-Gaggan Anand,Bangkok,Indoor,Food,13.7444,100.5397,150
-Nahm,Bangkok,Indoor,Food,13.7244,100.5292,80
-Jay Fai,Bangkok,Indoor,Food,13.7583,100.5028,30
-Pad Thai Thip Samai,Bangkok,Indoor,Food,13.7528,100.5028,8
-Somtum Der,Bangkok,Indoor,Food,13.7333,100.5667,15
-Or Tor Kor Market,Bangkok,Outdoor,Food,13.7999,100.5500,10
-Mandarin Oriental Singapore,Singapore,Indoor,Hotel,1.2833,103.8536,400
-Gardens by the Bay,Singapore,Outdoor,Nature,1.2816,103.8636,20
-Marina Bay Sands,Singapore,Indoor,Sightseeing,1.2834,103.8607,23
-Sentosa Island,Singapore,Outdoor,Sightseeing,1.2494,103.8303,0
-Singapore Zoo,Singapore,Outdoor,Nature,1.4043,103.7930,35
-Chinatown Singapore,Singapore,Outdoor,Culture,1.2833,103.8436,0
-Little India Singapore,Singapore,Outdoor,Culture,1.3067,103.8519,0
-National Museum of Singapore,Singapore,Indoor,History,1.2969,103.8486,15
-ArtScience Museum,Singapore,Indoor,Art,1.2863,103.8593,20
-Hawker Chan,Singapore,Indoor,Food,1.2833,103.8436,5
-Burnt Ends,Singapore,Indoor,Food,1.3000,103.8333,60
-Odette,Singapore,Indoor,Food,1.2900,103.8486,200
-Newton Food Centre,Singapore,Outdoor,Food,1.3122,103.8383,10
-Lau Pa Sat,Singapore,Outdoor,Food,1.2806,103.8500,12
-Jumbo Seafood,Singapore,Indoor,Food,1.2900,103.8550,40
-Four Seasons Dubai,Dubai,Indoor,Hotel,25.1972,55.2744,500
-Burj Khalifa,Dubai,Indoor,Sightseeing,25.1972,55.2744,35
-Dubai Mall,Dubai,Indoor,Sightseeing,25.1975,55.2796,0
-Palm Jumeirah,Dubai,Outdoor,Sightseeing,25.1124,55.1390,0
-Dubai Museum,Dubai,Indoor,History,25.2631,55.2972,3
-Gold Souk,Dubai,Indoor,Culture,25.2867,55.3050,0
-Spice Souk,Dubai,Outdoor,Culture,25.2833,55.3033,0
-Dubai Frame,Dubai,Indoor,Sightseeing,25.2350,55.3006,13
-Miracle Garden,Dubai,Outdoor,Nature,25.0581,55.2444,14
-Desert Safari Dubai,Dubai,Outdoor,Nature,24.9000,55.4000,50
-Atlantis Aquaventure,Dubai,Outdoor,Sightseeing,25.1306,55.1172,80
-Al Fahidi Historic District,Dubai,Outdoor,History,25.2631,55.2972,0
-Nobu Dubai,Dubai,Indoor,Food,25.1972,55.2744,90
-Zuma Dubai,Dubai,Indoor,Food,25.2000,55.2700,80
-Ravi Restaurant,Dubai,Indoor,Food,25.2333,55.2833,8
-Bu Qtair,Dubai,Outdoor,Food,25.1833,55.2333,12
-Logma,Dubai,Indoor,Food,25.2000,55.2700,20
-Park Hyatt Sydney,Sydney,Indoor,Hotel,-33.8617,151.2100,350
-Sydney Opera House,Sydney,Outdoor,Culture,-33.8568,151.2153,40
-Sydney Harbour Bridge,Sydney,Outdoor,Sightseeing,-33.8523,151.2108,0
+Capitoline Museums,Rome,Indoor,History,41.8933,12.4831,16
+Piazza del Popolo,Rome,Outdoor,Sightseeing,41.9108,12.4764,0
+Campo de Fiori Market,Rome,Outdoor,Culture,41.8956,12.4722,0
+Palazzo Doria Pamphilj,Rome,Indoor,Art,41.8983,12.4800,12
+Testaccio Market,Rome,Outdoor,Food,41.8767,12.4767,0
+Suppli Roma,Rome,Outdoor,Food,41.8937,12.4739,5
+Tonnarello Trastevere,Rome,Outdoor,Food,41.8885,12.4789,25
+Osteria dell Angelo,Rome,Indoor,Food,41.8894,12.4703,30
+Pizzarium Bonci,Rome,Outdoor,Food,41.9075,12.4475,10
+Gelateria del Teatro,Rome,Indoor,Food,41.8989,12.4731,5
+Casa Coppelle,Rome,Indoor,Food,41.8992,12.4769,50
+W Barcelona,Barcelona,Indoor,Hotel,41.3742,2.1886,280
+Hotel Arts Barcelona,Barcelona,Indoor,Hotel,41.3856,2.1965,320
+Room Mate Pau,Barcelona,Indoor,Hotel,41.3840,2.1697,95
+Sagrada Familia,Barcelona,Indoor,Culture,41.4036,2.1744,28
+Park Guell,Barcelona,Outdoor,Art,41.4145,2.1527,14
+Gothic Quarter Barcelona,Barcelona,Outdoor,History,41.3833,2.1762,0
+La Barceloneta Beach,Barcelona,Outdoor,Nature,41.3783,2.1889,0
+Casa Batllo,Barcelona,Indoor,Art,41.3916,2.1650,38
+Camp Nou Stadium,Barcelona,Indoor,Culture,41.3809,2.1228,30
+Palau de la Musica Catalana,Barcelona,Indoor,Art,41.3875,2.1752,22
+MACBA Museum,Barcelona,Indoor,Art,41.3833,2.1667,13
+Tibidabo Amusement Park,Barcelona,Outdoor,Sightseeing,41.4219,2.1186,38
+Bunkers del Carmel,Barcelona,Outdoor,Sightseeing,41.4183,2.1650,0
+Montjuic Castle,Barcelona,Outdoor,History,41.3633,2.1658,10
+La Pedrera Casa Mila,Barcelona,Indoor,Art,41.3953,2.1619,27
+Mercat de la Boqueria,Barcelona,Outdoor,Food,41.3817,2.1717,0
+Bar Calders Tapas,Barcelona,Outdoor,Food,41.3762,2.1590,15
+La Pepita Barcelona,Barcelona,Indoor,Food,41.3930,2.1620,14
+Cerveceria Catalana,Barcelona,Indoor,Food,41.3930,2.1620,22
+Tickets Bar Albert Adria,Barcelona,Indoor,Food,41.3767,2.1617,80
+El Xampanyet,Barcelona,Indoor,Food,41.3836,2.1819,18
+Bar del Pla,Barcelona,Indoor,Food,41.3828,2.1789,20
+Atlantis The Palm Dubai,Dubai,Indoor,Hotel,25.1308,55.1172,350
+Burj Al Arab Jumeirah,Dubai,Indoor,Hotel,25.1411,55.1853,1200
+Premier Inn Dubai Ibn Battuta,Dubai,Indoor,Hotel,25.0517,55.1200,90
+Burj Khalifa At the Top,Dubai,Indoor,Sightseeing,25.1972,55.2744,37
+Dubai Mall,Dubai,Indoor,Sightseeing,25.1972,55.2744,0
+Dubai Creek,Dubai,Outdoor,History,25.2631,55.3050,0
+Gold Souk Dubai,Dubai,Outdoor,Culture,25.2667,55.2972,0
+Dubai Museum of the Future,Dubai,Indoor,Sightseeing,25.2197,55.2817,35
+Dubai Frame,Dubai,Indoor,Sightseeing,25.2344,55.3006,14
+Jumeirah Mosque,Dubai,Indoor,Culture,25.2333,55.2667,0
+Alserkal Avenue Arts District,Dubai,Indoor,Art,25.1333,55.2167,0
+Kite Beach Dubai,Dubai,Outdoor,Nature,25.1833,55.2333,0
+La Mer Beach Dubai,Dubai,Outdoor,Nature,25.2333,55.2833,0
+Dubai Opera,Dubai,Indoor,Culture,25.1972,55.2744,30
+Miracle Garden Dubai,Dubai,Outdoor,Nature,25.0617,55.2417,18
+Arabian Tea House Dubai,Dubai,Indoor,Food,25.2631,55.2972,15
+Comptoir 102,Dubai,Indoor,Food,25.2333,55.2667,22
+Lowe Restaurant Dubai,Dubai,Indoor,Food,25.1972,55.2744,55
+Logma Restaurant,Dubai,Indoor,Food,25.2631,55.2972,20
+XVA Cafe Dubai,Dubai,Indoor,Food,25.2631,55.2972,18
+Park Hyatt Sydney,Sydney,Indoor,Hotel,-33.8604,151.2117,380
+QT Sydney,Sydney,Indoor,Hotel,-33.8683,151.2094,220
+Ibis Sydney Airport,Sydney,Indoor,Hotel,-33.9333,151.1667,100
+Sydney Opera House,Sydney,Outdoor,Culture,-33.8568,151.2153,0
+Sydney Harbour Bridge Climb,Sydney,Outdoor,Sightseeing,-33.8523,151.2108,180
 Bondi Beach,Sydney,Outdoor,Nature,-33.8908,151.2743,0
-Taronga Zoo,Sydney,Outdoor,Nature,-33.8433,151.2411,46
-Royal Botanic Garden,Sydney,Outdoor,Nature,-33.8642,151.2166,0
-The Rocks,Sydney,Outdoor,History,-33.8597,151.2090,0
-Art Gallery of NSW,Sydney,Indoor,Art,-33.8688,151.2175,0
+Royal Botanic Garden Sydney,Sydney,Outdoor,Nature,-33.8642,151.2166,0
+Taronga Zoo,Sydney,Outdoor,Nature,-33.8433,151.2417,46
+The Rocks Market,Sydney,Outdoor,Culture,-33.8600,151.2094,0
+Art Gallery of New South Wales,Sydney,Indoor,Art,-33.8686,151.2172,0
+Bondi to Coogee Walk,Sydney,Outdoor,Nature,-33.8908,151.2743,0
+Darling Harbour,Sydney,Outdoor,Sightseeing,-33.8733,151.1989,0
 Manly Beach,Sydney,Outdoor,Nature,-33.7969,151.2869,0
-Blue Mountains,Sydney,Outdoor,Nature,-33.7167,150.3167,0
-Darling Harbour,Sydney,Outdoor,Sightseeing,-33.8731,151.1997,0
-Quay Restaurant,Sydney,Indoor,Food,-33.8597,151.2090,120
-Tetsuya's,Sydney,Indoor,Food,-33.8750,151.2000,200
-Icebergs Dining Room,Sydney,Indoor,Food,-33.8942,151.2742,60
-The Grounds of Alexandria,Sydney,Indoor,Food,-33.9100,151.1950,25
-Bourke Street Bakery,Sydney,Indoor,Food,-33.8942,151.2100,12
-Four Seasons Cape Town,Cape Town,Indoor,Hotel,-33.9249,18.4241,200
-Table Mountain,Cape Town,Outdoor,Nature,-33.9628,18.4098,20
-Cape of Good Hope,Cape Town,Outdoor,Nature,-34.3568,18.4731,15
-Robben Island,Cape Town,Outdoor,History,-33.8069,18.3664,25
-V&A Waterfront,Cape Town,Outdoor,Sightseeing,-33.9022,18.4197,0
-Kirstenbosch Gardens,Cape Town,Outdoor,Nature,-33.9875,18.4322,10
-Bo-Kaap,Cape Town,Outdoor,Culture,-33.9244,18.4128,0
-District Six Museum,Cape Town,Indoor,History,-33.9281,18.4328,8
-Boulders Beach Penguins,Cape Town,Outdoor,Nature,-34.1978,18.4514,10
-Chapman's Peak,Cape Town,Outdoor,Nature,-34.0833,18.3667,0
-The Test Kitchen,Cape Town,Indoor,Food,-33.9281,18.4328,100
-La Colombe,Cape Town,Indoor,Food,-34.0167,18.4333,90
-Harbour House,Cape Town,Indoor,Food,-33.9022,18.4197,45
-Boulders Beach Restaurant,Cape Town,Indoor,Food,-34.1978,18.4514,20
-Haiku,Cape Town,Indoor,Food,-33.9281,18.4328,35
-Hotel Fasano Rio,Rio de Janeiro,Indoor,Hotel,-22.9833,-43.1833,280
-Christ the Redeemer,Rio de Janeiro,Outdoor,Culture,-22.9519,-43.2105,15
-Sugarloaf Mountain,Rio de Janeiro,Outdoor,Nature,-22.9489,-43.1553,25
-Copacabana Beach,Rio de Janeiro,Outdoor,Nature,-22.9711,-43.1822,0
-Ipanema Beach,Rio de Janeiro,Outdoor,Nature,-22.9836,-43.2036,0
-Tijuca National Park,Rio de Janeiro,Outdoor,Nature,-22.9333,-43.2833,0
-Santa Teresa Neighbourhood,Rio de Janeiro,Outdoor,Culture,-22.9167,-43.1833,0
-Lapa Arches,Rio de Janeiro,Outdoor,History,-22.9097,-43.1797,0
-Museum of Tomorrow,Rio de Janeiro,Indoor,Art,-22.8944,-43.1736,8
-Maracanã Stadium,Rio de Janeiro,Indoor,Sightseeing,-22.9122,-43.2300,20
-Confeitaria Colombo,Rio de Janeiro,Indoor,Food,-22.9069,-43.1758,20
-Aprazível,Rio de Janeiro,Indoor,Food,-22.9167,-43.1833,50
-Olympe,Rio de Janeiro,Indoor,Food,-22.9667,-43.1833,90
-Miam Miam,Rio de Janeiro,Indoor,Food,-22.9836,-43.2036,35
-Azumi,Rio de Janeiro,Indoor,Food,-22.9711,-43.1822,60
-Aman Tokyo,Tokyo,Indoor,Hotel,35.6850,139.7514,800
-Shiodome City Center,Tokyo,Indoor,Sightseeing,35.6650,139.7600,0
-Odaiba Island,Tokyo,Outdoor,Sightseeing,35.6267,139.7750,0
-Yanaka Cemetery,Tokyo,Outdoor,History,35.7267,139.7667,0
-Koishikawa Korakuen,Tokyo,Outdoor,Nature,35.7067,139.7483,3
-Shinjuku Golden Gai,Tokyo,Outdoor,Culture,35.6933,139.7033,0
-Nakameguro Canal,Tokyo,Outdoor,Nature,35.6433,139.6983,0
-Shimokitazawa,Tokyo,Outdoor,Culture,35.6617,139.6683,0
-Tsukiji Outer Market,Tokyo,Outdoor,Food,35.6650,139.7700,0
-Tempura Kondo,Tokyo,Indoor,Food,35.6700,139.7300,80
-Sushi Saito,Tokyo,Indoor,Food,35.6700,139.7400,200
-Tonki Tonkatsu,Tokyo,Indoor,Food,35.7133,139.7083,20
-Gyukatsu Motomura,Tokyo,Indoor,Food,35.6600,139.7000,18
-Uobei Sushi,Tokyo,Indoor,Food,35.6900,139.7000,15
-Mandarin Oriental Kuala Lumpur,Kuala Lumpur,Indoor,Hotel,3.1569,101.7116,150
-Petronas Twin Towers,Kuala Lumpur,Indoor,Sightseeing,3.1578,101.7123,20
-Batu Caves,Kuala Lumpur,Outdoor,Culture,3.2379,101.6840,0
-KL Bird Park,Kuala Lumpur,Outdoor,Nature,3.1444,101.6867,15
-Merdeka Square,Kuala Lumpur,Outdoor,History,3.1489,101.6942,0
-Central Market KL,Kuala Lumpur,Indoor,Culture,3.1444,101.6972,0
-Thean Hou Temple,Kuala Lumpur,Outdoor,Culture,3.1167,101.6833,0
-Islamic Arts Museum,Kuala Lumpur,Indoor,Art,3.1422,101.6869,4
-KLCC Park,Kuala Lumpur,Outdoor,Nature,3.1578,101.7123,0
-Jalan Alor,Kuala Lumpur,Outdoor,Food,3.1467,101.7100,10
-Nasi Kandar Pelita,Kuala Lumpur,Indoor,Food,3.1578,101.7123,8
-Jiro KL,Kuala Lumpur,Indoor,Food,3.1578,101.7116,60
-Limapulo,Kuala Lumpur,Indoor,Food,3.1489,101.6942,20
-Merchant's Lane,Kuala Lumpur,Indoor,Food,3.1444,101.6972,15
-Hotel Gritti Palace Venice,Venice,Indoor,Hotel,45.4328,12.3358,400
-St. Mark's Basilica,Venice,Indoor,Culture,45.4345,12.3389,3
-Doge's Palace,Venice,Indoor,History,45.4339,12.3400,25
-Grand Canal,Venice,Outdoor,Sightseeing,45.4408,12.3155,0
-Rialto Bridge,Venice,Outdoor,Sightseeing,45.4380,12.3358,0
-Murano Island,Venice,Outdoor,Culture,45.4567,12.3550,0
-Burano Island,Venice,Outdoor,Culture,45.4853,12.4167,0
-Peggy Guggenheim Collection,Venice,Indoor,Art,45.4308,12.3317,16
-Gallerie dell'Accademia,Venice,Indoor,Art,45.4317,12.3283,12
-Scuola Grande di San Rocco,Venice,Indoor,Art,45.4372,12.3272,10
-Osteria alle Testiere,Venice,Indoor,Food,45.4367,12.3400,55
-Trattoria da Romano,Venice,Indoor,Food,45.4853,12.4167,35
-Antiche Carampane,Venice,Indoor,Food,45.4383,12.3283,45
-Bacaro Jazz,Venice,Indoor,Food,45.4380,12.3358,20
-Caffè Florian,Venice,Indoor,Food,45.4345,12.3389,15
-Rosewood Hong Kong,Hong Kong,Indoor,Hotel,22.2975,114.1722,450
-Victoria Peak,Hong Kong,Outdoor,Sightseeing,22.2758,114.1455,0
-Hong Kong Disneyland,Hong Kong,Outdoor,Sightseeing,22.3130,114.0413,80
-Tian Tan Buddha,Hong Kong,Outdoor,Culture,22.2539,113.9050,0
-Temple Street Night Market,Hong Kong,Outdoor,Culture,22.3069,114.1700,0
-Man Mo Temple,Hong Kong,Indoor,Culture,22.2836,114.1500,0
-Star Ferry,Hong Kong,Outdoor,Sightseeing,22.2933,114.1683,0
-Wong Tai Sin Temple,Hong Kong,Outdoor,Culture,22.3425,114.1933,0
-Hong Kong Museum of History,Hong Kong,Indoor,History,22.2978,114.1733,0
-Nan Lian Garden,Hong Kong,Outdoor,Nature,22.3400,114.1950,0
-Tim Ho Wan,Hong Kong,Indoor,Food,22.3069,114.1700,12
-Lung King Heen,Hong Kong,Indoor,Food,22.2833,114.1583,150
-Yung Kee Restaurant,Hong Kong,Indoor,Food,22.2817,114.1550,35
-Mak's Noodle,Hong Kong,Indoor,Food,22.2817,114.1550,10
-Duddell's,Hong Kong,Indoor,Food,22.2800,114.1583,80
-Aman New Delhi,New Delhi,Indoor,Hotel,28.5975,77.2100,300
-Red Fort,New Delhi,Outdoor,History,28.6562,77.2410,10
-Qutub Minar,New Delhi,Outdoor,History,28.5244,77.1855,10
-India Gate,New Delhi,Outdoor,History,28.6129,77.2295,0
-Humayun's Tomb,New Delhi,Outdoor,History,28.5933,77.2507,10
-Lotus Temple,New Delhi,Outdoor,Culture,28.5535,77.2588,0
-National Museum New Delhi,New Delhi,Indoor,History,28.6117,77.2197,10
-Akshardham Temple,New Delhi,Outdoor,Culture,28.6127,77.2773,0
-Chandni Chowk,New Delhi,Outdoor,Culture,28.6508,77.2311,0
-Lodi Garden,New Delhi,Outdoor,Nature,28.5931,77.2197,0
-Indian Accent,New Delhi,Indoor,Food,28.5975,77.2100,80
-Bukhara,New Delhi,Indoor,Food,28.5975,77.2100,60
-Karim's,New Delhi,Indoor,Food,28.6508,77.2311,12
-Saravana Bhavan,New Delhi,Indoor,Food,28.6117,77.2197,8
-Gulati Restaurant,New Delhi,Indoor,Food,28.6300,77.2200,15
-Aman Kyoto,Kyoto,Indoor,Hotel,35.0394,135.7292,700
+Featherdale Wildlife Park,Sydney,Outdoor,Nature,-33.7500,150.9167,29
+White Rabbit Gallery,Sydney,Indoor,Art,-33.8833,151.2017,0
+Quay Restaurant,Sydney,Indoor,Food,-33.8600,151.2094,120
+Chiswick Restaurant,Sydney,Indoor,Food,-33.8633,151.1783,55
+Automata Sydney,Sydney,Indoor,Food,-33.8833,151.2017,65
+Cafe Sopra,Sydney,Indoor,Food,-33.8833,151.2100,28
+Porteño Restaurant,Sydney,Indoor,Food,-33.8833,151.2100,50
+The Grounds of Alexandria,Sydney,Indoor,Food,-33.9050,151.1933,22
+Marina Bay Sands Singapore,Singapore,Indoor,Hotel,1.2833,103.8607,280
+The Fullerton Hotel,Singapore,Indoor,Hotel,1.2864,103.8519,250
+Ibis Singapore on Bencoolen,Singapore,Indoor,Hotel,1.2992,103.8500,90
+Gardens by the Bay,Singapore,Outdoor,Nature,1.2816,103.8636,26
+Marina Bay Sands Skypark,Singapore,Indoor,Sightseeing,1.2833,103.8607,24
+Singapore Zoo,Singapore,Outdoor,Nature,1.4043,103.7930,30
+Sentosa Island,Singapore,Outdoor,Sightseeing,1.2494,103.8303,0
+Chinatown Singapore,Singapore,Outdoor,Culture,1.2817,103.8442,0
+Little India Singapore,Singapore,Outdoor,Culture,1.3067,103.8519,0
+National Gallery Singapore,Singapore,Indoor,Art,1.2900,103.8486,20
+Singapore Botanic Gardens,Singapore,Outdoor,Nature,1.3167,103.8167,0
+ArtScience Museum,Singapore,Indoor,Art,1.2867,103.8592,33
+Fort Canning Park,Singapore,Outdoor,History,1.2950,103.8450,0
+Night Safari Singapore,Singapore,Outdoor,Nature,1.4043,103.7930,41
+Peranakan Museum,Singapore,Indoor,History,1.2950,103.8483,8
+Universal Studios Singapore,Singapore,Indoor,Sightseeing,1.2542,103.8238,57
+Maxwell Food Centre,Singapore,Outdoor,Food,1.2806,103.8450,8
+Lau Pa Sat Hawker Centre,Singapore,Outdoor,Food,1.2806,103.8519,10
+Candlenut Restaurant,Singapore,Indoor,Food,1.2950,103.8450,65
+Labyrinth Singapore,Singapore,Indoor,Food,1.2806,103.8536,95
+Burnt Ends Singapore,Singapore,Indoor,Food,1.2850,103.8333,70
+Sungei Road Laksa,Singapore,Outdoor,Food,1.3067,103.8519,4
+Ya Kun Kaya Toast,Singapore,Indoor,Food,1.2864,103.8519,5
+Shangri-La Bangkok,Bangkok,Indoor,Hotel,13.7228,100.5233,180
+Mandarin Oriental Bangkok,Bangkok,Indoor,Hotel,13.7267,100.5100,380
+Lub d Bangkok Silom,Bangkok,Indoor,Hotel,13.7267,100.5100,30
+Wat Phra Kaew Grand Palace,Bangkok,Outdoor,Culture,13.7500,100.4917,16
+Wat Pho Temple,Bangkok,Indoor,Culture,13.7463,100.4927,5
+Wat Arun Temple of Dawn,Bangkok,Outdoor,Culture,13.7437,100.4888,3
+Chatuchak Weekend Market,Bangkok,Outdoor,Culture,13.7999,100.5500,0
+Bangkok National Museum,Bangkok,Indoor,History,13.7528,100.5028,5
+Jim Thompson House,Bangkok,Indoor,History,13.7467,100.5283,6
+Erawan Shrine,Bangkok,Outdoor,Culture,13.7444,100.5394,0
+Khao San Road,Bangkok,Outdoor,Sightseeing,13.7583,100.4972,0
+Lumphini Park,Bangkok,Outdoor,Nature,13.7308,100.5411,0
+Asiatique The Riverfront,Bangkok,Outdoor,Sightseeing,13.7267,100.5100,0
+Damnoen Saduak Floating Market,Bangkok,Outdoor,Culture,13.5194,99.9575,0
+Icon Siam Mall,Bangkok,Indoor,Sightseeing,13.7267,100.5100,0
+Thip Samai Pad Thai,Bangkok,Indoor,Food,13.7528,100.5028,6
+Jay Fai Bangkok,Bangkok,Indoor,Food,13.7583,100.5028,35
+Baan Phadthai,Bangkok,Indoor,Food,13.7267,100.5100,18
+Supanniga Eating Room,Bangkok,Indoor,Food,13.7333,100.5667,22
+Err Urban Rustic Thai,Bangkok,Indoor,Food,13.7437,100.4888,28
+Chinatown Seafood Street,Bangkok,Outdoor,Food,13.7400,100.5133,15
+Boat Noodle Alley Bangkok,Bangkok,Indoor,Food,13.7528,100.5028,5
+Waldorf Astoria Amsterdam,Amsterdam,Indoor,Hotel,52.3694,4.8958,400
+Hotel V Nesplein,Amsterdam,Indoor,Hotel,52.3711,4.8780,150
+Stayokay Amsterdam Vondelpark,Amsterdam,Indoor,Hotel,52.3583,4.8700,45
+Anne Frank House,Amsterdam,Indoor,History,52.3752,4.8839,16
+Rijksmuseum,Amsterdam,Indoor,Art,52.3600,4.8852,24
+Van Gogh Museum,Amsterdam,Indoor,Art,52.3583,4.8811,24
+Stedelijk Museum,Amsterdam,Indoor,Art,52.3583,4.8800,24
+Amsterdam Canals UNESCO,Amsterdam,Outdoor,Sightseeing,52.3702,4.8952,0
+Vondelpark,Amsterdam,Outdoor,Nature,52.3583,4.8700,0
+Jordaan Neighbourhood,Amsterdam,Outdoor,Culture,52.3750,4.8833,0
+Heineken Experience,Amsterdam,Indoor,Culture,52.3564,4.8925,23
+Moco Museum,Amsterdam,Indoor,Art,52.3583,4.8800,22
+NEMO Science Museum,Amsterdam,Indoor,Sightseeing,52.3744,4.9122,18
+Hortus Botanicus Amsterdam,Amsterdam,Indoor,Nature,52.3667,4.9083,12
+Artis Royal Zoo,Amsterdam,Outdoor,Nature,52.3667,4.9167,27
+Pllek Restaurant,Amsterdam,Outdoor,Food,52.3917,4.9167,22
+Rijsel Amsterdam,Amsterdam,Indoor,Food,52.3583,4.9167,32
+Envy Restaurant,Amsterdam,Indoor,Food,52.3750,4.8833,42
+Cafe de Jaren,Amsterdam,Outdoor,Food,52.3694,4.8958,18
+Beulings,Amsterdam,Indoor,Food,52.3702,4.8833,40
+Hotel Sacher Vienna,Vienna,Indoor,Hotel,48.2033,16.3697,400
+Grand Hotel Wien,Vienna,Indoor,Hotel,48.2000,16.3750,300
+Motel One Wien Staatsoper,Vienna,Indoor,Hotel,48.2033,16.3697,95
+Belvedere Palace Museum,Vienna,Indoor,Art,48.1914,16.3806,17
+Kunsthistorisches Museum,Vienna,Indoor,Art,48.2036,16.3614,19
+Hofburg Imperial Palace,Vienna,Indoor,History,48.2066,16.3656,18
+Vienna State Opera,Vienna,Indoor,Culture,48.2033,16.3697,13
+Schonbrunn Palace,Vienna,Outdoor,History,48.1858,16.3122,24
+Naschmarkt Vienna,Vienna,Outdoor,Food,48.1983,16.3617,0
+Albertina Museum,Vienna,Indoor,Art,48.2044,16.3681,18
+Stephansdom Cathedral,Vienna,Indoor,Culture,48.2083,16.3733,0
+Prater Park and Giant Ferris Wheel,Vienna,Outdoor,Sightseeing,48.2167,16.3978,13
+Sigmund Freud Museum,Vienna,Indoor,History,48.2183,16.3567,15
+Votivkirche,Vienna,Indoor,Culture,48.2183,16.3567,0
+Stadtpark Vienna,Vienna,Outdoor,Nature,48.2028,16.3800,0
+Cafe Central Vienna,Vienna,Indoor,Food,48.2100,16.3667,12
+Figlmuller Wollzeile,Vienna,Indoor,Food,48.2083,16.3750,28
+Zum Wohl Wine Bar,Vienna,Indoor,Food,48.2083,16.3694,20
+Gasthaus Poschl,Vienna,Indoor,Food,48.2083,16.3750,25
+Palmenhaus Vienna,Vienna,Indoor,Food,48.2044,16.3681,35
+Aman Kyoto,Kyoto,Indoor,Hotel,35.0394,135.7292,1200
+The Ritz-Carlton Kyoto,Kyoto,Indoor,Hotel,35.0139,135.7710,600
+Hotel Gran Ms Kyoto,Kyoto,Indoor,Hotel,35.0116,135.7681,90
 Fushimi Inari Shrine,Kyoto,Outdoor,Culture,34.9671,135.7727,0
-Arashiyama Bamboo Grove,Kyoto,Outdoor,Nature,35.0094,135.6722,0
-Kinkaku-ji Golden Pavilion,Kyoto,Outdoor,Culture,35.0394,135.7292,5
-Gion District,Kyoto,Outdoor,Culture,35.0036,135.7750,0
-Nishiki Market,Kyoto,Indoor,Food,35.0050,135.7650,0
-Philosopher's Path,Kyoto,Outdoor,Nature,35.0272,135.7939,0
-Ryoan-ji Temple,Kyoto,Outdoor,Culture,35.0344,135.7178,6
-Kiyomizu-dera Temple,Kyoto,Outdoor,Culture,34.9948,135.7850,5
-Nijo Castle,Kyoto,Indoor,History,35.0142,135.7481,6
-Toei Kyoto Studio Park,Kyoto,Outdoor,Culture,35.0267,135.7133,2
-Kikunoi,Kyoto,Indoor,Food,35.0036,135.7750,120
-Nakamura-ro,Kyoto,Indoor,Food,35.0036,135.7750,100
-Ippudo Kyoto,Kyoto,Indoor,Food,35.0050,135.7650,14
-Nishiki Warai,Kyoto,Indoor,Food,35.0050,135.7650,20
-Kagizen Yoshifusa,Kyoto,Indoor,Food,35.0036,135.7750,15
-Marriott Istanbul,Istanbul,Indoor,Hotel,41.0422,29.0083,180
-Hagia Sophia,Istanbul,Indoor,Culture,41.0086,28.9802,15
-Topkapi Palace,Istanbul,Indoor,History,41.0115,28.9833,15
-Blue Mosque,Istanbul,Outdoor,Culture,41.0054,28.9768,0
+Kinkaku-ji Golden Pavilion,Kyoto,Outdoor,Culture,35.0394,135.7292,4
+Arashiyama Bamboo Grove,Kyoto,Outdoor,Nature,35.0170,135.6727,0
+Gion District,Kyoto,Outdoor,Culture,35.0031,135.7756,0
+Nishiki Market,Kyoto,Indoor,Culture,35.0044,135.7672,0
+Philosophers Path,Kyoto,Outdoor,Nature,35.0272,135.7919,0
+Kiyomizu-dera Temple,Kyoto,Outdoor,Culture,34.9948,135.7850,4
+Arashiyama Monkey Park,Kyoto,Outdoor,Nature,35.0100,135.6714,4
+Nijo Castle,Kyoto,Indoor,History,35.0142,135.7481,5
+Ryoan-ji Temple Rock Garden,Kyoto,Outdoor,Culture,35.0344,135.7181,4
+Heian Shrine,Kyoto,Outdoor,Culture,35.0164,135.7822,0
+Daitoku-ji Temple Complex,Kyoto,Outdoor,Culture,35.0456,135.7428,4
+Togetsu-kyo Bridge Arashiyama,Kyoto,Outdoor,Sightseeing,35.0150,135.6750,0
+Nishiki Tenmangu Shrine,Kyoto,Outdoor,Culture,35.0044,135.7678,0
+Soba at Mizuki Arashiyama,Kyoto,Indoor,Food,35.0170,135.6727,20
+Nishiki Market Street Food,Kyoto,Outdoor,Food,35.0044,135.7672,10
+Tsukemen Yama Goyo,Kyoto,Indoor,Food,35.0116,135.7681,14
+Kikunoi Honten,Kyoto,Indoor,Food,35.0031,135.7800,120
+Issen Yoshoku Omurice,Kyoto,Indoor,Food,35.0031,135.7756,15
+Nishiki Warai,Kyoto,Indoor,Food,35.0044,135.7672,18
+Lotte Hotel Seoul,Seoul,Indoor,Hotel,37.5656,126.9810,250
+Josun Palace Seoul,Seoul,Indoor,Hotel,37.5651,127.0021,400
+Ibis Ambassador Seoul Myeongdong,Seoul,Indoor,Hotel,37.5608,126.9861,80
+Gyeongbokgung Palace,Seoul,Outdoor,History,37.5796,126.9770,3
+N Seoul Tower,Seoul,Indoor,Sightseeing,37.5512,126.9882,16
+Bukchon Hanok Village,Seoul,Outdoor,Culture,37.5815,126.9850,0
+Insadong Cultural District,Seoul,Outdoor,Culture,37.5742,126.9858,0
+Myeongdong Shopping District,Seoul,Outdoor,Sightseeing,37.5608,126.9861,0
+Changdeokgung Palace,Seoul,Outdoor,History,37.5794,126.9910,3
+National Museum of Korea,Seoul,Indoor,History,37.5239,126.9806,0
+Hongdae District,Seoul,Outdoor,Culture,37.5574,126.9244,0
+Dongdaemun Design Plaza,Seoul,Indoor,Art,37.5673,127.0097,0
+Lotte World Tower Observatory,Seoul,Indoor,Sightseeing,37.5123,127.1025,27
+Gwangjang Market,Seoul,Outdoor,Food,37.5700,126.9994,0
+Namsan Mountain Trail,Seoul,Outdoor,Nature,37.5512,126.9882,0
+Gwangjang Market Bindaetteok,Seoul,Outdoor,Food,37.5700,126.9994,5
+Jungsik Seoul,Seoul,Indoor,Food,37.5239,127.0153,120
+Tongin Market Box Lunch,Seoul,Outdoor,Food,37.5783,126.9686,8
+Maple Tree House,Seoul,Indoor,Food,37.5783,126.9850,55
+Gogung Bibimbap,Seoul,Indoor,Food,37.5608,126.9861,12
+Gwangjang Sundae Soup,Seoul,Outdoor,Food,37.5700,126.9994,7
+The Peninsula Hong Kong,Hong Kong,Indoor,Hotel,22.2950,114.1722,500
+Hotel Icon Hong Kong,Hong Kong,Indoor,Hotel,22.3072,114.1692,180
+Mini Hotel Central,Hong Kong,Indoor,Hotel,22.2819,114.1542,95
+Victoria Peak The Peak Tram,Hong Kong,Outdoor,Sightseeing,22.2758,114.1455,14
+Hong Kong Disneyland,Hong Kong,Indoor,Sightseeing,22.3131,114.0413,57
+Tian Tan Buddha Lantau,Hong Kong,Outdoor,Culture,22.2540,113.9050,0
+Hong Kong Museum of History,Hong Kong,Indoor,History,22.3008,114.1733,0
+Temple Street Night Market,Hong Kong,Outdoor,Culture,22.3069,114.1675,0
+Man Mo Temple,Hong Kong,Indoor,Culture,22.2836,114.1500,0
+Hong Kong Wetland Park,Hong Kong,Outdoor,Nature,22.4694,113.9989,10
+Nan Lian Garden,Hong Kong,Outdoor,Nature,22.3386,114.1978,0
+Star Ferry Harbour Crossing,Hong Kong,Outdoor,Sightseeing,22.2936,114.1694,1
+Sik Sik Yuen Wong Tai Sin Temple,Hong Kong,Outdoor,Culture,22.3422,114.1939,0
+The Charcoal Room,Hong Kong,Indoor,Food,22.2819,114.1569,60
+Yung Kee Restaurant,Hong Kong,Indoor,Food,22.2819,114.1569,35
+Tim Ho Wan Dim Sum,Hong Kong,Indoor,Food,22.3008,114.1733,15
+Fook Lam Moon,Hong Kong,Indoor,Food,22.2786,114.1761,80
+Maks Noodle,Hong Kong,Indoor,Food,22.2819,114.1569,10
+Ding Dim 1968,Hong Kong,Indoor,Food,22.2836,114.1500,18
+Four Seasons Hotel Istanbul,Istanbul,Indoor,Hotel,41.0044,28.9775,400
+Ciragan Palace Kempinski,Istanbul,Indoor,Hotel,41.0481,29.0553,500
+Witt Istanbul Hotel,Istanbul,Indoor,Hotel,41.0300,29.0042,120
+Hagia Sophia,Istanbul,Indoor,Culture,41.0086,28.9802,18
+Blue Mosque Sultanahmet,Istanbul,Indoor,Culture,41.0054,28.9768,0
+Topkapi Palace,Istanbul,Indoor,History,41.0115,28.9833,18
 Grand Bazaar,Istanbul,Indoor,Culture,41.0108,28.9681,0
-Bosphorus Cruise,Istanbul,Outdoor,Sightseeing,41.0422,29.0083,15
-Spice Bazaar,Istanbul,Indoor,Culture,41.0167,28.9700,0
-Dolmabahçe Palace,Istanbul,Indoor,History,41.0392,29.0008,15
-Galata Tower,Istanbul,Outdoor,Sightseeing,41.0256,28.9742,10
-Basilica Cistern,Istanbul,Indoor,History,41.0083,28.9778,10
-Chora Church,Istanbul,Indoor,Art,41.0281,28.9394,8
-Mikla,Istanbul,Indoor,Food,41.0333,28.9833,70
-Karaköy Güllüoğlu,Istanbul,Indoor,Food,41.0256,28.9742,8
-Çiya Sofrası,Istanbul,Indoor,Food,41.0000,29.0167,20
-Hamdi Restaurant,Istanbul,Indoor,Food,41.0167,28.9700,25
-Neolokal,Istanbul,Indoor,Food,41.0256,28.9742,60
-Hotel Monasterio Cusco,Cusco,Indoor,Hotel,-13.5183,-71.9781,200
-Machu Picchu,Cusco,Outdoor,History,-13.1631,-72.5450,45
-Sacsayhuaman,Cusco,Outdoor,History,-13.5083,-71.9819,15
-Plaza de Armas Cusco,Cusco,Outdoor,Culture,-13.5183,-71.9781,0
-Qorikancha,Cusco,Indoor,History,-13.5228,-71.9764,10
-Rainbow Mountain,Cusco,Outdoor,Nature,-13.8667,-71.3167,10
-San Pedro Market,Cusco,Indoor,Culture,-13.5228,-71.9764,0
-Moray Ruins,Cusco,Outdoor,History,-13.3167,-72.1833,5
-Pisac Ruins,Cusco,Outdoor,History,-13.4167,-71.8500,5
-Chicha por Gaston,Cusco,Indoor,Food,-13.5183,-71.9781,30
-Cicciolina,Cusco,Indoor,Food,-13.5183,-71.9781,25
-Marcelo Batata,Cusco,Indoor,Food,-13.5183,-71.9781,20
-Morena Peruvian Kitchen,Cusco,Indoor,Food,-13.5183,-71.9781,15
-Chez Maggy,Cusco,Indoor,Food,-13.5183,-71.9781,12
-Sofitel Marrakech,Marrakech,Indoor,Hotel,31.6295,-7.9811,180
-Jemaa el-Fna Square,Marrakech,Outdoor,Culture,31.6258,-7.9892,0
-Majorelle Garden,Marrakech,Outdoor,Nature,31.6417,-8.0036,8
-Bahia Palace,Marrakech,Indoor,History,31.6211,-7.9836,8
-Medina of Marrakech,Marrakech,Outdoor,Culture,31.6295,-7.9811,0
-Saadian Tombs,Marrakech,Indoor,History,31.6183,-7.9869,3
-Koutoubia Mosque,Marrakech,Outdoor,Culture,31.6244,-7.9939,0
-Yves Saint Laurent Museum,Marrakech,Indoor,Art,31.6417,-8.0036,12
-El Badi Palace,Marrakech,Outdoor,History,31.6183,-7.9836,5
-Tanneries of Marrakech,Marrakech,Outdoor,Culture,31.6333,-7.9833,0
-Le Jardin,Marrakech,Indoor,Food,31.6295,-7.9811,25
-Nomad,Marrakech,Indoor,Food,31.6295,-7.9811,20
-Café des Épices,Marrakech,Outdoor,Food,31.6295,-7.9811,12
-Dar Yacout,Marrakech,Indoor,Food,31.6333,-7.9833,50
-Peechaya,Marrakech,Indoor,Food,31.6295,-7.9811,30
-Aman Amanjiwo,Bali,Indoor,Hotel,-7.9139,110.2000,600
-Tanah Lot Temple,Bali,Outdoor,Culture,-8.6215,115.0866,5
-Ubud Monkey Forest,Bali,Outdoor,Nature,-8.5186,115.2594,5
-Tegallalang Rice Terraces,Bali,Outdoor,Nature,-8.4333,115.2833,3
-Uluwatu Temple,Bali,Outdoor,Culture,-8.8292,115.0850,3
-Seminyak Beach,Bali,Outdoor,Nature,-8.6833,115.1500,0
-Kuta Beach,Bali,Outdoor,Nature,-8.7167,115.1667,0
-Tirta Empul Temple,Bali,Outdoor,Culture,-8.4153,115.3153,3
-Nusa Penida Island,Bali,Outdoor,Nature,-8.7278,115.5444,0
-Besakih Mother Temple,Bali,Outdoor,Culture,-8.3742,115.4519,5
-Waterbom Bali,Bali,Outdoor,Sightseeing,-8.7167,115.1667,35
-Locavore,Bali,Indoor,Food,-8.5186,115.2594,60
-Mozaic Restaurant,Bali,Indoor,Food,-8.5186,115.2594,80
-Merah Putih,Bali,Indoor,Food,-8.6833,115.1500,40
-Naughty Nuri's,Bali,Indoor,Food,-8.5186,115.2594,15
-Warung Babi Guling Ibu Oka,Bali,Indoor,Food,-8.5186,115.2594,8
-The Ritz-Carlton Melbourne,Melbourne,Indoor,Hotel,-37.8136,144.9631,300
-Federation Square,Melbourne,Outdoor,Culture,-37.8180,144.9691,0
-Royal Botanic Gardens Melbourne,Melbourne,Outdoor,Nature,-37.8304,144.9797,0
-National Gallery of Victoria,Melbourne,Indoor,Art,-37.8225,144.9686,0
-Queen Victoria Market,Melbourne,Outdoor,Food,-37.8072,144.9572,0
-Melbourne Cricket Ground,Melbourne,Indoor,Sightseeing,-37.8200,144.9836,25
-Fitzroy Gardens,Melbourne,Outdoor,Nature,-37.8133,144.9797,0
-St. Kilda Beach,Melbourne,Outdoor,Nature,-37.8678,144.9756,0
-Eureka Skydeck,Melbourne,Indoor,Sightseeing,-37.8219,144.9644,20
-Hosier Lane,Melbourne,Outdoor,Art,-37.8183,144.9700,0
-Attica,Melbourne,Indoor,Food,-37.8678,144.9756,200
-Flower Drum,Melbourne,Indoor,Food,-37.8136,144.9631,80
-Chin Chin,Melbourne,Indoor,Food,-37.8136,144.9631,35
-Supernormal,Melbourne,Indoor,Food,-37.8136,144.9631,40
-Tipo 00,Melbourne,Indoor,Food,-37.8136,144.9631,30
-Hotel Adlon Berlin,Berlin,Indoor,Hotel,52.5163,13.3777,280
+Spice Bazaar,Istanbul,Outdoor,Culture,41.0164,28.9706,0
+Bosphorus Cruise,Istanbul,Outdoor,Sightseeing,41.0082,29.0056,15
+Istanbul Archaeology Museums,Istanbul,Indoor,History,41.0122,28.9806,14
+Dolmabahce Palace,Istanbul,Indoor,History,41.0394,29.0011,28
+Istiklal Avenue,Istanbul,Outdoor,Sightseeing,41.0336,28.9769,0
+Galata Tower,Istanbul,Outdoor,Sightseeing,41.0256,28.9742,12
+Karakoy Neighbourhood,Istanbul,Outdoor,Culture,41.0236,28.9761,0
+Chora Church Kariye Mosque,Istanbul,Indoor,Art,41.0283,28.9411,8
+Nusr-Et Steakhouse Istanbul,Istanbul,Indoor,Food,41.0044,28.9775,80
+Ciya Sofrasi,Istanbul,Indoor,Food,41.0047,29.0186,18
+Karakoy Lokantasi,Istanbul,Indoor,Food,41.0236,28.9761,30
+Hafiz Mustafa 1864,Istanbul,Indoor,Food,41.0108,28.9681,12
+Nar Restaurant Istanbul,Istanbul,Indoor,Food,41.0108,28.9681,45
+Balik Ekmek Fish Sandwich,Istanbul,Outdoor,Food,41.0164,28.9717,5
+Prague Old Town Square,Prague,Outdoor,Sightseeing,50.0875,14.4213,0
+Prague Castle,Prague,Outdoor,History,50.0906,14.4019,15
+Hotel Aria Prague,Prague,Indoor,Hotel,50.0872,14.4072,230
+Mosaic House Prague,Prague,Indoor,Hotel,50.0736,14.4150,55
+Charles Bridge,Prague,Outdoor,Sightseeing,50.0865,14.4115,0
+St Vitus Cathedral,Prague,Indoor,Culture,50.0906,14.4019,0
+Jewish Quarter Josefov,Prague,Indoor,History,50.0900,14.4189,22
+Vitus Astronomical Clock,Prague,Outdoor,History,50.0875,14.4213,0
+Prague National Museum,Prague,Indoor,History,50.0775,14.4306,15
+Wenceslas Square,Prague,Outdoor,Sightseeing,50.0808,14.4269,0
+Strahov Monastery Library,Prague,Indoor,History,50.0872,14.3906,5
+Petrin Lookout Tower,Prague,Outdoor,Sightseeing,50.0836,14.3964,9
+Vrtba Garden,Prague,Outdoor,Nature,50.0878,14.4039,5
+Vysehrad Fortress,Prague,Outdoor,History,50.0647,14.4175,0
+Lobkowicz Palace Museum,Prague,Indoor,Art,50.0906,14.4019,13
+Lokal Prague,Prague,Indoor,Food,50.0889,14.4264,18
+Cafe Louvre,Prague,Indoor,Food,50.0808,14.4189,14
+La Degustation Boheme Bourgeoise,Prague,Indoor,Food,50.0889,14.4264,120
+Manifesto Market,Prague,Outdoor,Food,50.0736,14.4372,12
+Eska Restaurant,Prague,Indoor,Food,50.0847,14.4431,35
+Four Seasons Hotel Budapest,Budapest,Indoor,Hotel,47.5019,19.0458,380
+Hotel Rum Budapest,Budapest,Indoor,Hotel,47.5003,19.0586,120
+Corinthia Hotel Budapest,Budapest,Indoor,Hotel,47.5000,19.0619,150
+Buda Castle,Budapest,Outdoor,History,47.4958,19.0400,0
+Hungarian Parliament Building,Budapest,Outdoor,Sightseeing,47.5069,19.0450,15
+Szechenyi Thermal Bath,Budapest,Indoor,Nature,47.5192,19.0786,25
+Heroes Square Budapest,Budapest,Outdoor,History,47.5144,19.0781,0
+Fishermans Bastion,Budapest,Outdoor,Sightseeing,47.5019,19.0344,4
+Great Market Hall Budapest,Budapest,Indoor,Culture,47.4872,19.0572,0
+Ruin Bars Romkerts District,Budapest,Outdoor,Culture,47.5008,19.0636,0
+Hungarian National Museum,Budapest,Indoor,History,47.4933,19.0617,5
+Matthias Church Budapest,Budapest,Indoor,Culture,47.5019,19.0344,6
+City Park Budapest,Budapest,Outdoor,Nature,47.5192,19.0756,0
+Dohany Street Synagogue,Budapest,Indoor,Culture,47.4972,19.0603,10
+Margit Island,Budapest,Outdoor,Nature,47.5281,19.0481,0
+Gerloczy Kavehaz,Budapest,Indoor,Food,47.4983,19.0547,18
+Comme Chez Soi Budapest,Budapest,Indoor,Food,47.4903,19.0517,45
+New York Cafe Budapest,Budapest,Indoor,Food,47.5000,19.0619,25
+Fenymarkert Budapest,Budapest,Indoor,Food,47.5003,19.0586,30
+Borkonyha Wine Kitchen,Budapest,Indoor,Food,47.5019,19.0458,65
+Karavan Street Food Budapest,Budapest,Outdoor,Food,47.5008,19.0636,10
+Manila Hotel,Manila,Indoor,Hotel,14.5883,120.9728,120
+Seda BGC Manila,Manila,Indoor,Hotel,14.5494,121.0466,80
+The Bayleaf Intramuros,Manila,Indoor,Hotel,14.5906,120.9742,55
+Intramuros Walled City,Manila,Outdoor,History,14.5906,120.9742,0
+Rizal Park Luneta,Manila,Outdoor,Nature,14.5831,120.9794,0
+National Museum of Natural History,Manila,Indoor,History,14.5864,120.9819,0
+National Museum of Fine Arts,Manila,Indoor,Art,14.5886,120.9806,0
+Fort Santiago,Manila,Indoor,History,14.5933,120.9678,4
+Binondo Chinatown Manila,Manila,Outdoor,Culture,14.5994,120.9750,0
+San Agustin Church Manila,Manila,Indoor,Culture,14.5883,120.9719,2
+American Cemetery Memorial,Manila,Outdoor,History,14.6200,121.0533,0
+BGC Arts Center,Manila,Indoor,Art,14.5494,121.0466,0
+Oceanarium Manila,Manila,Indoor,Nature,14.5669,120.9870,14
+Ayala Museum,Manila,Indoor,Culture,14.5572,121.0228,5
+Bonifacio High Street BGC,Manila,Outdoor,Sightseeing,14.5494,121.0466,0
+Cafe Juanita,Manila,Indoor,Food,14.6861,120.9858,18
+Manam Restaurant Manila,Manila,Indoor,Food,14.5650,121.0183,10
+Locavore Manila,Manila,Indoor,Food,14.5553,121.0228,20
+Sentro 1771 Greenbelt,Manila,Indoor,Food,14.5572,121.0228,22
+Wildflour Bakery,Manila,Indoor,Food,14.5494,121.0466,15
+Romulo Cafe Manila,Manila,Indoor,Food,14.6500,121.0333,18
+Spiral Buffet Sofitel,Manila,Indoor,Food,14.5522,120.9958,65
+Crimson Resort Mactan,Cebu,Indoor,Hotel,10.2667,123.9750,150
+Radisson Blu Cebu,Cebu,Indoor,Hotel,10.3111,123.8950,100
+Be Resorts Mactan,Cebu,Indoor,Hotel,10.2833,124.0000,70
+Magellans Cross Cebu City,Cebu,Indoor,Culture,10.2931,123.9022,0
+Basilica del Santo Nino,Cebu,Indoor,Culture,10.2933,123.9006,0
+Tops Lookout Cebu,Cebu,Outdoor,Sightseeing,10.3089,123.8806,2
+Kawasan Falls,Cebu,Outdoor,Nature,9.8000,123.3833,18
+Oslob Whale Shark Watching,Cebu,Outdoor,Nature,9.5067,123.3833,27
+Fort San Pedro Cebu,Cebu,Outdoor,History,10.2903,123.9000,2
+Cebu Heritage Monument,Cebu,Outdoor,History,10.2931,123.9022,0
+Temple of Leah,Cebu,Outdoor,Culture,10.3228,123.8956,2
+Taoist Temple Cebu,Cebu,Outdoor,Culture,10.3283,123.9133,0
+Sirao Flower Garden,Cebu,Outdoor,Nature,10.3417,123.8750,2
+Nalusuan Marine Sanctuary,Cebu,Outdoor,Nature,10.2167,124.0333,15
+Carcar Public Market Lechon,Cebu,Outdoor,Food,10.1067,123.6417,8
+Sutukil Beach Seafood,Cebu,Outdoor,Food,10.2667,123.9750,15
+Zubuchon Cebu,Cebu,Indoor,Food,10.3111,123.8950,12
+Cafe Georg Cebu,Cebu,Indoor,Food,10.3111,123.8950,18
+Lantaw Native Restaurant,Cebu,Outdoor,Food,10.3833,124.0167,14
+Blu Bar Grill Cebu,Cebu,Indoor,Food,10.3111,123.8950,25
+Four Seasons Lisbon,Lisbon,Indoor,Hotel,38.7139,-9.1394,450
+Hotel Bairro Alto,Lisbon,Indoor,Hotel,38.7106,-9.1436,200
+Generator Lisbon,Lisbon,Indoor,Hotel,38.7175,-9.1478,55
+Belem Tower Torre de Belem,Lisbon,Outdoor,History,38.6916,-9.2159,9
+Mosteiro dos Jeronimos,Lisbon,Indoor,History,38.6978,-9.2069,11
+Alfama District Lisbon,Lisbon,Outdoor,Culture,38.7139,-9.1306,0
+Miradouro da Graca,Lisbon,Outdoor,Sightseeing,38.7189,-9.1275,0
+Lisbon Cathedral Se,Lisbon,Indoor,Culture,38.7100,-9.1328,5
+Sintra Palace Pena,Lisbon,Outdoor,History,38.7875,-9.3903,15
+LX Factory Lisbon,Lisbon,Outdoor,Culture,38.7011,-9.1781,0
+Museu Nacional do Azulejo,Lisbon,Indoor,Art,38.7225,-9.1067,6
+Castelo de Sao Jorge,Lisbon,Outdoor,History,38.7139,-9.1339,16
+Parque das Nacoes,Lisbon,Outdoor,Sightseeing,38.7667,-9.0944,0
+Oceanario de Lisboa,Lisbon,Indoor,Nature,38.7650,-9.0939,23
+Time Out Market Lisbon,Lisbon,Indoor,Food,38.7072,-9.1469,0
+Cervejaria Ramiro,Lisbon,Indoor,Food,38.7222,-9.1361,45
+Pasteis de Belem,Lisbon,Outdoor,Food,38.6978,-9.2069,2
+Solar dos Presuntos,Lisbon,Indoor,Food,38.7175,-9.1436,35
+O Corvo Wine Bar,Lisbon,Indoor,Food,38.7175,-9.1436,25
+Taberna da Rua das Flores,Lisbon,Indoor,Food,38.7108,-9.1447,30
+Grand Hyatt Athens,Athens,Indoor,Hotel,37.9636,23.7136,250
+Hotel Grande Bretagne,Athens,Indoor,Hotel,37.9758,23.7350,400
+Athens Backpackers,Athens,Indoor,Hotel,37.9694,23.7342,25
+Acropolis of Athens,Athens,Outdoor,History,37.9715,23.7267,22
+Parthenon Athens,Athens,Outdoor,History,37.9717,23.7258,0
+Acropolis Museum,Athens,Indoor,History,37.9681,23.7292,11
+Ancient Agora Athens,Athens,Outdoor,History,37.9742,23.7219,11
+Plaka Neighbourhood,Athens,Outdoor,Culture,37.9744,23.7356,0
+Monastiraki Flea Market,Athens,Outdoor,Culture,37.9769,23.7244,0
+National Archaeological Museum Athens,Athens,Indoor,History,37.9892,23.7314,13
+Syntagma Square Athens,Athens,Outdoor,Sightseeing,37.9758,23.7350,0
+Lykavittos Hill Athens,Athens,Outdoor,Sightseeing,37.9806,23.7464,4
+Cape Sounion Poseidon Temple,Athens,Outdoor,History,37.6492,24.0267,11
+Athens Municipal Art Gallery,Athens,Indoor,Art,37.9836,23.7300,0
+Benaki Museum Athens,Athens,Indoor,History,37.9742,23.7436,10
+Kuzina Restaurant Athens,Athens,Indoor,Food,37.9769,23.7244,30
+Varoulko Seaside,Athens,Indoor,Food,37.9461,23.6458,65
+Thanasis Souvlaki Athens,Athens,Outdoor,Food,37.9769,23.7244,8
+Cafe Avissinia,Athens,Indoor,Food,37.9769,23.7244,18
+Ta Karamanlidika tou Fani,Athens,Indoor,Food,37.9808,23.7228,20
+Sofitel Berlin Kurfuerstendamm,Berlin,Indoor,Hotel,52.5025,13.3319,190
+Hotel de Rome Berlin,Berlin,Indoor,Hotel,52.5167,13.3914,350
+Generator Berlin Mitte,Berlin,Indoor,Hotel,52.5175,13.4269,45
 Brandenburg Gate,Berlin,Outdoor,History,52.5163,13.3777,0
 Berlin Wall Memorial,Berlin,Outdoor,History,52.5350,13.3900,0
-Reichstag Building,Berlin,Indoor,History,52.5186,13.3761,0
-Museum Island,Berlin,Indoor,Art,52.5167,13.4000,18
-Checkpoint Charlie,Berlin,Outdoor,History,52.5075,13.3904,0
-East Side Gallery,Berlin,Outdoor,Art,52.5050,13.4394,0
-Tiergarten Park,Berlin,Outdoor,Nature,52.5144,13.3500,0
-Berlin Philharmonie,Berlin,Indoor,Culture,52.5097,13.3697,30
-Charlottenburg Palace,Berlin,Indoor,History,52.5200,13.2958,12
-Berghain,Berlin,Indoor,Culture,52.5117,13.4433,15
-Nobelhart und Schmutzig,Berlin,Indoor,Food,52.5075,13.3904,100
-Rutz,Berlin,Indoor,Food,52.5267,13.3833,90
-Mustafa's Gemüse Kebap,Berlin,Outdoor,Food,52.4917,13.3500,6
-Curry 36,Berlin,Outdoor,Food,52.4917,13.3500,5
-Cocolo Ramen,Berlin,Indoor,Food,52.5267,13.3833,14
-Hotel Ibis Paris Gare de Lyon,Paris,Indoor,Hotel,48.8447,2.3736,90
-Citadines Apart'hotel Paris,Paris,Indoor,Hotel,48.8566,2.3522,120
-Hotel Le Marais Paris,Paris,Indoor,Hotel,48.8575,2.3591,150
-Hotel Novotel Tokyo,Tokyo,Indoor,Hotel,35.6900,139.7000,160
-Dormy Inn Tokyo,Tokyo,Indoor,Hotel,35.6950,139.7050,100
-Shinjuku Washington Hotel,Tokyo,Indoor,Hotel,35.6900,139.6950,130
-Hotel Ibis New York,New York,Indoor,Hotel,40.7580,-73.9855,150
-Pod 51 Hotel New York,New York,Indoor,Hotel,40.7558,-73.9700,120
-The Jane Hotel New York,New York,Indoor,Hotel,40.7326,-74.0035,100
-Premier Inn London,London,Indoor,Hotel,51.5050,-0.0900,110
-Hub by Premier Inn London,London,Indoor,Hotel,51.5101,-0.1342,95
-Travelodge London Central,London,Indoor,Hotel,51.5194,-0.1270,80
-Hotel Ibis Rome,Rome,Indoor,Hotel,41.8986,12.4769,95
-Hotel Artemide Rome,Rome,Indoor,Hotel,41.9009,12.4833,140
-Hotel Nazionale Rome,Rome,Indoor,Hotel,41.8989,12.4731,160
-Hotel Ibis Barcelona,Barcelona,Indoor,Hotel,41.3851,2.1806,85
-Hotel Catalonia Barcelona,Barcelona,Indoor,Hotel,41.3916,2.1649,130
-Novotel Barcelona,Barcelona,Indoor,Hotel,41.3762,2.1897,150
-Hotel Ibis Munich,Munich,Indoor,Hotel,48.1374,11.5755,90
-Motel One Munich,Munich,Indoor,Hotel,48.1391,11.5753,100
-Hotel Ibis Amsterdam,Amsterdam,Indoor,Hotel,52.3741,4.9122,95
-citizenM Amsterdam,Amsterdam,Indoor,Hotel,52.3600,4.8852,130
-Hotel Ibis Vienna,Vienna,Indoor,Hotel,48.2083,16.3731,90
-Motel One Vienna,Vienna,Indoor,Hotel,48.1983,16.3617,105
-Ibis Bangkok Riverside,Bangkok,Indoor,Hotel,13.7244,100.5000,55
-Novotel Bangkok,Bangkok,Indoor,Hotel,13.7308,100.5411,90
-Hotel Ibis Singapore,Singapore,Indoor,Hotel,1.2806,103.8500,100
-Hotel Boss Singapore,Singapore,Indoor,Hotel,1.3067,103.8519,85
-Premier Inn Dubai,Dubai,Indoor,Hotel,25.2350,55.3006,110
-Ibis Dubai Al Barsha,Dubai,Indoor,Hotel,25.1124,55.1390,80
-Ibis Sydney,Sydney,Indoor,Hotel,-33.8731,151.1997,110
-Travelodge Sydney,Sydney,Indoor,Hotel,-33.8678,144.9756,90
-Hotel Ibis Melbourne,Melbourne,Indoor,Hotel,-37.8136,144.9631,95
-Ibis Cape Town,Cape Town,Indoor,Hotel,-33.9281,18.4328,70
-Hotel Ibis Rio de Janeiro,Rio de Janeiro,Indoor,Hotel,-22.9069,-43.1758,65
-Ibis Kyoto,Kyoto,Indoor,Hotel,35.0050,135.7650,90
-Dormy Inn Kyoto,Kyoto,Indoor,Hotel,35.0036,135.7750,110
-Hotel Ibis Istanbul,Istanbul,Indoor,Hotel,41.0256,28.9742,75
-Novotel Istanbul,Istanbul,Indoor,Hotel,41.0392,29.0008,110
-Ibis Kuala Lumpur,Kuala Lumpur,Indoor,Hotel,3.1489,101.6942,55
-Tune Hotel Kuala Lumpur,Kuala Lumpur,Indoor,Hotel,3.1444,101.6972,45
-Ibis Bali,Bali,Indoor,Hotel,-8.7167,115.1667,50
-Kuta Paradiso Hotel Bali,Bali,Indoor,Hotel,-8.7167,115.1667,80
-Ibis Berlin,Berlin,Indoor,Hotel,52.5075,13.3904,85
-Motel One Berlin,Berlin,Indoor,Hotel,52.5163,13.3777,95
-Ibis Hong Kong,Hong Kong,Indoor,Hotel,22.3069,114.1700,110
-Hotel Ibis New Delhi,New Delhi,Indoor,Hotel,28.6117,77.2197,55
-Lemon Tree Hotel New Delhi,New Delhi,Indoor,Hotel,28.6300,77.2200,75
-Ibis Cusco,Cusco,Indoor,Hotel,-13.5183,-71.9781,60
-Casa Andina Cusco,Cusco,Indoor,Hotel,-13.5183,-71.9781,90
-Ibis Marrakech,Marrakech,Indoor,Hotel,31.6258,-7.9892,55
-Hotel Farouk Marrakech,Marrakech,Indoor,Hotel,31.6295,-7.9811,40
-Ibis Venice,Venice,Indoor,Hotel,45.4380,12.3358,110
-Hotel Ai Reali Venice,Venice,Indoor,Hotel,45.4367,12.3400,160
+East Side Gallery,Berlin,Outdoor,Art,52.5053,13.4394,0
+Pergamon Museum,Berlin,Indoor,History,52.5214,13.3975,13
+Berlin TV Tower Fernsehturm,Berlin,Indoor,Sightseeing,52.5208,13.4094,20
+Museum Island Berlin,Berlin,Indoor,Culture,52.5214,13.3989,19
+Reichstag Building,Berlin,Indoor,History,52.5186,13.3764,0
+Berlin Zoo,Berlin,Outdoor,Nature,52.5081,13.3364,21
+Checkpoint Charlie Berlin,Berlin,Outdoor,History,52.5075,13.3904,0
+Hackescher Markt,Berlin,Outdoor,Culture,52.5233,13.4008,0
+Topography of Terror,Berlin,Indoor,History,52.5044,13.3825,0
+Tiergarten Park Berlin,Berlin,Outdoor,Nature,52.5144,13.3500,0
+Markthalle Neun,Berlin,Indoor,Food,52.4997,13.4297,0
+Mustafa Gemüsekebap,Berlin,Outdoor,Food,52.4833,13.3500,6
+Rutz Restaurant Berlin,Berlin,Indoor,Food,52.5219,13.3950,130
+Curry 36,Berlin,Outdoor,Food,52.4833,13.3919,4
+Cocolo Ramen,Berlin,Indoor,Food,52.5175,13.4086,14
+Marrakech Palais Namaskar,Marrakech,Indoor,Hotel,31.6295,-8.0089,450
+La Mamounia Hotel,Marrakech,Indoor,Hotel,31.6228,-8.0097,600
+Riad Yasmine Marrakech,Marrakech,Indoor,Hotel,31.6317,-7.9867,80
+Djemaa el-Fna Square,Marrakech,Outdoor,Culture,31.6258,-7.9892,0
+Majorelle Garden,Marrakech,Outdoor,Nature,31.6403,-8.0131,8
+Medina of Marrakech,Marrakech,Outdoor,History,31.6317,-7.9867,0
+Bahia Palace,Marrakech,Indoor,History,31.6197,-7.9828,3
+Saadian Tombs,Marrakech,Outdoor,History,31.6183,-7.9847,3
+Ben Youssef Madrasa,Marrakech,Indoor,History,31.6356,-7.9839,2
+Museum of Marrakech,Marrakech,Indoor,Art,31.6353,-7.9839,5
+El Badi Palace,Marrakech,Outdoor,History,31.6156,-7.9817,1
+Mellah Jewish Quarter,Marrakech,Outdoor,History,31.6219,-7.9819,0
+Menara Gardens,Marrakech,Outdoor,Nature,31.6167,-8.0328,0
+Souk Semmarine,Marrakech,Outdoor,Culture,31.6292,-7.9886,0
+Hammam El Bacha,Marrakech,Indoor,Culture,31.6342,-7.9869,6
+Nomad Restaurant Marrakech,Marrakech,Outdoor,Food,31.6319,-7.9856,18
+Le Jardin Marrakech,Marrakech,Outdoor,Food,31.6336,-7.9869,22
+Cafe de France Marrakech,Marrakech,Outdoor,Food,31.6258,-7.9892,8
+Dar Moha,Marrakech,Indoor,Food,31.6344,-8.0086,45
+Henna Art Cafe,Marrakech,Indoor,Food,31.6319,-7.9856,10
+The Silo Cape Town,Cape Town,Indoor,Hotel,-33.9069,18.4219,200
+One and Only Cape Town,Cape Town,Indoor,Hotel,-33.9050,18.4189,450
+Airbnb-style V and A Waterfront,Cape Town,Indoor,Hotel,-33.9036,18.4203,120
+Table Mountain,Cape Town,Outdoor,Nature,-33.9628,18.4097,26
+Cape of Good Hope,Cape Town,Outdoor,Nature,-34.3568,18.4739,24
+Robben Island,Cape Town,Outdoor,History,-33.8067,18.3658,25
+Bo-Kaap Neighbourhood,Cape Town,Outdoor,Culture,-33.9236,18.4133,0
+V and A Waterfront,Cape Town,Outdoor,Sightseeing,-33.9036,18.4203,0
+Kirstenbosch Botanical Garden,Cape Town,Outdoor,Nature,-33.9875,18.4325,12
+District Six Museum,Cape Town,Indoor,History,-33.9231,18.4247,6
+Cape Town City Hall,Cape Town,Outdoor,Sightseeing,-33.9239,18.4250,0
+Clifton Beaches Cape Town,Cape Town,Outdoor,Nature,-33.9439,18.3764,0
+Zeitz MOCAA Museum,Cape Town,Indoor,Art,-33.9069,18.4219,15
+South African Museum,Cape Town,Indoor,History,-33.9353,18.4172,4
+Greenmarket Square,Cape Town,Outdoor,Culture,-33.9267,18.4183,0
+The Test Kitchen Cape Town,Cape Town,Indoor,Food,-33.9319,18.4606,90
+La Colombe Cape Town,Cape Town,Indoor,Food,-33.9908,18.4094,100
+Kloof Street House,Cape Town,Indoor,Food,-33.9336,18.4133,30
+Hartenberg Wine Estate,Cape Town,Outdoor,Food,-33.8583,18.8086,25
+Gold Restaurant Cape Town,Cape Town,Indoor,Food,-33.9256,18.4183,55
+Four Seasons Rio de Janeiro,Rio de Janeiro,Indoor,Hotel,-22.9714,-43.1823,450
+Windsor Excelsior Hotel Copacabana,Rio de Janeiro,Indoor,Hotel,-22.9714,-43.1823,130
+Hostel Plataforma,Rio de Janeiro,Indoor,Hotel,-22.9033,-43.1728,30
+Christ the Redeemer,Rio de Janeiro,Outdoor,Culture,-22.9519,-43.2105,18
+Sugarloaf Mountain,Rio de Janeiro,Outdoor,Nature,-22.9489,-43.1574,28
+Copacabana Beach,Rio de Janeiro,Outdoor,Nature,-22.9714,-43.1823,0
+Ipanema Beach,Rio de Janeiro,Outdoor,Nature,-22.9836,-43.2003,0
+Santa Teresa Neighbourhood,Rio de Janeiro,Outdoor,Culture,-22.9206,-43.1761,0
+Lapa Arches Arcos da Lapa,Rio de Janeiro,Outdoor,Culture,-22.9125,-43.1806,0
+Tijuca National Forest,Rio de Janeiro,Outdoor,Nature,-22.9425,-43.2739,0
+Selaron Steps,Rio de Janeiro,Outdoor,Art,-22.9133,-43.1814,0
+Museum of Tomorrow,Rio de Janeiro,Indoor,Sightseeing,-22.8939,-43.1800,13
+Rio Carnival Sambadrome,Rio de Janeiro,Indoor,Culture,-22.9128,-43.1964,30
+Botanical Garden Rio,Rio de Janeiro,Outdoor,Nature,-22.9676,-43.2222,9
+Confeitaria Colombo Rio,Rio de Janeiro,Indoor,Food,-22.9053,-43.1769,20
+Aprazivel Restaurant,Rio de Janeiro,Indoor,Food,-22.9206,-43.1761,45
+Churrascaria Palace,Rio de Janeiro,Indoor,Food,-22.9636,-43.1764,50
+Mistura Fina,Rio de Janeiro,Indoor,Food,-22.9714,-43.1823,30
+Bar Urca,Rio de Janeiro,Outdoor,Food,-22.9489,-43.1574,15
+Bali Mandira Beach Resort,Bali,Indoor,Hotel,-8.6917,115.1678,120
+Alaya Resort Ubud,Bali,Indoor,Hotel,-8.5069,115.2625,160
+Kuta Paradiso Hotel,Bali,Indoor,Hotel,-8.7167,115.1667,60
+Sofitel Bali Nusa Dua,Bali,Indoor,Hotel,-8.8017,115.2278,200
+Uluwatu Temple,Bali,Outdoor,Culture,-8.8292,115.0869,4
+Tanah Lot Temple,Bali,Outdoor,Culture,-8.6209,115.0867,5
+Tegallalang Rice Terraces Ubud,Bali,Outdoor,Nature,-8.4319,115.2781,2
+Seminyak Beach Bali,Bali,Outdoor,Nature,-8.6933,115.1600,0
+Monkey Forest Ubud,Bali,Outdoor,Nature,-8.5186,115.2586,5
+Kuta Beach Bali,Bali,Outdoor,Nature,-8.7175,115.1686,0
+Tirta Empul Holy Springs Temple,Bali,Outdoor,Culture,-8.4150,115.3153,2
+Besakih Mother Temple,Bali,Outdoor,Culture,-8.3739,115.4522,15
+Nusa Penida Island,Bali,Outdoor,Nature,-8.7278,115.5444,0
+Mount Batur Volcano Trek,Bali,Outdoor,Nature,-8.2419,115.3758,30
+Bali Safari Park,Bali,Outdoor,Nature,-8.5911,115.3594,40
+Locavore Ubud,Bali,Indoor,Food,-8.5069,115.2625,70
+Mozaic Restaurant Ubud,Bali,Indoor,Food,-8.4936,115.2558,90
+Cuca Restaurant Jimbaran,Bali,Indoor,Food,-8.7819,115.1625,45
+Sardine Restaurant Seminyak,Bali,Indoor,Food,-8.6817,115.1622,35
+Warung Babi Guling Ibu Oka,Bali,Indoor,Food,-8.5069,115.2614,5
+Cafe Wayan Ubud,Bali,Indoor,Food,-8.5069,115.2625,10
+Hanoi Melia Hotel,Hanoi,Indoor,Hotel,21.0285,105.8542,80
+La Siesta Hotel Hanoi,Hanoi,Indoor,Hotel,21.0333,105.8508,55
+Hanoi Hostel,Hanoi,Indoor,Hotel,21.0333,105.8508,12
+Hoan Kiem Lake,Hanoi,Outdoor,Nature,21.0285,105.8542,0
+Temple of Literature Hanoi,Hanoi,Outdoor,History,21.0233,105.8356,2
+Hoa Lo Prison Hanoi Hilton,Hanoi,Indoor,History,21.0286,105.8447,2
+Old Quarter Hanoi,Hanoi,Outdoor,Culture,21.0333,105.8508,0
+Ho Chi Minh Mausoleum,Hanoi,Outdoor,History,21.0369,105.8350,0
+Vietnam Museum of Ethnology,Hanoi,Indoor,History,21.0381,105.8094,4
+West Lake Hanoi,Hanoi,Outdoor,Nature,21.0500,105.8217,0
+Vietnam Fine Arts Museum,Hanoi,Indoor,Art,21.0281,105.8428,3
+Dong Xuan Market Hanoi,Hanoi,Indoor,Culture,21.0400,105.8508,0
+Phu Tay Ho Temple,Hanoi,Outdoor,Culture,21.0633,105.8172,0
+Bun Cha Huong Lien,Hanoi,Indoor,Food,21.0233,105.8356,5
+Pho Gia Truyen Bat Dan,Hanoi,Indoor,Food,21.0333,105.8508,3
+Cha Ca La Vong,Hanoi,Indoor,Food,21.0339,105.8511,10
+Cafe Pho Co,Hanoi,Indoor,Food,21.0333,105.8542,4
+Bun Bo Nam Bo,Hanoi,Indoor,Food,21.0333,105.8508,3
+Nha Hang Ngon Hanoi,Hanoi,Indoor,Food,21.0289,105.8436,10
+Park Hyatt Saigon,Ho Chi Minh City,Indoor,Hotel,10.7769,106.7009,200
+The Reverie Saigon,Ho Chi Minh City,Indoor,Hotel,10.7731,106.7031,300
+Bui Vien Backpacker Hotel,Ho Chi Minh City,Indoor,Hotel,10.7650,106.6917,18
+War Remnants Museum,Ho Chi Minh City,Indoor,History,10.7796,106.6953,2
+Cu Chi Tunnels,Ho Chi Minh City,Outdoor,History,10.9692,106.4939,8
+Reunification Palace,Ho Chi Minh City,Indoor,History,10.7769,106.6953,3
+Ben Thanh Market,Ho Chi Minh City,Indoor,Culture,10.7721,106.6981,0
+Notre-Dame Cathedral Saigon,Ho Chi Minh City,Outdoor,Culture,10.7796,106.6992,0
+Bui Vien Walking Street,Ho Chi Minh City,Outdoor,Sightseeing,10.7650,106.6917,0
+Jade Emperor Pagoda,Ho Chi Minh City,Indoor,Culture,10.7900,106.6861,0
+Fine Arts Museum Ho Chi Minh,Ho Chi Minh City,Indoor,Art,10.7667,106.6944,3
+Cong Vien Van Hoa Park,Ho Chi Minh City,Outdoor,Nature,10.7769,106.6933,0
+Bitexco Financial Tower Saigon Skydeck,Ho Chi Minh City,Indoor,Sightseeing,10.7717,106.7042,9
+Banh Mi Huynh Hoa,Ho Chi Minh City,Indoor,Food,10.7733,106.6950,2
+Pho Hoa Pasteur,Ho Chi Minh City,Indoor,Food,10.7769,106.6981,4
+Nha Hang Ngon,Ho Chi Minh City,Indoor,Food,10.7769,106.6953,8
+Pizza 4Ps Ho Chi Minh,Ho Chi Minh City,Indoor,Food,10.7769,106.7009,15
+Cuc Gach Quan,Ho Chi Minh City,Indoor,Food,10.7667,106.6917,12
+The Deck Saigon,Ho Chi Minh City,Outdoor,Food,10.7833,106.7167,30
+Mandarin Oriental Kuala Lumpur,Kuala Lumpur,Indoor,Hotel,3.1528,101.7133,200
+Traders Hotel Kuala Lumpur,Kuala Lumpur,Indoor,Hotel,3.1528,101.7133,120
+BackHome KL Hostel,Kuala Lumpur,Indoor,Hotel,3.1450,101.6950,15
+Petronas Twin Towers,Kuala Lumpur,Indoor,Sightseeing,3.1578,101.7119,22
+Batu Caves,Kuala Lumpur,Outdoor,Culture,3.2372,101.6839,0
+KL Tower Observation Deck,Kuala Lumpur,Indoor,Sightseeing,3.1528,101.7017,19
+Aquaria KLCC,Kuala Lumpur,Indoor,Nature,3.1528,101.7133,18
+Islamic Arts Museum Malaysia,Kuala Lumpur,Indoor,Art,3.1428,101.6869,3
+National Museum Malaysia,Kuala Lumpur,Indoor,History,3.1439,101.6867,1
+Merdeka Square KL,Kuala Lumpur,Outdoor,History,3.1486,101.6942,0
+Perdana Botanical Garden KL,Kuala Lumpur,Outdoor,Nature,3.1478,101.6864,0
+Sunway Lagoon Theme Park,Kuala Lumpur,Outdoor,Sightseeing,3.0733,101.6061,33
+Central Market KL,Kuala Lumpur,Indoor,Culture,3.1433,101.6950,0
+Chinatown Petaling Street KL,Kuala Lumpur,Outdoor,Culture,3.1433,101.6961,0
+Jalan Alor Food Street,Kuala Lumpur,Outdoor,Food,3.1478,101.7053,12
+Din Tai Fung KLCC,Kuala Lumpur,Indoor,Food,3.1578,101.7119,18
+Nasi Kandar Pelita,Kuala Lumpur,Indoor,Food,3.1578,101.7119,5
+Oversea Restaurant KL,Kuala Lumpur,Indoor,Food,3.1428,101.6958,15
+Rebung Chef Ismail,Kuala Lumpur,Indoor,Food,3.1317,101.6883,20
+Village Park Restaurant PJ,Kuala Lumpur,Indoor,Food,3.1100,101.6317,7
+W Taipei,Taipei,Indoor,Hotel,25.0358,121.5631,220
+Mandarin Oriental Taipei,Taipei,Indoor,Hotel,25.0523,121.5522,280
+Flip Flop Hostel Taipei,Taipei,Indoor,Hotel,25.0478,121.5153,25
+Taipei 101,Taipei,Indoor,Sightseeing,25.0336,121.5644,19
+National Palace Museum Taipei,Taipei,Indoor,History,25.1022,121.5481,6
+Jiufen Old Street,Taipei,Outdoor,Culture,25.1092,121.8444,0
+Chiang Kai-shek Memorial Hall,Taipei,Outdoor,History,25.0358,121.5200,0
+Shilin Night Market,Taipei,Outdoor,Food,25.0878,121.5242,0
+Longshan Temple Taipei,Taipei,Indoor,Culture,25.0369,121.4994,0
+Ximending Shopping District,Taipei,Outdoor,Sightseeing,25.0450,121.5078,0
+Elephant Mountain Xiangshan,Taipei,Outdoor,Nature,25.0256,121.5756,0
+Beitou Hot Springs,Taipei,Outdoor,Nature,25.1328,121.5017,0
+National Museum of Natural Science,Taipei,Indoor,History,25.0450,121.4833,3
+Sun Yat-sen Memorial Hall,Taipei,Outdoor,History,25.0400,121.5600,0
+Maokong Gondola,Taipei,Outdoor,Nature,24.9994,121.5836,6
+Din Tai Fung Taipei Original,Taipei,Indoor,Food,25.0336,121.5644,20
+Rao He Street Night Market,Taipei,Outdoor,Food,25.0514,121.5769,8
+A-Gei Jiufen,Taipei,Outdoor,Food,25.1092,121.8444,5
+Yongkang Beef Noodle,Taipei,Indoor,Food,25.0333,121.5272,10
+Ice Monster Taipei,Taipei,Indoor,Food,25.0425,121.5544,8
+Addiction Aquatic Development,Taipei,Indoor,Food,25.0589,121.5614,30
+Grand Hyatt Mumbai,Mumbai,Indoor,Hotel,18.9750,72.8258,180
+Taj Mahal Palace Hotel,Mumbai,Indoor,Hotel,18.9219,72.8331,400
+Hotel Residency Fort,Mumbai,Indoor,Hotel,18.9317,72.8356,60
+Gateway of India Mumbai,Mumbai,Outdoor,History,18.9219,72.8331,0
+Elephanta Caves,Mumbai,Outdoor,History,18.9633,72.9317,8
+Chhatrapati Shivaji Terminus,Mumbai,Outdoor,History,18.9400,72.8353,0
+Marine Drive Queens Necklace,Mumbai,Outdoor,Sightseeing,18.9438,72.8233,0
+Colaba Causeway Market,Mumbai,Outdoor,Culture,18.9161,72.8275,0
+Dharavi Slum Tour,Mumbai,Outdoor,Culture,19.0422,72.8528,20
+Juhu Beach Mumbai,Mumbai,Outdoor,Nature,19.0989,72.8267,0
+Siddhivinayak Temple,Mumbai,Indoor,Culture,19.0169,72.8303,0
+Bandra Worli Sea Link,Mumbai,Outdoor,Sightseeing,19.0219,72.8147,0
+National Gallery of Modern Art Mumbai,Mumbai,Indoor,Art,18.9267,72.8331,2
+Haji Ali Dargah,Mumbai,Outdoor,Culture,18.9822,72.8089,0
+Leopold Cafe,Mumbai,Indoor,Food,18.9219,72.8319,15
+Bademiya Seekh Kebab,Mumbai,Outdoor,Food,18.9219,72.8331,8
+Trishna Restaurant,Mumbai,Indoor,Food,18.9322,72.8369,35
+Britannia and Co Irani Cafe,Mumbai,Indoor,Food,18.9289,72.8353,10
+The Bombay Canteen,Mumbai,Indoor,Food,19.0008,72.8228,22
+Cafe Mondegar,Mumbai,Indoor,Food,18.9211,72.8322,12
+Rambagh Palace Jaipur,Jaipur,Indoor,Hotel,26.8731,75.8006,400
+Jai Mahal Palace,Jaipur,Indoor,Hotel,26.9260,75.7975,250
+Moustache Hostel Jaipur,Jaipur,Indoor,Hotel,26.9260,75.8189,12
+Amber Fort Palace,Jaipur,Outdoor,History,26.9856,75.8514,14
+City Palace Jaipur,Jaipur,Indoor,History,26.9258,75.8236,17
+Hawa Mahal Palace of Winds,Jaipur,Outdoor,History,26.9239,75.8267,1
+Jantar Mantar Observatory,Jaipur,Outdoor,History,26.9244,75.8244,3
+Jal Mahal Water Palace,Jaipur,Outdoor,Sightseeing,26.9539,75.8494,0
+Albert Hall Museum,Jaipur,Indoor,History,26.9122,75.8189,3
+Nahargarh Fort,Jaipur,Outdoor,History,26.9411,75.8083,2
+Johari Bazaar,Jaipur,Outdoor,Culture,26.9233,75.8283,0
+Chokhi Dhani Village,Jaipur,Outdoor,Culture,26.7694,75.8408,18
+Birla Mandir Temple,Jaipur,Outdoor,Culture,26.8994,75.8228,0
+Sanjay Gandhi Biological Park,Jaipur,Outdoor,Nature,26.9308,75.7819,3
+1135 AD Restaurant Amber Fort,Jaipur,Indoor,Food,26.9856,75.8514,22
+Niros Restaurant Jaipur,Jaipur,Indoor,Food,26.9194,75.8167,15
+Laxmi Mishtan Bhandar,Jaipur,Indoor,Food,26.9233,75.8283,5
+Peacock Rooftop Restaurant,Jaipur,Indoor,Food,26.9258,75.8244,12
+Four Seasons Hotel Cairo,Cairo,Indoor,Hotel,30.0444,31.2357,180
+Marriott Mena House Cairo,Cairo,Indoor,Hotel,29.9767,31.1331,200
+Cairo City Centre Hotel,Cairo,Indoor,Hotel,30.0600,31.2200,50
+Pyramids of Giza,Cairo,Outdoor,History,29.9792,31.1342,18
+Egyptian Museum Cairo,Cairo,Indoor,History,30.0478,31.2336,14
+Khan el-Khalili Bazaar,Cairo,Outdoor,Culture,30.0478,31.2622,0
+Sphinx of Giza,Cairo,Outdoor,History,29.9753,31.1376,0
+Old Cairo Coptic Quarter,Cairo,Outdoor,History,30.0056,31.2294,0
+Cairo Tower,Cairo,Outdoor,Sightseeing,30.0439,31.2228,6
+Museum of Islamic Art Cairo,Cairo,Indoor,History,30.0400,31.2517,5
+Al-Azhar Park Cairo,Cairo,Outdoor,Nature,30.0517,31.2650,3
+Saladin Citadel Cairo,Cairo,Outdoor,History,30.0289,31.2592,7
+Abdeen Palace Museum,Cairo,Indoor,History,30.0436,31.2469,4
+Koshary El Tahrir,Cairo,Indoor,Food,30.0444,31.2357,3
+Felfela Restaurant Cairo,Cairo,Indoor,Food,30.0444,31.2336,12
+Naguib Mahfouz Cafe Khan Khalili,Cairo,Indoor,Food,30.0478,31.2622,18
+Abu Shakra Restaurant Cairo,Cairo,Indoor,Food,30.0356,31.2211,14
+Casa San Agustin Cartagena,Cartagena,Indoor,Hotel,10.4239,-75.5500,250
+Hotel El Dorado Cartagena,Cartagena,Indoor,Hotel,10.4219,-75.5461,90
+Walled City Old Town Cartagena,Cartagena,Outdoor,History,10.4219,-75.5461,0
+Castillo San Felipe de Barajas,Cartagena,Outdoor,History,10.4253,-75.5375,6
+Rosario Islands,Cartagena,Outdoor,Nature,10.1783,-75.7714,20
+Palace of the Inquisition,Cartagena,Indoor,History,10.4236,-75.5503,4
+Gold Museum Cartagena,Cartagena,Indoor,History,10.4231,-75.5494,3
+Torre del Reloj Clock Tower,Cartagena,Outdoor,Sightseeing,10.4219,-75.5453,0
+La Boquilla Beach Cartagena,Cartagena,Outdoor,Nature,10.4844,-75.5172,0
+Restaurante La Cevicheria,Cartagena,Indoor,Food,10.4228,-75.5500,22
+Carmen Restaurant Cartagena,Cartagena,Indoor,Food,10.4231,-75.5486,35
+Restaurante El Santisimo,Cartagena,Indoor,Food,10.4239,-75.5503,28
+Sofitel Mexico City Reforma,Mexico City,Indoor,Hotel,19.4272,-99.1600,180
+Gran Hotel Ciudad de Mexico,Mexico City,Indoor,Hotel,19.4333,-99.1333,120
+Hostal Regina Mexico City,Mexico City,Indoor,Hotel,19.4289,-99.1336,25
+Chapultepec Castle,Mexico City,Indoor,History,19.4197,-99.1817,4
+National Museum of Anthropology,Mexico City,Indoor,History,19.4261,-99.1867,5
+Teotihuacan Pyramids,Mexico City,Outdoor,History,19.6925,-98.8439,5
+Frida Kahlo Museum Casa Azul,Mexico City,Indoor,Art,19.3550,-99.1628,12
+Templo Mayor Ruins,Mexico City,Outdoor,History,19.4347,-99.1317,6
+Xochimilco Floating Gardens,Mexico City,Outdoor,Nature,19.2578,-99.1025,8
+Palacio de Bellas Artes,Mexico City,Indoor,Art,19.4353,-99.1414,8
+Zocalo Constitution Square,Mexico City,Outdoor,History,19.4333,-99.1333,0
+Coyoacan Neighbourhood,Mexico City,Outdoor,Culture,19.3500,-99.1628,0
+Lucha Libre Wrestling Show,Mexico City,Indoor,Culture,19.4233,-99.1500,12
+El Cardenal Restaurant,Mexico City,Indoor,Food,19.4333,-99.1333,18
+Pujol Restaurant,Mexico City,Indoor,Food,19.4347,-99.2036,180
+Taqueria El Califa,Mexico City,Outdoor,Food,19.4150,-99.1758,6
+Mercado de la Merced,Mexico City,Outdoor,Food,19.4231,-99.1186,5
+Contramar Mariscos,Mexico City,Indoor,Food,19.4094,-99.1675,35
+Hotel Alfonso XIII Seville,Seville,Indoor,Hotel,37.3861,-5.9953,300
+Hotel Casa 1800 Seville,Seville,Indoor,Hotel,37.3875,-5.9922,160
+Seville Backpackers Hostel,Seville,Indoor,Hotel,37.3908,-5.9939,30
+Seville Cathedral Giralda Tower,Seville,Indoor,History,37.3861,-5.9931,12
+Real Alcazar Palace,Seville,Outdoor,History,37.3833,-5.9917,13
+Plaza de Espana Seville,Seville,Outdoor,Sightseeing,37.3775,-5.9878,0
+Flamenco Show Tablao Flamenco,Seville,Indoor,Culture,37.3883,-5.9939,38
+Barrio Santa Cruz,Seville,Outdoor,Culture,37.3858,-5.9878,0
+Metropol Parasol Las Setas,Seville,Outdoor,Sightseeing,37.3931,-5.9917,3
+Triana Neighbourhood,Seville,Outdoor,Culture,37.3828,-6.0017,0
+Museo de Bellas Artes Seville,Seville,Indoor,Art,37.3906,-5.9994,2
+Italica Roman Ruins,Seville,Outdoor,History,37.4406,-6.0481,3
+Mercado Lonja del Barranco,Seville,Indoor,Food,37.3844,-6.0028,0
+Bar El Comercio,Seville,Indoor,Food,37.3883,-5.9939,14
+La Azotea,Seville,Indoor,Food,37.3906,-5.9950,25
+Duo Tapas,Seville,Indoor,Food,37.3875,-5.9925,18
+Grand Hyatt Melbourne,Melbourne,Indoor,Hotel,-37.8136,144.9631,250
+The Langham Melbourne,Melbourne,Indoor,Hotel,-37.8189,144.9589,300
+Melbourne Central YHA,Melbourne,Indoor,Hotel,-37.8100,144.9631,45
+Royal Botanic Gardens Melbourne,Melbourne,Outdoor,Nature,-37.8303,144.9797,0
+Federation Square,Melbourne,Outdoor,Culture,-37.8183,144.9672,0
+Melbourne Cricket Ground MCG,Melbourne,Indoor,Culture,-37.8197,144.9839,25
+National Gallery of Victoria,Melbourne,Indoor,Art,-37.8225,144.9681,0
+Fitzroy Gardens,Melbourne,Outdoor,Nature,-37.8131,144.9794,0
+St Kilda Beach,Melbourne,Outdoor,Nature,-37.8678,144.9764,0
+Queen Victoria Market,Melbourne,Outdoor,Culture,-37.8064,144.9569,0
+Yarra Valley Wineries,Melbourne,Outdoor,Nature,-37.7283,145.5611,25
+Healesville Sanctuary,Melbourne,Outdoor,Nature,-37.6572,145.5183,32
+Melbourne Museum,Melbourne,Indoor,History,-37.8031,144.9717,15
+Hosier Lane Street Art,Melbourne,Outdoor,Art,-37.8181,144.9703,0
+Chin Chin Restaurant,Melbourne,Indoor,Food,-37.8169,144.9706,30
+Supernormal Melbourne,Melbourne,Indoor,Food,-37.8181,144.9672,35
+Movida Melbourne,Melbourne,Indoor,Food,-37.8186,144.9694,28
+Pellegrinis Espresso Bar,Melbourne,Indoor,Food,-37.8131,144.9661,8
+Cafe Di Stasio,Melbourne,Indoor,Food,-37.8678,144.9789,45
+Grossi Florentino,Melbourne,Indoor,Food,-37.8161,144.9647,80

@@ -1,0 +1,157 @@
+.panel {
+  margin-top: 1.6rem;
+  background: var(--bg-card);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  overflow: hidden;
+}
+
+.heading {
+  font-size: 0.92rem;
+  font-weight: 800;
+  color: var(--text);
+  padding: 0.9rem 1.1rem 0.75rem;
+  border-bottom: 1px solid var(--border-soft);
+  margin: 0;
+}
+
+.loadingRow { display: flex; justify-content: center; padding: 1.4rem; }
+
+.empty {
+  font-size: 0.82rem;
+  color: var(--muted);
+  font-style: italic;
+  padding: 0.9rem 1.1rem;
+}
+
+/* ── Memory cards ── */
+.memoryList {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  padding: 0.9rem 1.1rem;
+}
+
+.memoryCard {
+  background: var(--bg-subtle);
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+  border: 1px solid var(--border-soft);
+}
+
+.memoryImg {
+  width: 100%;
+  max-height: 200px;
+  object-fit: cover;
+  display: block;
+  cursor: pointer;
+}
+
+.memoryNote {
+  font-size: 0.87rem;
+  color: var(--text);
+  line-height: 1.6;
+  padding: 0.65rem 0.85rem 0;
+  white-space: pre-wrap;
+}
+
+.memoryFooter {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.45rem 0.85rem 0.65rem;
+}
+
+.memoryDate { font-size: 0.7rem; color: var(--muted); }
+
+.deleteBtn {
+  background: none;
+  border: none;
+  font-size: 0.85rem;
+  cursor: pointer;
+  opacity: 0.45;
+  transition: opacity 0.15s;
+  padding: 4px 6px;
+  color: var(--text);
+  /* bigger tap area */
+  min-width: 32px;
+  min-height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.deleteBtn:hover { opacity: 1; }
+
+/* ── Add form ── */
+.form {
+  padding: 0.75rem 1.1rem 1.1rem;
+  border-top: 1px solid var(--border-soft);
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+}
+
+.noteInput {
+  width: 100%;
+  resize: vertical;
+  min-height: 68px;
+  font-size: 0.88rem;
+  line-height: 1.6;
+  padding: 0.6rem 0.8rem;
+  border-radius: var(--radius-sm);
+  border: 1.5px solid var(--border);
+  background: var(--bg-subtle);
+  color: var(--text);
+  font-family: var(--font-body);
+  transition: border-color 0.15s;
+  /* prevent iOS zoom */
+  font-size: max(16px, 0.88rem);
+}
+.noteInput:focus {
+  outline: none;
+  border-color: var(--primary);
+  background: var(--bg-card);
+}
+
+.addPhotoBtn {
+  background: var(--bg-subtle);
+  border: 1.5px dashed var(--border);
+  border-radius: var(--radius-sm);
+  padding: 0.7rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--muted);
+  cursor: pointer;
+  width: 100%;
+  transition: all 0.15s;
+  font-family: var(--font-body);
+  /* larger tap target */
+  min-height: 48px;
+}
+.addPhotoBtn:hover { border-color: var(--primary); color: var(--primary); }
+
+.previewWrap { display: flex; flex-direction: column; gap: 0.4rem; }
+
+.preview {
+  width: 100%;
+  max-height: 150px;
+  object-fit: cover;
+  border-radius: var(--radius-sm);
+  border: 1.5px solid var(--border);
+}
+
+.clearImg {
+  background: none;
+  border: none;
+  font-size: 0.78rem;
+  color: var(--muted);
+  cursor: pointer;
+  align-self: flex-start;
+  padding: 4px 0;
+  font-family: var(--font-body);
+  min-height: 32px;
+}
+.clearImg:hover { color: #dc2626; }
+
+.saveBtn { margin-top: 0.15rem; min-height: 48px; }
+.saveBtn:disabled { opacity: 0.45; cursor: not-allowed; transform: none !important; }

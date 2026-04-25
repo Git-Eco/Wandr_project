@@ -1,0 +1,27 @@
+.card {
+  display: flex;
+  align-items: center;
+  gap: 0.9rem;
+  background: white;
+  border-radius: var(--radius-sm);
+  padding: 0.85rem 1rem;
+  border-left: 4px solid #e5e7eb;
+  box-shadow: 0 1px 6px rgba(0,0,0,0.05);
+  margin-bottom: 0.5rem;
+}
+.card.hotel  { border-left-color: var(--orange); }
+.card.food   { border-left-color: var(--orange-dark); }
+.card.sightseeing,
+.card.culture,
+.card.nature,
+.card.history,
+.card.art    { border-left-color: var(--primary); }
+
+.emoji { font-size: 1.4rem; flex-shrink: 0; }
+
+.body  { flex: 1; min-width: 0; }
+.name  { font-weight: 700; font-size: 0.92rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.meta  { display: flex; align-items: center; gap: 6px; margin-top: 2px; }
+.slot  { font-size: 0.75rem; color: var(--muted); }
+.pill  { font-size: 0.7rem; font-weight: 700; padding: 1px 8px; border-radius: 99px; }
+.cost  { font-weight: 700; font-size: 0.9rem; color: var(--text); flex-shrink: 0; }
