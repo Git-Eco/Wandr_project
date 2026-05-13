@@ -1,8 +1,3 @@
-"""
-Core itinerary generation logic — extracted from the Streamlit app.
-No UI dependencies. Pure Python.
-"""
-
 import os
 import random
 import math
@@ -16,10 +11,29 @@ from sklearn.metrics.pairwise import cosine_similarity
 
 
 # ── Weather ───────────────────────────────────────────────────────────────────
-
 WEATHER_API_KEY = os.environ.get("OPENWEATHER_API_KEY", "")
+_weather_cache: dict[str, tuple] = {}
+_WEATHER_TTL = 600  # seconds
+
+
+def _weather_cached(key: str):
+    """Return cached value if still fresh, else None."""
+    entry = _weather_cache.get(key)
+    if entry and datetime.now().timestamp() < entry[1]:
+        return entry[0]
+    return None
+
+
+def _weather_store(key: str, value):
+    _weather_cache[key] = (value, datetime.now().timestamp() + _WEATHER_TTL)
+    return value
+
 
 def get_weather_status(city: str) -> tuple[str, float | None]:
+    key = f"current:{city.lower()}"
+    cached = _weather_cached(key)
+    if cached is not None:
+        return cached
     try:
         url = (
             f"http://api.openweathermap.org/data/2.5/weather"
@@ -27,13 +41,18 @@ def get_weather_status(city: str) -> tuple[str, float | None]:
         )
         r = requests.get(url, timeout=5).json()
         if r.get("cod") == 200:
-            return r["weather"][0]["main"], r["main"]["temp"]
+            result = r["weather"][0]["main"], r["main"]["temp"]
+            return _weather_store(key, result)
         return "Unknown", None
     except Exception:
         return "Unknown", None
 
 
 def get_forecast(city: str) -> dict:
+    key = f"forecast:{city.lower()}"
+    cached = _weather_cached(key)
+    if cached is not None:
+        return cached
     try:
         url = (
             f"http://api.openweathermap.org/data/2.5/forecast"
@@ -47,13 +66,12 @@ def get_forecast(city: str) -> dict:
             d = item["dt_txt"].split(" ")[0]
             if d not in daily:
                 daily[d] = (item["weather"][0]["main"], round(item["main"]["temp"]))
-        return daily
+        return _weather_store(key, daily)
     except Exception:
         return {}
 
 
 # ── Budget ────────────────────────────────────────────────────────────────────
-
 def predict_total_budget(num_days: int, spots: list[dict]) -> float:
     if not spots:
         return 0.0
@@ -74,7 +92,6 @@ def predict_total_budget(num_days: int, spots: list[dict]) -> float:
 
 
 # ── Status ────────────────────────────────────────────────────────────────────
-
 def compute_status(start_dt, days: int) -> str:
     if not start_dt:
         return "Upcoming"
@@ -90,7 +107,6 @@ def compute_status(start_dt, days: int) -> str:
 
 
 # ── Recommendation ────────────────────────────────────────────────────────────
-
 def score_spots(spots_df: pd.DataFrame, user_preferences: list[str]) -> pd.DataFrame:
     if spots_df.empty or not user_preferences:
         spots_df = spots_df.copy()
@@ -114,8 +130,19 @@ def score_spots(spots_df: pd.DataFrame, user_preferences: list[str]) -> pd.DataF
     return spots_df.sort_values("rec_score", ascending=False)
 
 
-# ── Itinerary Builder ─────────────────────────────────────────────────────────
+# ── Distance helper ───────────────────────────────────────────────────────────
+def _geo_dist(a: dict, b: dict) -> float:
+    dlat = a["lat"] - b["lat"]
+    dlon = (a["lon"] - b["lon"]) * math.cos(math.radians(a["lat"]))
+    return math.sqrt(dlat ** 2 + dlon ** 2)
 
+
+def _weighted_pick(pool: list[dict], current_loc: dict) -> dict:
+    weights = [1.0 / max(_geo_dist(current_loc, s), 0.001) for s in pool]
+    return random.choices(pool, weights=weights, k=1)[0]
+
+
+# ── Itinerary Builder ─────────────────────────────────────────────────────────
 def organize_itinerary(
     filtered_df: pd.DataFrame,
     days: int,
@@ -126,14 +153,21 @@ def organize_itinerary(
     exclude_visited: bool = False,
     chosen_hotel: str | None = None,
     user_preferences: list[str] | None = None,
+    pinned_spot: str | None = None,
 ) -> list[dict]:
-    """
-    Builds a day-by-day itinerary and returns it as a list of spot dicts.
-    Each dict has: name, city, category, type, lat, lon, cost, day_num, slot.
-    """
     if previously_used is None:
         previously_used = set()
 
+    # ── Resolve pinned spot ───────────────────────────────────────────────────
+    pinned_row: dict | None = None
+    if pinned_spot:
+        pin_match = full_database[
+            (full_database["city"] == target_city) & (full_database["name"] == pinned_spot)
+        ]
+        if not pin_match.empty:
+            pinned_row = pin_match.iloc[0].to_dict()
+
+    # ── Resolve hotel ─────────────────────────────────────────────────────────
     hotel_pool = full_database[
         (full_database["city"] == target_city) & (full_database["category"] == "Hotel")
     ]
@@ -151,39 +185,49 @@ def organize_itinerary(
             "cost": 0,
         }
 
-    food_pool = full_database[
-        (full_database["city"] == target_city) & (full_database["category"] == "Food")
+    # ── Zone filtering  ──────────────────
+    city_db = full_database[full_database["city"] == target_city].copy()
+    if "zone" in city_db.columns:
+        hotel_zone_rows = city_db[city_db["name"] == hotel["name"]]["zone"].values
+        hotel_zone = hotel_zone_rows[0] if len(hotel_zone_rows) else None
+        if hotel_zone and hotel_zone not in (None, "isolated"):
+            zone_mask = (city_db["zone"] == hotel_zone) | (city_db["category"] == "Hotel")
+            city_db = city_db[zone_mask]
+
+    # ── Build pools ───────────────────────────────────────────────────────────
+    food_pool = city_db[city_db["category"] == "Food"].to_dict("records")
+
+    full_sight_pool = city_db[
+        (city_db["category"] != "Food") & (city_db["category"] != "Hotel")
     ].to_dict("records")
 
-    full_sight_pool = full_database[
-        (full_database["city"] == target_city)
-        & (full_database["category"] != "Food")
-        & (full_database["category"] != "Hotel")
-    ].to_dict("records")
-
+    zone_names = set(city_db["name"].tolist())
     sight_pool = filtered_df[
-        (filtered_df["category"] != "Food") & (filtered_df["category"] != "Hotel")
+        (filtered_df["category"] != "Food")
+        & (filtered_df["category"] != "Hotel")
+        & (filtered_df["name"].isin(zone_names))
     ].to_dict("records")
 
-    def filter_pool(pool):
+    # ── Previously-visited filtering ──────────────────────────────────────────
+    def filter_pool(pool: list[dict]) -> list[dict]:
         if exclude_visited:
             fresh = [s for s in pool if s["name"] not in previously_used]
             return fresh if fresh else pool
         fresh = [s for s in pool if s["name"] not in previously_used]
-        seen = [s for s in pool if s["name"] in previously_used]
+        seen  = [s for s in pool if s["name"] in previously_used]
         random.shuffle(fresh)
         random.shuffle(seen)
         return fresh + seen
 
-    sight_pool = filter_pool(sight_pool)
+    sight_pool      = filter_pool(sight_pool)
     full_sight_pool = filter_pool(full_sight_pool)
-    food_pool = filter_pool(food_pool)
+    food_pool       = filter_pool(food_pool)
 
     if user_preferences and sight_pool:
         sight_df = pd.DataFrame(sight_pool)
         sight_df = score_spots(sight_df, user_preferences)
-        mid = max(1, len(sight_df) // 2)
-        top = sight_df.iloc[:mid].to_dict("records")
+        mid    = max(1, len(sight_df) // 2)
+        top    = sight_df.iloc[:mid].to_dict("records")
         bottom = sight_df.iloc[mid:].to_dict("records")
         random.shuffle(top)
         random.shuffle(bottom)
@@ -193,60 +237,95 @@ def organize_itinerary(
 
     random.shuffle(food_pool)
 
+    # ── State ─────────────────────────────────────────────────────────────────
     used_sightseeing_names: set = set()
-    used_food_names: set = set()
-    all_sight_names = set(s["name"] for s in full_sight_pool)
+    used_food_names: set        = set()
+    all_sight_names             = {s["name"] for s in full_sight_pool}
     slots = ["Breakfast ☕", "Morning 🌅", "Lunch 🍔", "Afternoon ☀️", "Dinner 🍷", "Evening 🌙"]
-    final_itinerary = []
-    recent_sightseeing: list = []
+    final_itinerary: list[dict] = []
+    recent_sightseeing: list    = []  # rolling window of last 4 picks
 
+    # ── Pinned slot resolution ────────────────────────────────────────────────
+    pinned_slot: str | None = None
+    if pinned_row:
+        cat = pinned_row.get("category", "")
+        if cat == "Food":
+            pinned_slot = "Lunch 🍔"
+        elif rest_mode:
+            pinned_slot = "Afternoon ☀️"
+        else:
+            pinned_slot = "Morning 🌅"
+
+    # ── Day loop ──────────────────────────────────────────────────────────────
     for d in range(1, days + 1):
-        current_loc = hotel
-        if d > 1 and full_sight_pool:
-            anchor_candidates = [s for s in full_sight_pool if s["name"] not in set()]
-            if anchor_candidates:
-                current_loc = random.choice(anchor_candidates)
+        if d == 1:
+            current_loc = hotel
+        else:
+            nearby_anchors = [
+                s for s in full_sight_pool
+                if _geo_dist(hotel, s) < 0.09  # ~10 km
+            ]
+            current_loc = random.choice(nearby_anchors) if nearby_anchors else hotel
+
         used_today: set = set()
 
         for slot in slots:
-            if "Morning" in slot and d == 1 and rest_mode:
+
+            # ── Pinned spot injection (Day 1 only) ────────────────────────────
+            if d == 1 and pinned_row and slot == pinned_slot:
+                chosen = pinned_row.copy()
+                chosen["day_num"] = d
+                chosen["slot"]    = slot
+                final_itinerary.append(chosen)
+                current_loc = chosen
+                if pinned_row.get("category") == "Food":
+                    used_food_names.add(chosen["name"])
+                else:
+                    used_sightseeing_names.add(chosen["name"])
+                    recent_sightseeing.append(chosen["name"])
+                used_today.add(chosen["name"])
+                continue
+
+            # ── Breakfast — always at hotel ───────────────────────────────────
+            if "Breakfast" in slot:
+                chosen = hotel.copy()
+
+            # ── Rest mode — stay at hotel on Day 1 morning ────────────────────
+            elif "Morning" in slot and d == 1 and rest_mode:
                 chosen = hotel.copy()
                 chosen["name"] = f"{hotel['name']} (Rest & Settle)"
                 chosen["cost"] = 0
 
-            elif "Breakfast" in slot:
-                chosen = hotel.copy()
-
+            # ── Food slots ────────────────────────────────────────────────────
             elif "Lunch" in slot or "Dinner" in slot:
-                pool = [f for f in food_pool if f["name"] not in used_food_names and f["name"] not in used_today]
+                pool = [
+                    f for f in food_pool
+                    if f["name"] not in used_food_names and f["name"] not in used_today
+                ]
                 if not pool:
                     pool = [f for f in food_pool if f["name"] not in used_today]
                 if not pool:
+                    # Full reset — all food spots have been visited; start over
                     used_food_names.clear()
-                    pool = list(food_pool)
+                    pool = [f for f in food_pool if f["name"] not in used_today]
                     random.shuffle(pool)
-                best_idx, min_dist = 0, float("inf")
-                for i, s in enumerate(pool):
-                    dist = (
-                        ((current_loc["lat"] - s["lat"]) ** 2 + (current_loc["lon"] - s["lon"]) ** 2) ** 0.5
-                        + random.uniform(0, 0.005)
-                    )
-                    if dist < min_dist:
-                        min_dist, best_idx = dist, i
-                chosen = pool[best_idx].copy()
+
+                chosen = _weighted_pick(pool, current_loc).copy()
                 used_food_names.add(chosen["name"])
                 used_today.add(chosen["name"])
 
+            # ── Sightseeing slots (Morning / Afternoon / Evening) ─────────────
             else:
+                # Full reset when all sights have been used
                 if all_sight_names.issubset(used_sightseeing_names):
                     used_sightseeing_names.clear()
                     recent_sightseeing.clear()
 
                 is_evening = "Evening" in slot
 
-                def slot_ok(s):
-                    cat = s.get("category", "")
-                    if is_evening and cat in ("Nature", "History", "Art"):
+                def slot_ok(s: dict) -> bool:
+                    """Evening slots exclude outdoor/daytime-only categories."""
+                    if is_evening and s.get("category", "") in ("Nature", "History", "Art"):
                         return False
                     return True
 
@@ -280,20 +359,13 @@ def organize_itinerary(
                         and slot_ok(s)
                     ]
                 if not pool:
+                    # Last resort: allow repeats but avoid same-day duplicates
                     pool = [s for s in full_sight_pool if s["name"] not in used_today]
                     random.shuffle(pool)
-                    if not pool:
-                        pool = [hotel]
+                if not pool:
+                    pool = [hotel]
 
-                best_idx, min_dist = 0, float("inf")
-                for i, s in enumerate(pool):
-                    dist = (
-                        ((current_loc["lat"] - s["lat"]) ** 2 + (current_loc["lon"] - s["lon"]) ** 2) ** 0.5
-                        + random.uniform(0, 0.005)
-                    )
-                    if dist < min_dist:
-                        min_dist, best_idx = dist, i
-                chosen = pool[best_idx].copy()
+                chosen = _weighted_pick(pool, current_loc).copy()
                 used_sightseeing_names.add(chosen["name"])
                 used_today.add(chosen["name"])
                 recent_sightseeing.append(chosen["name"])
@@ -301,7 +373,7 @@ def organize_itinerary(
                     recent_sightseeing.pop(0)
 
             chosen["day_num"] = d
-            chosen["slot"] = slot
+            chosen["slot"]    = slot
             final_itinerary.append(chosen)
             current_loc = chosen
 

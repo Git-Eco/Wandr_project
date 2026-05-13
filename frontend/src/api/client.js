@@ -1,6 +1,8 @@
 import { supabase } from '../supabase'
 
-const BASE = '/api'
+// In development, Vite proxies /api → localhost:8000
+// In production, set VITE_API_URL to your Render backend URL
+const BASE = import.meta.env.VITE_API_URL ?? '/api'
 
 async function authHeaders() {
   const { data } = await supabase.auth.getSession()

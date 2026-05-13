@@ -35,11 +35,21 @@ export function AppProvider({ children }) {
 
   async function loadData() {
     try {
-      const [t, l] = await Promise.all([getTrips(), getLocations()])
-      const synced = syncStatuses(t)
-      setTrips(synced)
-      setLocations(l)
-      setTripsLoaded(true)
+      // Load trips and locations in parallel, but set trips as soon as they
+      // arrive — don't make the user wait for locations before seeing their trips
+      const tripsPromise     = getTrips()
+      const locationsPromise = getLocations()
+
+      // Show trips immediately when ready
+      tripsPromise
+        .then(t => { setTrips(syncStatuses(t)); setTripsLoaded(true) })
+        .catch(() => setTripsLoaded(true))
+
+      // Locations can arrive whenever — they're only needed for recommendations
+      locationsPromise
+        .then(l => setLocations(l))
+        .catch(() => {})
+
     } catch (e) {
       console.error('Failed to load data:', e)
       setTripsLoaded(true)

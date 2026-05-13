@@ -1,3 +1,27 @@
+/* ── Section labels / dividers ── */
+.sectionDivider {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin: 1.4rem 0 0.9rem;
+}
+.sectionDivider::before,
+.sectionDivider::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--border-soft);
+}
+.sectionLabel {
+  font-size: 0.65rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.09em;
+  color: var(--muted);
+  white-space: nowrap;
+}
+
+/* ── End date display ── */
 .endDateDisplay {
   display: flex;
   align-items: center;
@@ -11,18 +35,98 @@
   border-radius: var(--radius-sm);
 }
 
+/* ── Hotel nightly badge ── */
+.hotelSelectWrap {
+  position: relative;
+}
+.hotelNightlyBadge {
+  position: absolute;
+  right: 2.2rem;
+  top: 50%;
+  transform: translateY(-50%);
+  background: var(--bg-subtle);
+  border: 1px solid var(--border-soft);
+  border-radius: 99px;
+  font-size: 0.65rem;
+  font-weight: 700;
+  color: var(--muted);
+  padding: 2px 8px;
+  pointer-events: none;
+}
+
 .hotelEst {
   font-size: 0.75rem;
   color: var(--muted);
   margin-top: 0.3rem;
 }
 
-.toggleRow {
-  display: flex;
-  flex-direction: column;
-  gap: 0.55rem;
+/* ── Preferences row: pills + budget side by side ── */
+.prefsRow {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  align-items: start;
+}
+@media (max-width: 480px) {
+  .prefsRow { grid-template-columns: 1fr; }
 }
 
+/* ── Toggle cards ── */
+.toggleCards {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.65rem;
+}
+@media (max-width: 480px) {
+  .toggleCards { grid-template-columns: 1fr; }
+}
+
+.toggleCard {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.6rem;
+  padding: 0.75rem 0.85rem;
+  border-radius: var(--radius-sm);
+  border: 1.5px solid var(--border);
+  background: var(--bg-subtle);
+  cursor: pointer;
+  transition: all 0.15s;
+  text-align: left;
+}
+.toggleCard:hover {
+  border-color: var(--primary);
+  background: var(--bg-card);
+}
+.toggleCardActive {
+  border-color: var(--primary) !important;
+  background: color-mix(in srgb, var(--primary) 8%, var(--bg-card)) !important;
+}
+.toggleCard input[type="checkbox"] {
+  width: 16px;
+  height: 16px;
+  accent-color: var(--primary);
+  cursor: pointer;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+.toggleCardText {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.toggleCardTitle {
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: var(--text);
+  line-height: 1.2;
+}
+.toggleCardDesc {
+  font-size: 0.7rem;
+  color: var(--muted);
+  line-height: 1.3;
+}
+
+/* ── Legacy toggle (kept for returning visitor banner) ── */
 .toggle {
   display: flex;
   align-items: center;
@@ -31,10 +135,6 @@
   font-size: 0.88rem;
   color: var(--text);
   font-weight: 500;
-  text-transform: none;
-  letter-spacing: 0;
-  margin-bottom: 0;
-  /* larger tap area on mobile */
   padding: 4px 0;
 }
 .toggle input[type="checkbox"] {

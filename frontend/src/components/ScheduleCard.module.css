@@ -1,27 +1,136 @@
+/* ══════════════════════════════════════════
+   TIMELINE SCHEDULE CARD
+══════════════════════════════════════════ */
+
 .card {
+  display: grid;
+  grid-template-columns: 72px 36px minmax(0, 1fr) 36px;
+  align-items: center;
+  gap: 0;
+  min-height: 52px;
+  position: relative;
+  padding: 6px 0;
+}
+
+/* ── Time column ── */
+.timeCol {
+  text-align: right;
+  padding-right: 10px;
+  flex-shrink: 0;
+  min-width: 72px;
+}
+.timeLabel {
+  font-size: 0.68rem;
+  font-weight: 700;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  white-space: nowrap;
+}
+
+/* ── Node column ── */
+.nodeCol {
   display: flex;
   align-items: center;
-  gap: 0.9rem;
-  background: white;
-  border-radius: var(--radius-sm);
-  padding: 0.85rem 1rem;
-  border-left: 4px solid #e5e7eb;
-  box-shadow: 0 1px 6px rgba(0,0,0,0.05);
-  margin-bottom: 0.5rem;
+  justify-content: center;
+  position: relative;
+  z-index: 1;
+  flex-shrink: 0;
 }
-.card.hotel  { border-left-color: var(--orange); }
-.card.food   { border-left-color: var(--orange-dark); }
-.card.sightseeing,
-.card.culture,
-.card.nature,
-.card.history,
-.card.art    { border-left-color: var(--primary); }
 
-.emoji { font-size: 1.4rem; flex-shrink: 0; }
+.nodeDot {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: var(--bg-card);
+  border: 2.5px solid var(--accent);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent) 15%, transparent);
+  color: var(--accent);
+}
 
-.body  { flex: 1; min-width: 0; }
-.name  { font-weight: 700; font-size: 0.92rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-.meta  { display: flex; align-items: center; gap: 6px; margin-top: 2px; }
-.slot  { font-size: 0.75rem; color: var(--muted); }
-.pill  { font-size: 0.7rem; font-weight: 700; padding: 1px 8px; border-radius: 99px; }
-.cost  { font-weight: 700; font-size: 0.9rem; color: var(--text); flex-shrink: 0; }
+/* ── Content — must clamp, never overflow ── */
+.content {
+  background: var(--bg-card);
+  border-radius: 10px;
+  padding: 0.5rem 0.65rem;
+  margin-left: 8px;
+  border: 1px solid color-mix(in srgb, var(--accent) 20%, transparent);
+  transition: background 0.15s, border-color 0.15s;
+  min-width: 0;        /* critical — lets flex/grid child shrink below content size */
+  overflow: hidden;
+}
+.card:hover .content {
+  background: color-mix(in srgb, var(--accent) 5%, var(--bg-card));
+  border-color: color-mix(in srgb, var(--accent) 35%, transparent);
+}
+
+.nameRow {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.4rem;
+  min-width: 0;
+}
+.name {
+  font-weight: 700;
+  font-size: 0.86rem;
+  color: var(--text);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  min-width: 0;        /* allows ellipsis to kick in */
+  flex: 1;
+}
+.cost {
+  font-weight: 700;
+  font-size: 0.8rem;
+  color: var(--accent);
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+.tags {
+  margin-top: 3px;
+}
+.catPill {
+  font-size: 0.65rem;
+  font-weight: 700;
+  color: var(--accent);
+  background: color-mix(in srgb, var(--accent) 10%, transparent);
+  border-radius: 99px;
+  padding: 1px 7px;
+  border: 1px solid color-mix(in srgb, var(--accent) 25%, transparent);
+}
+
+/* ── Swap button — always visible, not hover-only (touch devices have no hover) ── */
+.swapBtn {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  border: 1.5px solid var(--border);
+  background: var(--bg-subtle);
+  color: var(--muted);
+  font-size: 1rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: 6px;
+  flex-shrink: 0;
+  transition: border-color 0.15s, color 0.15s, background 0.15s;
+}
+.swapBtn:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+  background: var(--bg-card);
+}
+
+/* Placeholder keeps grid aligned when no swap button */
+.swapPlaceholder {
+  width: 28px;
+  margin-left: 6px;
+  flex-shrink: 0;
+}

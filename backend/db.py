@@ -6,6 +6,8 @@ from dotenv import load_dotenv
 load_dotenv()
 
 _client: Client = None
+_locations_cache: pd.DataFrame | None = None  # module-level cache — locations never change
+
 
 def get_client() -> Client:
     global _client
@@ -37,15 +39,25 @@ def get_user_from_token(token: str):
 # ── Locations ─────────────────────────────────────────────────────────────────
 
 def get_locations() -> pd.DataFrame:
+    """Return locations DataFrame, fetching from Supabase only on first call."""
+    global _locations_cache
+    if _locations_cache is not None and not _locations_cache.empty:
+        return _locations_cache
     res = get_client().table("locations").select("*").execute()
     if res.data:
-        return pd.DataFrame(res.data)
+        _locations_cache = pd.DataFrame(res.data)
+        return _locations_cache
     return pd.DataFrame()
 
 
 # ── Trips ─────────────────────────────────────────────────────────────────────
 
 def get_trips(user_id: str) -> list[dict]:
+    """
+    Load all trips for a user in 2 queries instead of 1 + N.
+    Query 1: fetch all trips for the user.
+    Query 2: fetch ALL spots for those trips in one go, then group in Python.
+    """
     trips_res = (
         get_client().table("trips")
         .select("*")
@@ -56,26 +68,35 @@ def get_trips(user_id: str) -> list[dict]:
     if not trips_res.data:
         return []
 
-    trips = []
+    trip_ids = [t["id"] for t in trips_res.data]
+
+    # Single query for all spots across all trips
+    spots_res = (
+        get_client().table("trip_spots")
+        .select("*")
+        .in_("trip_id", trip_ids)
+        .execute()
+    )
+    all_spots = spots_res.data or []
+
+    # Group spots by trip_id in Python
     slot_order = ["Breakfast ☕", "Morning 🌅", "Lunch 🍔", "Afternoon ☀️", "Dinner 🍷", "Evening 🌙"]
+    slot_rank  = {s: i for i, s in enumerate(slot_order)}
 
-    for t in trips_res.data:
-        spots_res = (
-            get_client().table("trip_spots")
-            .select("*")
-            .eq("trip_id", t["id"])
-            .order("day_num")
-            .execute()
+    spots_by_trip: dict[str, list] = {tid: [] for tid in trip_ids}
+    for spot in all_spots:
+        tid = spot.get("trip_id")
+        if tid in spots_by_trip:
+            spots_by_trip[tid].append(spot)
+
+    # Sort each trip's spots by day_num then slot order
+    for tid in spots_by_trip:
+        spots_by_trip[tid].sort(
+            key=lambda s: (s.get("day_num", 0), slot_rank.get(s.get("slot", ""), 99))
         )
-        spots = spots_res.data or []
-        if spots:
-            spots_df = pd.DataFrame(spots)
-            spots_df["slot"] = pd.Categorical(spots_df["slot"], categories=slot_order, ordered=True)
-            spots_df = spots_df.sort_values(["day_num", "slot"]).reset_index(drop=True)
-            spots_list = spots_df.to_dict("records")
-        else:
-            spots_list = []
 
+    trips = []
+    for t in trips_res.data:
         trips.append({
             "id": t["id"],
             "title": t["title"],
@@ -87,7 +108,7 @@ def get_trips(user_id: str) -> list[dict]:
             "end_date": t.get("end_date"),
             "weather": {"condition": t["weather_condition"], "temp": t["weather_temp"]},
             "forecast": t.get("forecast") or {},
-            "spots": spots_list,
+            "spots": spots_by_trip.get(t["id"], []),
         })
     return trips
 

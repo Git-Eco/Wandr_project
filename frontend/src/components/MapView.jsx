@@ -1,10 +1,55 @@
-import { useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { MapContainer, TileLayer, Marker, Popup, Polyline, useMap } from 'react-leaflet'
 import L from 'leaflet'
+import { useWikiPhoto } from '../hooks/useWikiPhoto'
 
 const GOOGLE_TILES = 'https://mt1.google.com/vt/lyrs=m&hl=en&x={x}&y={y}&z={z}'
 const OSRM_TIMEOUT_MS = 6000
-const ROUTE_COLOR = '#D66F29'
+const ROUTE_COLOR  = '#FF6B00'   // vivid orange
+const SHADOW_COLOR = 'rgba(180,60,0,0.25)'
+
+// ── Spot popup with lazy photo ────────────────────────────────────────────────
+function SpotPopup({ name, city, slot, stopLabel, isHotel }) {
+  const { url, loading } = useWikiPhoto(name, city)
+  return (
+    <div style={{ minWidth: 160, maxWidth: 200, fontFamily: "'DM Sans', sans-serif" }}>
+      {/* Photo area */}
+      <div style={{
+        width: '100%', height: 110, borderRadius: 8, overflow: 'hidden',
+        background: '#e8e8e8', marginBottom: 8, position: 'relative',
+      }}>
+        {loading && (
+          <div style={{
+            position: 'absolute', inset: 0, display: 'flex',
+            alignItems: 'center', justifyContent: 'center',
+            fontSize: 20, color: '#bbb',
+          }}>⏳</div>
+        )}
+        {url && (
+          <img src={url} alt={name}
+            style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
+            onError={e => { e.currentTarget.style.display = 'none' }}
+          />
+        )}
+        {!loading && !url && (
+          <div style={{
+            position: 'absolute', inset: 0, display: 'flex',
+            alignItems: 'center', justifyContent: 'center',
+            fontSize: 28, color: '#ccc',
+          }}>{isHotel ? '🏨' : '📍'}</div>
+        )}
+      </div>
+      {/* Text */}
+      {stopLabel && (
+        <div style={{ fontSize: 10, fontWeight: 700, color: '#888', textTransform: 'uppercase', letterSpacing: '0.06em', marginBottom: 2 }}>
+          {stopLabel}
+        </div>
+      )}
+      <div style={{ fontSize: 13, fontWeight: 800, color: '#1a1a1a', lineHeight: 1.3 }}>{name}</div>
+      {slot && <div style={{ fontSize: 11, color: '#666', marginTop: 2 }}>{slot}</div>}
+    </div>
+  )
+}
 
 // ── Custom pin marker ─────────────────────────────────────────────────────────
 function makeIcon(color, label) {
@@ -27,52 +72,6 @@ function makeIcon(color, label) {
   })
 }
 
-// ── Directional arrow marker ─────────────────────────────────────────────────
-// Arrow SVG points North (up). We rotate it by the compass bearing so it
-// points in the actual direction of travel along the road.
-function makeArrowIcon(angleDeg) {
-  return L.divIcon({
-    className: '',
-    iconSize: [22, 22],
-    iconAnchor: [11, 11],
-    html: `
-      <svg width="22" height="22" viewBox="0 0 22 22"
-           style="transform:rotate(${angleDeg}deg);display:block;overflow:visible;">
-        <!-- Shadow -->
-        <polygon points="11,2 19.5,18 11,13.5 2.5,18"
-          fill="rgba(0,0,0,0.18)" transform="translate(1,1.5)"/>
-        <!-- Arrow body -->
-        <polygon points="11,2 19.5,18 11,13.5 2.5,18"
-          fill="${ROUTE_COLOR}" stroke="white" stroke-width="1.5"
-          stroke-linejoin="round"/>
-      </svg>`,
-  })
-}
-
-// ── Bearing calculation ───────────────────────────────────────────────────────
-// Returns degrees clockwise from North (0 = up, 90 = right, 180 = down, 270 = left)
-function getBearing(p1, p2) {
-  const toRad = d => (d * Math.PI) / 180
-  const lat1 = toRad(p1[0]), lat2 = toRad(p2[0])
-  const dLon = toRad(p2[1] - p1[1])
-  const y = Math.sin(dLon) * Math.cos(lat2)
-  const x = Math.cos(lat1) * Math.sin(lat2) - Math.sin(lat1) * Math.cos(lat2) * Math.cos(dLon)
-  return (Math.atan2(y, x) * 180 / Math.PI + 360) % 360
-}
-
-// Sample arrow positions evenly from route geometry.
-// Aims for ~5 arrows regardless of route length.
-function sampleArrows(geometry, targetCount = 5) {
-  if (!geometry || geometry.length < 4) return []
-  const step = Math.max(3, Math.floor(geometry.length / (targetCount + 1)))
-  const arrows = []
-  for (let i = step; i < geometry.length - 1; i += step) {
-    const angle = getBearing(geometry[i - 1], geometry[i])
-    arrows.push({ pos: geometry[i], angle })
-  }
-  return arrows
-}
-
 // ── FitBounds helper ──────────────────────────────────────────────────────────
 function FitBounds({ spots }) {
   const map = useMap()
@@ -85,19 +84,18 @@ function FitBounds({ spots }) {
 }
 
 // ── Straight-line fallback ────────────────────────────────────────────────────
-function StraightLines({ spots }) {
-  const nonHotel = spots.filter(s => s.category !== 'Hotel')
-  if (nonHotel.length < 2) return null
-  const positions = nonHotel.map(s => [s.lat, s.lon])
-  return (
+function StraightFallback({ orderedSpots }) {
+  if (orderedSpots.length < 2) return null
+  return orderedSpots.slice(0, -1).map((s, i) => (
     <Polyline
-      positions={positions}
+      key={i}
+      positions={[[s.lat, s.lon], [orderedSpots[i + 1].lat, orderedSpots[i + 1].lon]]}
       color={ROUTE_COLOR}
       weight={3}
-      opacity={0.55}
+      opacity={0.65}
       dashArray="8 6"
     />
-  )
+  ))
 }
 
 // ── Overview Map ──────────────────────────────────────────────────────────────
@@ -135,7 +133,13 @@ export function OverviewMap({ spots }) {
         return (
           <Marker key={i} position={[s.lat, s.lon]} icon={makeIcon(color, label)}>
             <Popup>
-              <strong>Stop {stopNum} — Day {s.day_num}</strong><br />{s.slot}: {s.name}
+              <SpotPopup
+                name={s.name}
+                city={s.city}
+                slot={s.slot}
+                stopLabel={`Stop ${stopNum} — Day ${s.day_num}`}
+                isHotel={s.category === 'Hotel'}
+              />
             </Popup>
           </Marker>
         )
@@ -146,49 +150,79 @@ export function OverviewMap({ spots }) {
 
 // ── Day Map ───────────────────────────────────────────────────────────────────
 export function DayMap({ spots, dayKey, onDistanceCalculated }) {
-  const [routeState, setRouteState]       = useState('loading')
-  const [routeGeometry, setRouteGeometry] = useState(null)
-  const [arrows, setArrows]               = useState([])
+  // legs: array of { geometry: [[lat,lon],...], color }
+  const [legs, setLegs]               = useState([])
+  const [snappedWaypoints, setSnapped] = useState([])
+  const [routeState, setRouteState]   = useState('loading')
 
   useEffect(() => {
     setRouteState('loading')
-    setRouteGeometry(null)
-    setArrows([])
+    setLegs([])
+    setSnapped([])
     onDistanceCalculated?.(null)
 
+    if (!spots.length) { setRouteState('fallback'); return }
+
+    // Build ordered stop list: hotel first (if present), then non-hotel in slot order
+    const hotel    = spots.find(s => s.category === 'Hotel')
     const nonHotel = spots.filter(s => s.category !== 'Hotel')
-    if (nonHotel.length < 2) {
+
+    // Full route order: hotel → stops → hotel (round trip back to hotel)
+    const routeStops = hotel
+      ? [hotel, ...nonHotel, hotel]
+      : nonHotel
+
+    if (routeStops.length < 2) {
       setRouteState('fallback')
       onDistanceCalculated?.(0)
       return
     }
 
-    const coords     = nonHotel.map(s => `${s.lon},${s.lat}`).join(';')
+    // Build OSRM waypoints string — include hotel for visual routing
+    const coords = routeStops.map(s => `${s.lon},${s.lat}`).join(';')
+
     const controller = new AbortController()
-    const timer      = setTimeout(() => {
+    const timer = setTimeout(() => {
       controller.abort()
       setRouteState('fallback')
       onDistanceCalculated?.(null)
     }, OSRM_TIMEOUT_MS)
 
     fetch(
-      `https://router.project-osrm.org/route/v1/driving/${coords}?overview=full&geometries=geojson`,
+      `https://router.project-osrm.org/route/v1/driving/${coords}?overview=full&geometries=geojson&steps=true`,
       { signal: controller.signal }
     )
       .then(r => r.json())
       .then(data => {
         clearTimeout(timer)
-        if (data?.routes?.[0]) {
-          const pts = data.routes[0].geometry.coordinates.map(([lon, lat]) => [lat, lon])
-          const km  = data.routes[0].distance / 1000
-          setRouteGeometry(pts)
-          setArrows(sampleArrows(pts))
-          setRouteState('done')
-          onDistanceCalculated?.(km)
-        } else {
+        if (!data?.routes?.[0]) {
           setRouteState('fallback')
           onDistanceCalculated?.(null)
+          return
         }
+
+        const route = data.routes[0]
+        const totalKm = route.distance / 1000
+
+        // Each leg = travel between two consecutive waypoints
+        // Collect all step geometries per leg and assign alternating colors
+        const builtLegs = route.legs.map((leg, legIdx) => {
+          const pts = []
+          leg.steps.forEach(step => {
+            step.geometry.coordinates.forEach(([lon, lat]) => {
+              pts.push([lat, lon])
+            })
+          })
+          return { geometry: pts }
+        })
+
+        // Snapped waypoints from OSRM
+        const snapped = (data.waypoints ?? []).map(wp => [wp.location[1], wp.location[0]])
+
+        setLegs(builtLegs)
+        setSnapped(snapped)
+        setRouteState('done')
+        onDistanceCalculated?.(totalKm)
       })
       .catch(() => {
         clearTimeout(timer)
@@ -206,6 +240,11 @@ export function DayMap({ spots, dayKey, onDistanceCalculated }) {
     spots.reduce((s, p) => s + p.lon, 0) / spots.length,
   ]
 
+  // Build ordered spots for fallback and markers
+  const hotel    = spots.find(s => s.category === 'Hotel')
+  const nonHotel = spots.filter(s => s.category !== 'Hotel')
+  const orderedForFallback = hotel ? [hotel, ...nonHotel, hotel] : nonHotel
+
   let stopNum = 1
   let hotelPinned = false
   const coordCount = {}
@@ -220,37 +259,56 @@ export function DayMap({ spots, dayKey, onDistanceCalculated }) {
       <TileLayer url={GOOGLE_TILES} attribution="Google" />
       <FitBounds spots={spots} />
 
-      {/* Road-snapped route */}
-      {routeState === 'done' && routeGeometry && (
-        <>
-          {/* Subtle shadow line underneath for depth */}
+      {/* Shadow line underneath for depth */}
+      {routeState === 'done' && legs.map((leg, i) => (
+        leg.geometry.length >= 2 && (
           <Polyline
-            positions={routeGeometry}
-            color="rgba(0,0,0,0.15)"
-            weight={7}
+            key={`shadow-${i}`}
+            positions={leg.geometry}
+            color={SHADOW_COLOR}
+            weight={10}
             opacity={1}
           />
-          {/* Main route line */}
+        )
+      ))}
+
+      {/* Main route line — single vivid color */}
+      {routeState === 'done' && legs.map((leg, i) => (
+        leg.geometry.length >= 2 && (
           <Polyline
-            positions={routeGeometry}
+            key={`line-${i}`}
+            positions={leg.geometry}
             color={ROUTE_COLOR}
-            weight={4}
-            opacity={0.92}
+            weight={5}
+            opacity={0.95}
           />
-          {/* Directional arrows */}
-          {arrows.map((a, i) => (
-            <Marker
-              key={i}
-              position={a.pos}
-              icon={makeArrowIcon(a.angle)}
-              zIndexOffset={-10}
-            />
-          ))}
-        </>
+        )
+      ))}
+
+      {/* Straight-line fallback */}
+      {routeState === 'fallback' && (
+        <StraightFallback orderedSpots={orderedForFallback} />
       )}
 
-      {/* Straight-line fallback when OSRM times out */}
-      {routeState === 'fallback' && <StraightLines spots={spots} />}
+      {/* Dotted connectors: snapped road point → actual pin */}
+      {routeState === 'done' && snappedWaypoints.map((snapped, i) => {
+        const spot = orderedForFallback[i]
+        if (!spot) return null
+        const actual = [spot.lat, spot.lon]
+        const dLat = Math.abs(snapped[0] - actual[0])
+        const dLon = Math.abs(snapped[1] - actual[1])
+        if (dLat < 0.0001 && dLon < 0.0001) return null // close enough, skip
+        return (
+          <Polyline
+            key={`connector-${i}`}
+            positions={[snapped, actual]}
+            color={ROUTE_COLOR}
+            weight={2}
+            opacity={0.55}
+            dashArray="5 7"
+          />
+        )
+      })}
 
       {/* Stop markers */}
       {spots.map((s, i) => {
@@ -271,7 +329,9 @@ export function DayMap({ spots, dayKey, onDistanceCalculated }) {
           hotelPinned = true
           return (
             <Marker key={i} position={[lat, lon]} icon={makeIcon('#D66F29', 'H')}>
-              <Popup><strong>🏨 {s.name}</strong></Popup>
+              <Popup>
+                <SpotPopup name={s.name} city={s.city} isHotel={true} stopLabel="Your Hotel" />
+              </Popup>
             </Marker>
           )
         }
@@ -280,7 +340,9 @@ export function DayMap({ spots, dayKey, onDistanceCalculated }) {
         const n = stopNum++
         return (
           <Marker key={i} position={[lat, lon]} icon={makeIcon(color, String(n))}>
-            <Popup><strong>{s.slot}</strong><br />{s.name}</Popup>
+            <Popup>
+              <SpotPopup name={s.name} city={s.city} slot={s.slot} stopLabel={`Stop ${n}`} />
+            </Popup>
           </Marker>
         )
       })}

@@ -2,6 +2,8 @@ from fastapi import APIRouter, Depends, HTTPException
 from pydantic import BaseModel
 from datetime import date
 from typing import Optional
+import asyncio
+import time
 import pandas as pd
 
 import db
@@ -9,6 +11,11 @@ import itinerary as itin
 from dependencies import get_current_user_id
 
 router = APIRouter()
+
+# ── Simple in-memory rate limiter for trip generation ─────────────────────────
+# Stores { user_id: last_generate_timestamp }
+_gen_timestamps: dict[str, float] = {}
+GEN_COOLDOWN_SECONDS = 15  # minimum seconds between generations per user
 
 
 # ── Schemas ───────────────────────────────────────────────────────────────────
@@ -24,6 +31,7 @@ class GenerateTripRequest(BaseModel):
     allow_outdoor_rain: bool = False
     rest_on_arrival: bool = True
     exclude_visited: bool = False
+    pinned_spot: Optional[str] = None  # spot name to guarantee in the itinerary
 
 class UpdateStatusRequest(BaseModel):
     status: str
@@ -57,10 +65,28 @@ def list_trips(user_id: str = Depends(get_current_user_id)):
 
 
 @router.post("/generate")
-def generate_trip(body: GenerateTripRequest, user_id: str = Depends(get_current_user_id)):
+async def generate_trip(body: GenerateTripRequest, user_id: str = Depends(get_current_user_id)):
+    # ── Rate limit: one generation per user per GEN_COOLDOWN_SECONDS ──────────
+    now = time.time()
+    last = _gen_timestamps.get(user_id, 0)
+    if now - last < GEN_COOLDOWN_SECONDS:
+        wait = int(GEN_COOLDOWN_SECONDS - (now - last))
+        raise HTTPException(status_code=429, detail=f"Please wait {wait}s before generating another trip.")
+    _gen_timestamps[user_id] = now
+
     df = db.get_locations()
     if df.empty:
         raise HTTPException(status_code=500, detail="Location database is empty.")
+
+    # ── Run blocking work in a thread pool so we don't block the event loop ───
+    loop = asyncio.get_event_loop()
+    result = await loop.run_in_executor(None, _do_generate, body, user_id, df)
+    return result
+
+
+def _do_generate(body: GenerateTripRequest, user_id: str, df) -> dict:
+    """Synchronous trip generation — runs in a thread pool."""
+    import datetime as dt
 
     cond, temp = itin.get_weather_status(body.city)
     forecast   = itin.get_forecast(body.city)
@@ -105,10 +131,11 @@ def generate_trip(body: GenerateTripRequest, user_id: str = Depends(get_current_
         full_database=df, rest_mode=body.rest_on_arrival,
         previously_used=previously_used, exclude_visited=body.exclude_visited,
         chosen_hotel=body.chosen_hotel, user_preferences=body.user_preferences or [],
+        pinned_spot=body.pinned_spot,
     )
 
     cost     = itin.predict_total_budget(body.days, spots)
-    end_date = (body.start_date + __import__("datetime").timedelta(days=body.days - 1)) if body.start_date else None
+    end_date = (body.start_date + dt.timedelta(days=body.days - 1)) if body.start_date else None
     status   = itin.compute_status(body.start_date, body.days)
 
     trip = {
@@ -205,7 +232,14 @@ def regenerate_day(trip_id: str, body: RegenerateDayRequest,
     other_res = client.table("trip_spots").select("*") \
         .eq("trip_id", trip_id).neq("day_num", body.day_num).execute()
     other_spots = other_res.data or []
-    previously_used = {s["name"] for s in other_spots}
+    # Exclude spots already used on OTHER days so reroll gives genuinely new spots
+    previously_used = {s["name"] for s in other_spots if s["category"] != "Hotel"}
+
+    # Also get the spots being replaced so we can exclude them too
+    current_day_res = client.table("trip_spots").select("name") \
+        .eq("trip_id", trip_id).eq("day_num", body.day_num).execute()
+    current_day_names = {s["name"] for s in (current_day_res.data or []) if s.get("category") != "Hotel"}
+    previously_used.update(current_day_names)
 
     # Delete only this day
     client.table("trip_spots").delete() \
@@ -221,6 +255,11 @@ def regenerate_day(trip_id: str, body: RegenerateDayRequest,
     # Reuse the same hotel as the rest of the trip
     hotel_spot = next((s for s in other_spots if s["category"] == "Hotel"), None)
     chosen_hotel = hotel_spot["name"] if hotel_spot else None
+
+    # Use hotel location as the proximity anchor for the rerolled day
+    hotel_row = df[(df["city"] == city) & (df["name"] == chosen_hotel)] if chosen_hotel else None
+    hotel_lat = float(hotel_row.iloc[0]["lat"]) if hotel_row is not None and not hotel_row.empty else None
+    hotel_lon = float(hotel_row.iloc[0]["lon"]) if hotel_row is not None and not hotel_row.empty else None
 
     new_spots = itin.organize_itinerary(
         filtered_df=filtered, days=1, target_city=city,

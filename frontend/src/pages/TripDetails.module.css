@@ -101,6 +101,42 @@
   text-overflow: ellipsis;
 }
 
+.sideTripHero {
+  background: var(--bg-subtle);
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border-soft);
+  padding: 0.75rem 0.8rem;
+  margin-bottom: 1.1rem;
+}
+
+.sideTripMetaRow {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  margin-top: 0.55rem;
+  flex-wrap: wrap;
+}
+
+.sideTripInfoRow {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  margin-top: 0.35rem;
+}
+
+.sideTripInfoRow svg {
+  flex-shrink: 0;
+  color: var(--muted);
+}
+
+.sideTripInfoText {
+  font-size: 0.7rem;
+  color: var(--muted);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
 /* Budget */
 .sideBudget {
   margin-bottom: 1.1rem;
@@ -136,6 +172,47 @@
   font-size: 0.75rem;
   color: var(--text-soft);
   padding: 3px 0;
+}
+
+.sideBudgetGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.45rem;
+  margin-top: 0.5rem;
+}
+
+.sideBudgetCell {
+  background: var(--bg-subtle);
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border-soft);
+  padding: 0.6rem 0.55rem;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.sideBudgetCellIcon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  height: 22px;
+  border-radius: 6px;
+  flex-shrink: 0;
+}
+
+.sideBudgetCellVal {
+  font-size: 0.78rem;
+  font-weight: 800;
+  color: var(--text);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.sideBudgetCellLbl {
+  font-size: 0.62rem;
+  color: var(--muted);
 }
 
 /* Day nav */
@@ -212,19 +289,37 @@
   overflow-y: auto;
 }
 
-/* Top bar */
+/* Top bar — two rows: controls row + chips row */
 .topBar {
   display: flex;
-  align-items: center;
-  gap: 0.75rem;
-  padding: 0.9rem 1.4rem;
+  flex-direction: column;
+  padding: 0;
   background: var(--bg-nav);
   border-bottom: 1px solid var(--border-soft);
   position: sticky;
   top: 0;
   z-index: 50;
-  flex-wrap: wrap;
 }
+
+/* Row 1: tabs + re-roll + Details toggle */
+.topBarRow1 {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.75rem 1.4rem;
+}
+
+/* Row 2: day chips — scrollable, never wraps */
+.topBarRow2 {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1.4rem 0.65rem;
+  overflow-x: auto;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+.topBarRow2::-webkit-scrollbar { display: none; }
 
 .mobileBack { display: none; }
 
@@ -255,18 +350,18 @@
   box-shadow: 0 1px 4px rgba(0,0,0,0.1);
 }
 
+/* dayControls is now just the re-roll button — chips moved to topBarRow2 */
 .dayControls {
   display: flex;
   align-items: center;
   gap: 6px;
-  flex: 1;
-  flex-wrap: wrap;
+  margin-left: auto;
 }
 
 .dayChips {
   display: flex;
   gap: 4px;
-  flex-wrap: wrap;
+  flex-shrink: 0;
 }
 
 .dayChip {
@@ -284,6 +379,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-shrink: 0;
 }
 .dayChip:hover { border-color: var(--primary); color: var(--primary); }
 .dayChipActive  { background: var(--primary); border-color: var(--primary); color: white; }
@@ -303,7 +399,6 @@
   cursor: pointer;
   transition: all 0.15s;
   white-space: nowrap;
-  margin-left: auto;
 }
 .regenBtn:hover { border-color: var(--primary); color: var(--primary); background: var(--bg-card); }
 .regenBtn:disabled { opacity: 0.5; cursor: not-allowed; }
@@ -318,110 +413,122 @@
   gap: 1.2rem;
 }
 
-.overviewHero {
-  background: var(--hero-grad);
-  border-radius: var(--radius);
-  padding: 1.6rem 1.5rem 1.2rem;
+/* ══════════════════════════════════════════
+   TRIP HIGHLIGHTS (replaces overview hero)
+══════════════════════════════════════════ */
+.highlights {
   display: flex;
   flex-direction: column;
-  gap: 1rem;
-  position: relative;
-  overflow: hidden;
+  gap: 0.75rem;
 }
 
-/* Decorative dots on hero */
-.overviewHero::after {
-  content: '';
-  position: absolute;
-  top: 0; right: 0;
-  width: 180px; height: 100%;
-  background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23ffffff' fill-opacity='0.07'%3E%3Ccircle cx='6' cy='6' r='2'/%3E%3Ccircle cx='18' cy='6' r='2'/%3E%3Ccircle cx='30' cy='6' r='2'/%3E%3Ccircle cx='42' cy='6' r='2'/%3E%3Ccircle cx='54' cy='6' r='2'/%3E%3Ccircle cx='6' cy='18' r='2'/%3E%3Ccircle cx='18' cy='18' r='2'/%3E%3Ccircle cx='30' cy='18' r='2'/%3E%3Ccircle cx='42' cy='18' r='2'/%3E%3Ccircle cx='54' cy='18' r='2'/%3E%3Ccircle cx='6' cy='30' r='2'/%3E%3Ccircle cx='18' cy='30' r='2'/%3E%3Ccircle cx='30' cy='30' r='2'/%3E%3Ccircle cx='42' cy='30' r='2'/%3E%3Ccircle cx='54' cy='30' r='2'/%3E%3C/g%3E%3C/svg%3E");
-  pointer-events: none;
+.hlCard {
+  background: var(--bg-card);
+  border-radius: var(--radius);
+  border: 1px solid var(--border-soft);
+  padding: 1rem 1.1rem;
+  box-shadow: 0 1px 4px rgba(44,62,80,0.06);
 }
 
-.overviewHeroTop {
+.hlLabel {
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  margin-bottom: 0.65rem;
+}
+
+.catBar {
   display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
-  gap: 1rem;
-  position: relative;
-  z-index: 1;
+  height: 10px;
+  border-radius: 99px;
+  overflow: hidden;
+  gap: 2px;
+  margin-bottom: 0.75rem;
 }
-
-.overviewHeroLeft { flex: 1; min-width: 0; }
-
-.overviewCity {
-  font-family: var(--font-display);
-  font-size: clamp(1.5rem, 3vw, 2.2rem);
-  font-weight: 800;
-  color: white;
-  margin: 0 0 0.2rem;
-  text-shadow: 0 2px 8px rgba(0,0,0,0.15);
+.catBarSegment {
+  border-radius: 99px;
+  transition: opacity 0.15s;
+  min-width: 4px;
 }
+.catBarSegment:hover { opacity: 0.75; cursor: default; }
 
-.overviewTripTitle {
-  font-size: 0.85rem;
-  color: rgba(255,255,255,0.72);
-  font-style: italic;
-  margin-bottom: 0.7rem;
+.catLegend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem 0.9rem;
 }
-
-.overviewMeta {
+.catLegendItem {
   display: flex;
   align-items: center;
-  gap: 6px;
-  flex-wrap: wrap;
-}
-
-.statusPill {
-  padding: 2px 10px;
-  border-radius: 99px;
-  font-size: 0.68rem;
-  font-weight: 700;
-  border: 1.5px solid;
-}
-
-.metaChip {
+  gap: 0.35rem;
   font-size: 0.78rem;
-  color: rgba(255,255,255,0.82);
-  font-weight: 600;
+  color: var(--text-soft);
 }
-
-/* Trip stats row inside hero */
-.heroStats {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 0.6rem;
-  position: relative;
-  z-index: 1;
-}
-
-.heroStat {
-  background: rgba(255,255,255,0.15);
-  border-radius: 10px;
-  padding: 0.6rem 0.7rem;
-  text-align: center;
-  backdrop-filter: blur(4px);
-}
-.heroStatNum   { font-size: 1.1rem; font-weight: 800; color: white; line-height: 1; }
-.heroStatLabel { font-size: 0.6rem; color: rgba(255,255,255,0.72); text-transform: uppercase; letter-spacing: 0.05em; margin-top: 2px; }
-
-.overviewHotelBadge {
-  background: rgba(255,255,255,0.18);
-  border-radius: var(--radius-sm);
-  padding: 0.6rem 0.85rem;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-  gap: 2px;
+.catLegendDot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
   flex-shrink: 0;
-  max-width: 150px;
-  position: relative;
-  z-index: 1;
+}
+.catLegendName { font-weight: 600; }
+.catLegendCount { font-weight: 800; color: var(--text); }
+
+/* stat row */
+.hlStatRow {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.6rem;
 }
 
-.overviewHotelLabel { font-size: 0.6rem; color: rgba(255,255,255,0.65); }
-.overviewHotelName  { font-size: 0.78rem; font-weight: 800; color: white; text-align: right; line-height: 1.3; }
+.hlStat {
+  background: var(--bg-card);
+  border-radius: var(--radius);
+  border: 1px solid var(--border-soft);
+  padding: 0.85rem 0.9rem;
+  display: flex;
+  align-items: flex-start;
+  gap: 0.6rem;
+  box-shadow: 0 1px 4px rgba(44,62,80,0.06);
+}
+
+.hlStatIcon {
+  width: 1.25rem;
+  height: 1.25rem;
+  flex-shrink: 0;
+  margin-top: 1px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--primary);
+}
+
+.hlStatBody { min-width: 0; }
+.hlStatVal {
+  font-size: 0.95rem;
+  font-weight: 800;
+  color: var(--text);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.hlStatDesc {
+  font-size: 0.7rem;
+  color: var(--muted);
+  margin-top: 2px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+@media (max-width: 640px) {
+  .hlStatRow { grid-template-columns: 1fr 1fr; }
+  .hlStat:last-child { grid-column: span 2; }
+}
+
+
 
 /* Budget row */
 .budgetRow {
@@ -538,31 +645,45 @@
   border-top: 3px solid var(--light);
 }
 
-/* Spot rows */
-.spotRow {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  margin-bottom: 0;
+/* ── Day budget in sidebar (desktop) and sheet (mobile/tablet) ── */
+.sideDayBudget {
+  padding: 0.75rem 0 0;
+  border-top: 1px solid var(--border-soft);
+  margin-top: 0.25rem;
 }
-.spotCard { flex: 1; min-width: 0; }
 
-.swapBtn {
-  flex-shrink: 0;
-  width: 50px;
-  height: 46px;
-  border-radius: var(--radius-sm);
-  border: 1.5px solid var(--border);
-  background: var(--bg-subtle);
-  cursor: pointer;
-  font-size: 0.68rem;
+.sheetDayBudget {
+  margin-top: 0.9rem;
+}
+
+.sheetDayBudgetLabel {
+  font-size: 0.72rem;
   font-weight: 700;
   color: var(--muted);
-  font-family: var(--font-body);
-  transition: all 0.15s;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin-bottom: 0.5rem;
 }
-.swapBtn:hover { border-color: var(--primary); color: var(--primary); background: var(--bg-card); }
-.swapPlaceholder { flex-shrink: 0; width: 50px; }
+.timeline {
+  position: relative;
+  padding: 4px 0 4px 0;
+}
+/* The vertical spine line */
+.timeline::before {
+  content: '';
+  position: absolute;
+  left: calc(72px + 18px);
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: linear-gradient(to bottom,
+    transparent 0%,
+    var(--border-soft) 8%,
+    var(--border-soft) 92%,
+    transparent 100%
+  );
+  z-index: 0;
+}
 
 .empty { text-align: center; color: var(--muted); padding: 2rem 0; font-size: 0.88rem; }
 
@@ -603,22 +724,82 @@
 .weatherRow {
   display: flex;
   align-items: center;
-  gap: 0.7rem;
-  margin-bottom: 0.4rem;
+  gap: 10px;
+  margin-bottom: 0.5rem;
 }
-.weatherEmoji { font-size: 2rem; }
-.weatherCond  { font-size: 0.88rem; font-weight: 700; color: var(--text); }
-.weatherTemp  { font-size: 1.4rem; font-weight: 800; color: var(--primary); }
-.distRow      { font-size: 0.75rem; color: var(--text-soft); margin-top: 0.3rem; }
+.weatherIconBox {
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  background: color-mix(in srgb, var(--primary) 12%, var(--bg-subtle));
+  color: var(--primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.weatherInfo  { display: flex; flex-direction: column; gap: 1px; }
+.weatherTemp  { font-size: 1.3rem; font-weight: 800; color: var(--text); line-height: 1.1; }
+.weatherCond  { font-size: 0.75rem; color: var(--text-soft); font-weight: 500; }
 
-.dayBudgetGrid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 0.45rem;
+/* Distance row */
+.distRow {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  padding-top: 0.55rem;
+  margin-top: 0.45rem;
+  border-top: 1px solid var(--border-soft);
 }
-.dbBox    { border-radius: 8px; padding: 0.6rem 0.65rem; color: white; }
-.dbLabel  { font-size: 0.58rem; opacity: 0.85; margin-bottom: 0.12rem; }
-.dbAmount { font-size: 0.95rem; font-weight: 800; }
+.distIconBox {
+  width: 28px;
+  height: 28px;
+  border-radius: 7px;
+  background: color-mix(in srgb, var(--orange) 12%, var(--bg-subtle));
+  color: var(--orange);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.distBody  { display: flex; flex-direction: column; gap: 0; }
+.distLabel { font-size: 0.65rem; color: var(--muted); font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; }
+.distValue { font-size: 0.82rem; font-weight: 700; color: var(--text); line-height: 1.2; }
+
+/* ── Day budget — Option A ── */
+.dayBudgetGrid { display: flex; flex-direction: column; gap: 0.6rem; }
+
+.dbBox {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+}
+.dbIcon {
+  width: 28px;
+  height: 28px;
+  border-radius: 7px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.dbBody   { flex: 1; min-width: 0; }
+.dbTop    { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 4px; }
+.dbLabel  { font-size: 0.72rem; color: var(--text-soft); font-weight: 600; }
+.dbAmount { font-size: 0.78rem; font-weight: 700; color: var(--text); }
+.dbTrack  { height: 3px; background: var(--border-soft); border-radius: 99px; overflow: hidden; }
+.dbFill   { height: 100%; border-radius: 99px; transition: width 0.4s ease; }
+
+.dbBoxTotal {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 7px;
+  margin-top: 2px;
+  border-top: 1px solid var(--border-soft);
+}
+.dbTotalLabel  { font-size: 0.72rem; font-weight: 700; color: var(--text-soft); }
+.dbTotalAmount { font-size: 0.92rem; font-weight: 800; color: var(--text); }
 
 .glanceList { display: flex; flex-direction: column; gap: 0; }
 .glanceRow  {
@@ -694,13 +875,7 @@
   flex-shrink: 0;
 }
 
-.sheetScroll {
-  flex: 1;
-  overflow-y: auto;
-  padding: 1rem 1.2rem 2rem;
-  display: flex;
-  flex-direction: column;
-}
+/* sheetScroll padding is defined in the mobile sheet section below */
 
 /* ══════════════════════════════════════════
    SHARE TOAST
@@ -732,7 +907,7 @@
 ══════════════════════════════════════════ */
 
 /* Hide right panel on narrower screens */
-@media (max-width: 1180px) {
+@media (max-width: 960px) {
   .rightPanel { display: none; }
 }
 
@@ -745,22 +920,466 @@
 @media (max-width: 640px) {
   .sidebar     { display: none; }
   .mobileBar   { display: flex; }
-  .mobileBack  { display: block; background:none; border:none; font-size:0.82rem; font-weight:700; color:var(--primary); cursor:pointer; font-family:var(--font-body); }
-  .sidebarToggle { display:block; background:none; border:1.5px solid var(--border); border-radius:8px; padding:5px 10px; font-size:0.75rem; font-weight:700; color:var(--text-soft); cursor:pointer; font-family:var(--font-body); margin-left:auto; }
+  .mobileBack  { display: block; background:none; border:none; font-size:0.82rem; font-weight:700; color:var(--primary); cursor:pointer; font-family:var(--font-body); flex-shrink: 0; }
+
+  /* Details is in the bottom bar — no need for it in the top bar too */
+  .sidebarToggle { display: none !important; }
+
+  /* Weather pill already in right panel on desktop — not needed on mobile either */
+  .weatherPill { display: none !important; }
 
   .overviewContent,
   .dayContent { padding: 0.9rem; gap: 0.9rem; }
 
   .budgetRow { grid-template-columns: 1fr 1fr; }
 
-  .overviewHero { flex-direction: column; }
   .overviewHotelBadge { align-items: flex-start; max-width: 100%; }
 
   .main { padding-bottom: 56px; }
 
-  .topBar { padding: 0.75rem 1rem; gap: 0.5rem; }
-  .tabSwitcher { order: 2; }
-  .mobileBack  { order: 1; }
-  .dayControls { order: 3; width: 100%; }
-  .sidebarToggle { order: 2; }
+  .topBar { padding: 0; }
+  .topBarRow1 { padding: 0.5rem 0.75rem; gap: 0.4rem; }
+  .topBarRow2 { padding: 0.4rem 0.75rem 0.5rem; }
+
+  /* Shrink tab buttons so they don't push other items out */
+  .tabBtn { padding: 0.38rem 0.65rem; font-size: 0.78rem; }
+
+  /* Re-roll: icon-only on very small screens */
+  .regenBtnLabel { display: none; }
 }
+
+/* ══════════════════════════════════════════
+   DAY BUDGET STRIP (Change 6)
+══════════════════════════════════════════ */
+.dayBudgetStrip {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0.6rem;
+}
+.dayBudgetStripBox {
+  border-radius: var(--radius-sm);
+  padding: 0.7rem 0.85rem;
+  color: white;
+}
+
+/* ══════════════════════════════════════════
+   PAST DAY CHIP (Change 7)
+══════════════════════════════════════════ */
+.dayChipPast {
+  opacity: 0.55;
+  position: relative;
+}
+.dayChipPastDot {
+  position: absolute;
+  top: -2px;
+  right: -2px;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--primary);
+  border: 1.5px solid var(--bg-nav);
+}
+
+@media (max-width: 640px) {
+  .dayBudgetStrip { grid-template-columns: repeat(2, 1fr); }
+}
+
+/* ══════════════════════════════════════════
+   MOBILE SHEET — COMPACT LAYOUT
+══════════════════════════════════════════ */
+
+/* Tighter sheet padding — content fits without scrolling */
+.sheetScroll {
+  flex: 1;
+  overflow-y: auto;
+  padding: 0.75rem 1rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.sheetBody {
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+}
+
+/* ── Section wrapper ── */
+.sheetSection {
+  background: var(--bg-card);
+  border-radius: var(--radius-sm);
+  padding: 0.65rem 0.8rem;
+  box-shadow: var(--shadow);
+}
+
+.sheetSectionLabel {
+  font-size: 0.6rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  color: var(--muted);
+  margin-bottom: 0.5rem;
+}
+
+.sheetSectionSub {
+  font-weight: 400;
+  text-transform: none;
+  letter-spacing: 0;
+  font-size: 0.6rem;
+}
+
+/* ── Row 1: Trip info + weather ── */
+.sheetTopRow {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  background: var(--bg-card);
+  border-radius: var(--radius-sm);
+  padding: 0.7rem 0.8rem;
+  box-shadow: var(--shadow);
+}
+
+.sheetTripInfo { flex: 1; min-width: 0; }
+
+.sheetCity {
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+  font-weight: 800;
+  color: var(--text);
+  line-height: 1.2;
+  margin-bottom: 0.1rem;
+}
+
+.sheetTripTitle {
+  font-size: 0.7rem;
+  color: var(--muted);
+  font-style: italic;
+  margin-bottom: 0.35rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.sheetMeta {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  flex-wrap: wrap;
+  margin-bottom: 0.2rem;
+}
+
+.sheetHotelPill {
+  font-size: 0.6rem;
+  color: var(--text-soft);
+  font-weight: 600;
+  background: var(--bg-subtle);
+  border-radius: 99px;
+  padding: 1px 6px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 130px;
+}
+
+/* Weather pill — right side, compact */
+.sheetWeatherPill {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  background: var(--bg-subtle);
+  border-radius: var(--radius-sm);
+  padding: 0.45rem 0.6rem;
+  border: 1px solid var(--border-soft);
+}
+
+.sheetWeatherIcon { font-size: 1.4rem; line-height: 1; }
+
+.sheetWeatherText {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+}
+
+.sheetWeatherTemp {
+  font-size: 0.95rem;
+  font-weight: 800;
+  color: var(--primary);
+  line-height: 1;
+}
+
+.sheetWeatherCond {
+  font-size: 0.6rem;
+  color: var(--muted);
+  line-height: 1;
+}
+
+.sheetWeatherDist {
+  font-size: 0.58rem;
+  color: var(--text-soft);
+  font-weight: 600;
+  line-height: 1;
+  margin-top: 1px;
+}
+
+/* ── Row 2: Budget — stacked layout ── */
+
+/* Trip total — single compact row across full width */
+.sheetTripTotalRow {
+  display: flex;
+  align-items: baseline;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  margin-bottom: 0.55rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid var(--border-soft);
+}
+
+.sheetTripTotalLabel {
+  font-size: 0.65rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--muted);
+}
+
+.sheetTripTotalAmt {
+  font-size: 1.15rem;
+  font-weight: 800;
+  color: var(--text);
+  line-height: 1;
+}
+
+/* Breakdown chips — inline pills */
+.sheetTripBreakdown {
+  display: flex;
+  gap: 0.3rem;
+  flex-wrap: wrap;
+  align-items: center;
+  margin-left: auto;
+}
+
+.sheetBreakdownChip {
+  font-size: 0.62rem;
+  color: var(--text-soft);
+  background: var(--bg-subtle);
+  border-radius: 99px;
+  padding: 2px 7px;
+  white-space: nowrap;
+  border: 1px solid var(--border-soft);
+}
+
+/* Day budget label */
+.sheetDayBudgetLabel {
+  font-size: 0.6rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--muted);
+  margin-bottom: 0.4rem;
+}
+
+/* 2×2 day budget grid — full width */
+.sheetDayGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.45rem;
+}
+
+.sheetDayBox {
+  border-radius: 8px;
+  padding: 0.55rem 0.7rem;
+  color: white;
+}
+
+.sheetDayBoxLabel {
+  font-size: 0.6rem;
+  opacity: 0.85;
+  margin-bottom: 2px;
+}
+
+.sheetDayBoxAmt {
+  font-size: 1rem;
+  font-weight: 800;
+  line-height: 1;
+}
+
+/* Overview glance chips */
+.sheetGlanceRow2 {
+  display: flex;
+  gap: 0.45rem;
+  flex-wrap: wrap;
+  margin-top: 0.1rem;
+}
+
+.sheetGlanceChip {
+  flex: 1;
+  min-width: 60px;
+  background: var(--bg-subtle);
+  border-radius: 8px;
+  padding: 0.45rem 0.6rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  border: 1px solid var(--border-soft);
+}
+
+.sheetGlanceChipVal {
+  font-size: 0.9rem;
+  font-weight: 800;
+  color: var(--text);
+  line-height: 1;
+}
+
+.sheetGlanceChipLabel {
+  font-size: 0.58rem;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+/* Glance lines (kept for any legacy use) */
+.sheetGlanceLine {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.68rem;
+  color: var(--text-soft);
+  padding: 2px 0;
+  border-bottom: 1px solid var(--border-soft);
+}
+.sheetGlanceLine:last-child { border-bottom: none; }
+.sheetGlanceLine strong { color: var(--text); font-weight: 700; }
+
+/* ── Row 3: Day chips — compact grid ── */
+.sheetDayChips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+}
+
+.sheetDayChip {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 42px;
+  height: 42px;
+  border-radius: 10px;
+  border: 1.5px solid var(--border);
+  background: var(--bg-subtle);
+  font-family: var(--font-body);
+  cursor: pointer;
+  transition: all 0.15s;
+  gap: 1px;
+}
+.sheetDayChip:hover { border-color: var(--primary); background: var(--bg-card); }
+
+.sheetDayChipActive {
+  background: var(--hero-grad) !important;
+  border-color: transparent !important;
+}
+.sheetDayChipActive .sheetDayChipNum,
+.sheetDayChipActive .sheetDayChipCount { color: white !important; }
+
+.sheetDayChipPast { opacity: 0.55; }
+
+.sheetDayChipNum   { font-size: 0.8rem; font-weight: 800; color: var(--text); line-height: 1; }
+.sheetDayChipCount { font-size: 0.55rem; color: var(--muted); line-height: 1; }
+
+/* ── Row 4: Actions ── */
+.sheetActions {
+  display: flex;
+  gap: 0.4rem;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.sheetActionBtn {
+  flex: 1;
+  min-width: 0;
+  padding: 0.45rem 0.6rem;
+  border-radius: var(--radius-sm);
+  border: 1.5px solid var(--border);
+  background: var(--bg-card);
+  font-family: var(--font-body);
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: var(--text-soft);
+  cursor: pointer;
+  transition: all 0.15s;
+  text-align: center;
+  white-space: nowrap;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+}
+.sheetActionBtn:hover { border-color: var(--primary); color: var(--primary); }
+
+.sheetActionBtnDanger {
+  color: #dc2626 !important;
+  border-color: #fecaca !important;
+  background: #fee2e2 !important;
+}
+.sheetActionBtnDanger:hover { background: #fecaca !important; }
+
+.sheetDeleteConfirm {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.7rem;
+  color: var(--muted);
+  flex-wrap: wrap;
+}
+
+.sheetDeleteYes {
+  padding: 0.4rem 0.7rem;
+  border-radius: var(--radius-sm);
+  border: none;
+  background: #dc2626;
+  color: white;
+  font-family: var(--font-body);
+  font-size: 0.72rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+
+/* Weather pill — inline in top bar, visible on tablet where right panel hides */
+.weatherPill {
+  display: none;
+  align-items: center;
+  gap: 4px;
+  padding: 0.3rem 0.65rem;
+  border-radius: 99px;
+  background: var(--bg-subtle);
+  border: 1px solid var(--border-soft);
+  font-size: 0.82rem;
+  white-space: nowrap;
+}
+.weatherPillTemp {
+  font-weight: 800;
+  color: var(--primary);
+  font-size: 0.85rem;
+}
+@media (max-width: 960px) {
+  .weatherPill { display: flex; }
+}
+@media (max-width: 640px) {
+  .weatherPill { display: none; }
+}
+
+/* ══════════════════════════════════════════
+   TABLET INFO BAR — removed; replaced by weatherPill inline
+══════════════════════════════════════════ */
+.tabletInfoBar,
+.tabletWeather,
+.tabletWeatherTemp,
+.tabletWeatherCond,
+.tabletDist,
+.tabletDayBudget,
+.tabletBudgetChip,
+.tabletChipLabel,
+.tabletChipAmt { display: none !important; }

@@ -9,20 +9,42 @@ import MemoriesPanel from '../components/MemoriesPanel'
 import EditSpotModal from '../components/EditSpotModal'
 import styles from './TripDetails.module.css'
 
+// ── Inline SVG icons ─────────────────────────────────────────────
+const IcoSun     = () => <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="4"/><line x1="12" y1="2" x2="12" y2="4"/><line x1="12" y1="20" x2="12" y2="22"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="2" y1="12" x2="4" y2="12"/><line x1="20" y1="12" x2="22" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+const IcoCloud   = () => <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M17.5 19H9a7 7 0 1 1 6.71-9h1.79a4.5 4.5 0 0 1 0 9z"/></svg>
+const IcoRain    = () => <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M17.5 19H9a7 7 0 1 1 6.71-9h1.79a4.5 4.5 0 0 1 0 9z"/><line x1="8" y1="23" x2="8" y2="21"/><line x1="12" y1="23" x2="12" y2="21"/><line x1="16" y1="23" x2="16" y2="21"/></svg>
+const IcoSnow    = () => <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="12" y1="2" x2="12" y2="22"/><line x1="4.93" y1="4.93" x2="19.07" y2="19.07"/><line x1="2" y1="12" x2="22" y2="12"/><line x1="4.93" y1="19.07" x2="19.07" y2="4.93"/></svg>
+const IcoMist    = () => <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="3" y1="8" x2="21" y2="8"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="5" y1="16" x2="19" y2="16"/></svg>
+const IcoThunder = () => <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M17.5 19H9a7 7 0 1 1 6.71-9h1.79a4.5 4.5 0 0 1 0 9z"/><polyline points="13 11 11 15 13 15 11 19"/></svg>
+const IcoThermo  = () => <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M14 14.76V3.5a2.5 2.5 0 0 0-5 0v11.26a4.5 4.5 0 1 0 5 0z"/></svg>
+const IcoBuilding= () => <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="9" y1="3" x2="9" y2="21"/><line x1="15" y1="3" x2="15" y2="21"/><line x1="3" y1="9" x2="9" y2="9"/><line x1="3" y1="15" x2="9" y2="15"/><line x1="15" y1="9" x2="21" y2="9"/><line x1="15" y1="15" x2="21" y2="15"/></svg>
+const IcoMapPin  = () => <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+const IcoBag     = () => <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+const IcoRoute   = () => <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="6" cy="19" r="3"/><path d="M9 19h8.5a3.5 3.5 0 0 0 0-7h-11a3.5 3.5 0 0 1 0-7H15"/><circle cx="18" cy="5" r="3"/></svg>
+const IcoCalendar = () => <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+const IcoShare   = () => <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/><polyline points="16 6 12 2 8 6"/><line x1="12" y1="2" x2="12" y2="15"/></svg>
+const IcoDownload= () => <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+const IcoTrash   = () => <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"/><path d="M10 11v6"/><path d="M14 11v6"/><path d="M9 6V4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2"/></svg>
+const IcoTicket     = () => <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M2 9a3 3 0 0 1 0 6v2a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-2a3 3 0 0 1 0-6V7a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2z"/></svg>
+const IcoClock      = () => <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+const IcoRefresh    = () => <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/></svg>
+const IcoChevronUp  = () => <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><polyline points="18 15 12 9 6 15"/></svg>
+const IcoChevronDown= () => <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+
 const WEATHER_ICONS = {
-  Clear:'☀️', Clouds:'☁️', Rain:'🌧️', Drizzle:'🌦️',
-  Thunderstorm:'⛈️', Snow:'❄️', Mist:'🌫️', Fog:'🌫️',
+  Clear: IcoSun, Clouds: IcoCloud, Rain: IcoRain, Drizzle: IcoRain,
+  Thunderstorm: IcoThunder, Snow: IcoSnow, Mist: IcoMist, Fog: IcoMist,
 }
 function weatherIcon(c = '') {
   for (const [k, v] of Object.entries(WEATHER_ICONS))
     if (c.toLowerCase().includes(k.toLowerCase())) return v
-  return '🌡️'
+  return IcoThermo
 }
 
 const STATUS_COLORS = {
   Upcoming:'#92C4C6', Ongoing:'#F3C375', Completed:'#20878E',
 }
-const SLOT_ORDER = ['Breakfast ☕','Morning 🌅','Lunch 🍔','Afternoon ☀️','Dinner 🍷','Evening 🌙']
+const SLOT_ORDER = ['Breakfast','Morning','Lunch','Afternoon','Dinner','Evening']
 
 // ── PDF export ────────────────────────────────────────────────────────────────
 async function exportPDF(trip, spots, totalDays) {
@@ -53,11 +75,12 @@ async function exportPDF(trip, spots, totalDays) {
 export default function TripDetails() {
   const { id } = useParams()
   const navigate = useNavigate()
-  const { removeTrip, trips, locations } = useApp()
+  const { removeTrip, trips, locations, tripsLoaded } = useApp()
   const toast = useToast()
 
   const cached = trips.find(t => t.id === id)
   const [trip, setTrip]           = useState(cached ?? null)
+  const locallyModified           = { current: false }  // ref-like: prevents stale context overwrite
   const [loading, setLoading]     = useState(!cached)
   const [tab, setTab]             = useState('overview')   // 'overview' | 'day'
   const [selectedDay, setDay]     = useState(1)
@@ -66,35 +89,61 @@ export default function TripDetails() {
   const [routeKm, setRouteKm]     = useState(null)
   const [editingSpot, setEditingSpot] = useState(null)
   const [regenLoading, setRegenLoad]  = useState(false)
+  const [regenKey, setRegenKey]        = useState(0)
   const [shareToast, setShareToast]   = useState(false)
   const [sidebarOpen, setSidebar]     = useState(false)
   const [expandedDays, setExpanded]   = useState({ 1: true })
 
   useEffect(() => {
-    if (cached) return
-    getTrip(id).then(setTrip).catch(() => setTrip(null)).finally(() => setLoading(false))
-  }, [id])
+    // Once we've modified trip locally (regen/swap), don't let stale context overwrite it
+    if (locallyModified.current) return
+
+    if (tripsLoaded && cached) {
+      setTrip(cached)
+      setLoading(false)
+      return
+    }
+    if (tripsLoaded && !cached) {
+      getTrip(id).then(setTrip).catch(() => setTrip(null)).finally(() => setLoading(false))
+      return
+    }
+  }, [id, tripsLoaded, cached?.id])
 
   useEffect(() => { setRouteKm(null) }, [selectedDay])
 
-  const handleSpotSwapped = useCallback((updated) => {
-    setTrip(prev => !prev ? prev : {
-      ...prev,
-      spots: prev.spots.map(s => s.id === updated.id ? { ...s, ...updated } : s)
-    })
-  }, [])
+  const handleSpotSwapped = useCallback(async (updated) => {
+    locallyModified.current = true
+    // Re-fetch so the whole trip is fresh — avoids stale spot IDs on next swap/regen
+    try {
+      const fresh = await getTrip(id)
+      setTrip(fresh)
+    } catch {
+      // Fallback: patch in-place if fetch fails
+      setTrip(prev => !prev ? prev : {
+        ...prev,
+        spots: prev.spots.map(s => s.id === updated.id ? { ...s, ...updated } : s)
+      })
+    }
+  }, [id])
 
   async function handleRegenerate() {
+    if (status === 'Completed') {
+      toast.error('This trip is completed and cannot be modified.')
+      return
+    }
+    if (isDayPast(selectedDay)) {
+      toast.error('This day has already passed and cannot be re-rolled.')
+      return
+    }
     setRegenLoad(true)
     try {
-      const result = await regenerateDay(id, selectedDay)
-      setTrip(prev => {
-        if (!prev) return prev
-        const kept = prev.spots.filter(s => s.day_num !== selectedDay)
-        const merged = [...kept, ...result.new_spots]
-          .sort((a,b) => a.day_num - b.day_num || SLOT_ORDER.indexOf(a.slot) - SLOT_ORDER.indexOf(b.slot))
-        return { ...prev, spots: merged, cost: result.new_cost }
-      })
+      await regenerateDay(id, selectedDay)
+      // Mark as locally modified so the useEffect won't overwrite with stale context
+      locallyModified.current = true
+      // Always re-fetch from server — ensures spot IDs match what the server has
+      const fresh = await getTrip(id)
+      setTrip(fresh)
+      setRegenKey(k => k + 1)
       toast.success(`Day ${selectedDay} regenerated!`)
     } catch (e) {
       toast.error(e.message || 'Could not regenerate day.')
@@ -165,55 +214,81 @@ export default function TripDetails() {
     : [cond,temp]
 
   const hotelName = hotelSpots[0]?.name ?? null
-  const isSwappable = s => !s.name?.includes('(Rest & Settle)')
+  // Check if a day is in the past (for ongoing trips)
+  function isDayPast(dayNum) {
+    if (!trip.start_date) return false
+    const dayDate = new Date(trip.start_date + 'T00:00:00')
+    dayDate.setDate(dayDate.getDate() + (dayNum - 1))
+    const today = new Date()
+    today.setHours(0, 0, 0, 0)
+    return dayDate < today
+  }
+
+  const isSwappable = s => {
+    if (s.name?.includes('(Rest & Settle)')) return false
+    if (status === 'Completed') return false
+    if (isDayPast(s.day_num)) return false
+    return true
+  }
 
   function formatDate(d) {
     if (!d) return ''
     return new Date(d+'T00:00:00').toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'})
   }
 
-  // ── Sidebar content (shared between desktop sidebar + mobile sheet) ──────────
-  const SidebarContent = () => (
+  // ── Desktop sidebar content ───────────────────────────────────────────────
+  const DesktopSidebarContent = () => (
     <>
-      {/* Trip identity */}
-      <div className={styles.sideTrip}>
+      <div className={styles.sideTripHero}>
         <div className={styles.sideCity}>{city}</div>
         <div className={styles.sideTitle}>"{title}"</div>
-        <div className={styles.sideMeta}>
-          <span className={styles.sideStatus}
-            style={{ background:`${sc}22`, color:sc, borderColor:sc }}>
+        <div className={styles.sideTripMetaRow}>
+          <span className={styles.sideStatus} style={{ background:`${sc}22`, color:sc, borderColor:sc }}>
             {status}
           </span>
           <span className={styles.sideDays}>{days} day{days>1?'s':''}</span>
         </div>
         {trip.start_date && (
-          <div className={styles.sideDates}>
-            {formatDate(trip.start_date)} → {formatDate(trip.end_date)}
+          <div className={styles.sideTripInfoRow}>
+            <IcoCalendar />
+            <span className={styles.sideTripInfoText}>
+              {formatDate(trip.start_date)} → {formatDate(trip.end_date)}
+            </span>
           </div>
         )}
-        {hotelName && <div className={styles.sideHotel}>{hotelName}</div>}
+        {hotelName && (
+          <div className={styles.sideTripInfoRow}>
+            <IcoBuilding />
+            <span className={styles.sideTripInfoText}>{hotelName}</span>
+          </div>
+        )}
       </div>
 
-      {/* Budget */}
       <div className={styles.sideBudget}>
         <div className={styles.sideLabel}>Budget Overview</div>
         <div className={styles.sideBudgetTotal}>
-          ${Number(cost).toLocaleString(undefined,{maximumFractionDigits:0})}
+          ${Number(cost).toLocaleString(undefined, { maximumFractionDigits: 0 })}
           <span className={styles.sideBudgetSub}> estimated</span>
         </div>
-        {[
-          [`Hotel (${days} nights)`, nightly*days],
-          ['Activities', actSum],
-          [`Misc (${days} days)`, miscTotal],
-        ].map(([l,a]) => (
-          <div key={l} className={styles.sideBudgetRow}>
-            <span>{l}</span>
-            <span>${Number(a).toLocaleString(undefined,{maximumFractionDigits:0})}</span>
-          </div>
-        ))}
+        <div className={styles.sideBudgetGrid}>
+          {[
+            { label: `Hotel (${days}n)`, amount: nightly * days, Icon: IcoBuilding, iconBg: 'color-mix(in srgb, var(--primary) 12%, var(--bg-subtle))', iconColor: 'var(--primary)' },
+            { label: 'Activities',       amount: actSum,          Icon: IcoMapPin,   iconBg: 'color-mix(in srgb, var(--light) 35%, var(--bg-subtle))',   iconColor: 'var(--primary-dark)' },
+            { label: `Misc (${days}d)`,  amount: miscTotal,       Icon: IcoBag,      iconBg: 'color-mix(in srgb, var(--orange) 14%, var(--bg-subtle))',  iconColor: 'var(--orange)' },
+          ].map(({ label, amount, Icon, iconBg, iconColor }) => (
+            <div key={label} className={styles.sideBudgetCell}>
+              <div className={styles.sideBudgetCellIcon} style={{ background: iconBg, color: iconColor }}>
+                <Icon />
+              </div>
+              <div className={styles.sideBudgetCellVal}>
+                ${Number(amount).toLocaleString(undefined, { maximumFractionDigits: 0 })}
+              </div>
+              <div className={styles.sideBudgetCellLbl}>{label}</div>
+            </div>
+          ))}
+        </div>
       </div>
 
-      {/* Day nav */}
       <div className={styles.sideDayNav}>
         <div className={styles.sideLabel}>Days</div>
         {Array.from({length:totalDays},(_,i)=>i+1).map(d => {
@@ -221,7 +296,7 @@ export default function TripDetails() {
           return (
             <button key={d}
               className={`${styles.dayNavItem} ${selectedDay===d && tab==='day' ? styles.dayNavActive : ''}`}
-              onClick={() => { setDay(d); setTab('day'); setSidebar(false) }}>
+              onClick={() => { setDay(d); setTab('day') }}>
               <span className={styles.dayNavNum}>Day {d}</span>
               <span className={styles.dayNavCount}>{count} stops</span>
             </button>
@@ -229,13 +304,12 @@ export default function TripDetails() {
         })}
       </div>
 
-      {/* Actions */}
       <div className={styles.sideActions}>
         <button className={styles.actionBtn} onClick={handleShare}>
-          Share Trip
+          <IcoShare /> Share Trip
         </button>
         <button className={styles.actionBtn} onClick={() => exportPDF(trip, spots, totalDays)}>
-          Export PDF
+          <IcoDownload /> Export PDF
         </button>
         {confirmDel ? (
           <div className={styles.deleteConfirm}>
@@ -243,23 +317,190 @@ export default function TripDetails() {
             <div style={{display:'flex',gap:'6px',marginTop:'6px'}}>
               <button className={`${styles.actionBtn} ${styles.actionBtnDanger} ${styles.actionBtnFlex}`}
                 onClick={handleDelete} disabled={deleting}>
-                {deleting ? 'Deleting…' : 'Confirm Delete'}
+                <IcoTrash /> {deleting ? 'Deleting…' : 'Confirm Delete'}
               </button>
-              <button className={`${styles.actionBtn} ${styles.actionBtnFlex}`}
-                onClick={() => setConfirm(false)}>
+              <button className={`${styles.actionBtn} ${styles.actionBtnFlex}`} onClick={() => setConfirm(false)}>
                 Cancel
               </button>
             </div>
           </div>
         ) : (
-          <button className={`${styles.actionBtn} ${styles.actionBtnDanger}`}
-            onClick={() => setConfirm(true)}>
-            Delete Trip
+          <button className={`${styles.actionBtn} ${styles.actionBtnDanger}`} onClick={() => setConfirm(true)}>
+            <IcoTrash /> Delete Trip
           </button>
         )}
       </div>
     </>
   )
+
+  // ── Mobile sheet content ─────────────────────────────────────────────────
+const MobileSheetContent = () => (
+  <div className={styles.sheetBody}>
+
+    {/* Trip identity + weather */}
+    <div className={styles.sheetTopRow}>
+      <div className={styles.sheetTripInfo}>
+        <div className={styles.sheetCity}>{city}</div>
+        <div className={styles.sheetTripTitle}>"{title}"</div>
+        <div className={styles.sideTripMetaRow}>
+          <span className={styles.sideStatus} style={{ background:`${sc}22`, color:sc, borderColor:sc }}>
+            {status}
+          </span>
+          <span className={styles.sideDays}>{days} day{days>1?'s':''}</span>
+        </div>
+        {trip.start_date && (
+          <div className={styles.sideTripInfoRow}>
+            <IcoCalendar />
+            <span className={styles.sideTripInfoText}>
+              {formatDate(trip.start_date)} → {formatDate(trip.end_date)}
+            </span>
+          </div>
+        )}
+        {hotelName && (
+          <div className={styles.sideTripInfoRow}>
+            <IcoBuilding />
+            <span className={styles.sideTripInfoText}>{hotelName}</span>
+          </div>
+        )}
+      </div>
+
+      {/* Weather + Distance stacked on the right */}
+      <div style={{ display:'flex', flexDirection:'column', gap:'6px', flexShrink:0 }}>
+        <div className={styles.sheetWeatherPill}>
+          <span className={styles.sheetWeatherIcon}>
+            {(() => { const W = weatherIcon(fc_cond); return <W /> })()}
+          </span>
+          <div className={styles.sheetWeatherText}>
+            <span className={styles.sheetWeatherTemp}>{fc_temp}°C</span>
+            <span className={styles.sheetWeatherCond}>{fc_cond}</span>
+          </div>
+        </div>
+        {routeKm !== null && routeKm > 0 && (
+          <div className={styles.sheetWeatherPill}>
+            <span className={styles.sheetWeatherIcon}><IcoRoute /></span>
+            <div className={styles.sheetWeatherText}>
+              <span className={styles.sheetWeatherTemp}>{routeKm.toFixed(1)} km</span>
+              <span className={styles.sheetWeatherCond}>Drive dist.</span>
+            </div>
+          </div>
+        )}
+      </div>
+    </div>
+
+    {/* Budget summary */}
+    <div className={styles.sheetSection}>
+      <div className={styles.sheetSectionLabel}>Budget</div>
+      <div className={styles.sheetTripTotalRow}>
+        <span className={styles.sheetTripTotalLabel}>Est. total</span>
+        <span className={styles.sheetTripTotalAmt}>
+          ${Number(cost).toLocaleString(undefined,{maximumFractionDigits:0})}
+        </span>
+      </div>
+      <div className={styles.sideBudgetGrid}>
+        {[
+          { label: `Hotel (${days}n)`, amount: nightly * days, Icon: IcoBuilding, iconBg: 'color-mix(in srgb, var(--primary) 12%, var(--bg-subtle))', iconColor: 'var(--primary)' },
+          { label: 'Activities',       amount: actSum,          Icon: IcoMapPin,   iconBg: 'color-mix(in srgb, var(--light) 35%, var(--bg-subtle))',   iconColor: 'var(--primary-dark)' },
+          { label: `Misc (${days}d)`,  amount: miscTotal,       Icon: IcoBag,      iconBg: 'color-mix(in srgb, var(--orange) 14%, var(--bg-subtle))',  iconColor: 'var(--orange)' },
+        ].map(({ label, amount, Icon, iconBg, iconColor }) => (
+          <div key={label} className={styles.sideBudgetCell}>
+            <div className={styles.sideBudgetCellIcon} style={{ background: iconBg, color: iconColor }}>
+              <Icon />
+            </div>
+            <div className={styles.sideBudgetCellVal}>
+              ${Number(amount).toLocaleString(undefined, { maximumFractionDigits: 0 })}
+            </div>
+            <div className={styles.sideBudgetCellLbl}>{label}</div>
+          </div>
+        ))}
+      </div>
+
+      {/* Day budget — shown on mobile when in day view */}
+      {tab === 'day' && (
+        <div className={styles.sheetDayBudget}>
+          <div className={styles.sheetDayBudgetLabel}>Day {selectedDay} Budget</div>
+          {(() => {
+            const total = dayNightly + dayActSum + 40
+            const rows = [
+              { label: 'Hotel',      amount: dayNightly, Icon: IcoBuilding, iconBg: 'color-mix(in srgb, var(--primary) 12%, var(--bg-subtle))', iconColor: 'var(--primary)',     barColor: 'var(--primary)' },
+              { label: 'Activities', amount: dayActSum,  Icon: IcoMapPin,   iconBg: 'color-mix(in srgb, var(--light) 35%, var(--bg-subtle))',   iconColor: 'var(--primary-dark)', barColor: 'var(--light)'   },
+              { label: 'Misc',       amount: 40,         Icon: IcoBag,      iconBg: 'color-mix(in srgb, var(--orange) 14%, var(--bg-subtle))',  iconColor: 'var(--orange)',      barColor: 'var(--orange)'  },
+            ]
+            return (
+              <div className={styles.dayBudgetGrid}>
+                {rows.map(({ label, amount, Icon, iconBg, iconColor, barColor }) => {
+                  const pct = total > 0 ? Math.round((amount / total) * 100) : 0
+                  return (
+                    <div key={label} className={styles.dbBox}>
+                      <div className={styles.dbIcon} style={{ background: iconBg, color: iconColor }}>
+                        <Icon />
+                      </div>
+                      <div className={styles.dbBody}>
+                        <div className={styles.dbTop}>
+                          <span className={styles.dbLabel}>{label}</span>
+                          <span className={styles.dbAmount}>${Number(amount).toLocaleString(undefined,{maximumFractionDigits:0})}</span>
+                        </div>
+                        <div className={styles.dbTrack}>
+                          <div className={styles.dbFill} style={{ width:`${pct}%`, background: barColor }} />
+                        </div>
+                      </div>
+                    </div>
+                  )
+                })}
+                <div className={styles.dbBoxTotal}>
+                  <span className={styles.dbTotalLabel}>Day total</span>
+                  <span className={styles.dbTotalAmount}>${Number(total).toLocaleString(undefined,{maximumFractionDigits:0})}</span>
+                </div>
+              </div>
+            )
+          })()}
+        </div>
+      )}
+    </div>
+
+    {/* Day selector */}
+    <div className={styles.sheetSection}>
+      <div className={styles.sheetSectionLabel}>Jump to Day</div>
+      <div className={styles.sheetDayChips}>
+        {Array.from({length:totalDays},(_,i)=>i+1).map(d => {
+          const past  = isDayPast(d)
+          const count = spots.filter(s=>s.day_num===d && s.category!=='Hotel').length
+          return (
+            <button key={d}
+              className={`${styles.sheetDayChip} ${selectedDay===d && tab==='day' ? styles.sheetDayChipActive : ''} ${past ? styles.sheetDayChipPast : ''}`}
+              onClick={() => { setDay(d); setTab('day'); setSidebar(false) }}>
+              <span className={styles.sheetDayChipNum}>{d}</span>
+              <span className={styles.sheetDayChipCount}>{count}s</span>
+              {past && <span className={styles.dayChipPastDot} />}
+            </button>
+          )
+        })}
+      </div>
+    </div>
+
+    {/* Actions */}
+    <div className={styles.sheetActions}>
+      <button className={styles.sheetActionBtn} onClick={handleShare}>
+        <IcoShare /> Share
+      </button>
+      <button className={styles.sheetActionBtn} onClick={() => exportPDF(trip, spots, totalDays)}>
+        <IcoDownload /> PDF
+      </button>
+      {confirmDel ? (
+        <div className={styles.sheetDeleteConfirm}>
+          <span>Delete this trip?</span>
+          <button className={styles.sheetDeleteYes} onClick={handleDelete} disabled={deleting}>
+            {deleting ? '…' : 'Yes'}
+          </button>
+          <button className={styles.sheetActionBtn} onClick={() => setConfirm(false)}>No</button>
+        </div>
+      ) : (
+        <button className={`${styles.sheetActionBtn} ${styles.sheetActionBtnDanger}`} onClick={() => setConfirm(true)}>
+          <IcoTrash /> Delete
+        </button>
+      )}
+    </div>
+  </div>
+)
 
   return (
     <div className={styles.shell}>
@@ -267,126 +508,187 @@ export default function TripDetails() {
       {/* ══ LEFT SIDEBAR (desktop) ══ */}
       <aside className={styles.sidebar}>
         <button className={styles.backBtn} onClick={goBack}>← Back</button>
-        <SidebarContent />
+        <DesktopSidebarContent />
       </aside>
 
       {/* ══ MAIN CONTENT ══ */}
       <main className={styles.main}>
 
-        {/* Top bar */}
+        {/* Top bar — Row 1: tabs + re-roll + Details; Row 2: day chips */}
         <div className={styles.topBar}>
-          {/* Mobile: back + sidebar toggle */}
-          <button className={styles.mobileBack} onClick={goBack}>← Back</button>
 
-          {/* Tab switcher */}
-          <div className={styles.tabSwitcher}>
-            <button
-              className={`${styles.tabBtn} ${tab==='overview' ? styles.tabBtnActive : ''}`}
-              onClick={() => setTab('overview')}>
-              Overview
-            </button>
-            <button
-              className={`${styles.tabBtn} ${tab==='day' ? styles.tabBtnActive : ''}`}
-              onClick={() => setTab('day')}>
-              Day {selectedDay}
-            </button>
+          {/* ── Row 1 ── */}
+          <div className={styles.topBarRow1}>
+            <button className={styles.mobileBack} onClick={goBack}>← Back</button>
+
+            {/* Tab switcher */}
+            <div className={styles.tabSwitcher}>
+              <button
+                className={`${styles.tabBtn} ${tab==='overview' ? styles.tabBtnActive : ''}`}
+                onClick={() => setTab('overview')}>
+                Overview
+              </button>
+              <button
+                className={`${styles.tabBtn} ${tab==='day' ? styles.tabBtnActive : ''}`}
+                onClick={() => setTab('day')}>
+                Day {selectedDay}
+              </button>
+            </div>
+
+            {/* Re-roll + Details — pushed to the right */}
+            <div className={styles.dayControls}>
+              {/* Weather pill — shown on tablet where right panel is hidden */}
+              <div className={styles.weatherPill}>
+                {(() => { const W = weatherIcon(fc_cond); return <W /> })()}
+                <span className={styles.weatherPillTemp}>{fc_temp}°C</span>
+              </div>
+              {tab === 'day' && (
+                <button
+                  className={styles.regenBtn}
+                  onClick={handleRegenerate}
+                  disabled={regenLoading}>
+                  {regenLoading ? <span className="spinner" style={{width:12,height:12}}/> : <IcoRefresh />}
+                  <span className={styles.regenBtnLabel}>Re-roll Day</span>
+                </button>
+              )}
+              <button className={styles.sidebarToggle} onClick={() => setSidebar(true)}>
+                Details
+              </button>
+            </div>
           </div>
 
-          {/* Day controls (only in day tab) */}
+          {/* ── Row 2: day chips — scrollable, never wraps ── */}
           {tab === 'day' && (
-            <div className={styles.dayControls}>
+            <div className={styles.topBarRow2}>
               <div className={styles.dayChips}>
-                {Array.from({length:totalDays},(_,i)=>i+1).map(d => (
-                  <button key={d}
-                    className={`${styles.dayChip} ${selectedDay===d ? styles.dayChipActive : ''}`}
-                    onClick={() => setDay(d)}>
-                    {d}
-                  </button>
-                ))}
+                {Array.from({length:totalDays},(_,i)=>i+1).map(d => {
+                  const past = isDayPast(d)
+                  return (
+                    <button key={d}
+                      className={`${styles.dayChip} ${selectedDay===d ? styles.dayChipActive : ''} ${past ? styles.dayChipPast : ''}`}
+                      onClick={() => setDay(d)}
+                      title={past ? 'Day completed' : undefined}>
+                      {d}
+                      {past && <span className={styles.dayChipPastDot} />}
+                    </button>
+                  )
+                })}
               </div>
-              <button
-                className={styles.regenBtn}
-                onClick={handleRegenerate}
-                disabled={regenLoading}>
-                {regenLoading
-                  ? <span className="spinner" style={{width:12,height:12}}/>
-                  : null}
-                Re-roll Day
-              </button>
             </div>
           )}
 
-          {/* Mobile sidebar toggle */}
-          <button className={styles.sidebarToggle} onClick={() => setSidebar(true)}>
-            Details
-          </button>
         </div>
 
         {/* ══ OVERVIEW TAB ══ */}
         {tab === 'overview' && (
           <div className={styles.overviewContent}>
-            {/* Hero card */}
-            <div className={styles.overviewHero}>
-              <div className={styles.overviewHeroTop}>
-                <div className={styles.overviewHeroLeft}>
-                  <h1 className={styles.overviewCity}>{city}</h1>
-                  <div className={styles.overviewTripTitle}>"{title}"</div>
-                  <div className={styles.overviewMeta}>
-                    <span className={styles.statusPill}
-                      style={{ background:`${sc}22`, color:sc, borderColor:sc }}>
-                      {status}
-                    </span>
-                    {trip.start_date && (
-                      <span className={styles.metaChip}>
-                        {formatDate(trip.start_date)} → {formatDate(trip.end_date)}
-                      </span>
-                    )}
-                  </div>
-                </div>
-                {hotelName && (
-                  <div className={styles.overviewHotelBadge}>
-                    <span className={styles.overviewHotelLabel}>Staying at</span>
-                    <span className={styles.overviewHotelName}>{hotelName}</span>
-                  </div>
-                )}
-              </div>
 
-              {/* Stats strip */}
-              <div className={styles.heroStats}>
-                <div className={styles.heroStat}>
-                  <div className={styles.heroStatNum}>{days}</div>
-                  <div className={styles.heroStatLabel}>Days</div>
-                </div>
-                <div className={styles.heroStat}>
-                  <div className={styles.heroStatNum}>{totalDays}</div>
-                  <div className={styles.heroStatLabel}>Planned</div>
-                </div>
-                <div className={styles.heroStat}>
-                  <div className={styles.heroStatNum}>{spots.filter(s=>s.category!=='Hotel').length}</div>
-                  <div className={styles.heroStatLabel}>Stops</div>
-                </div>
-                <div className={styles.heroStat}>
-                  <div className={styles.heroStatNum}>${Number(cost).toLocaleString(undefined,{maximumFractionDigits:0,notation:'compact'})}</div>
-                  <div className={styles.heroStatLabel}>Budget</div>
-                </div>
-              </div>
-            </div>
+            {/* ── Trip Highlights ── */}
+            {(() => {
+              const actSpots = spots.filter(s => s.category !== 'Hotel')
 
-            {/* Budget row */}
-            <div className={styles.budgetRow}>
-              {[
-                { label:'Total Estimated', amount: cost, g:'linear-gradient(135deg,#1a1a1a,#333)', sub:`${days} days` },
-                { label:`Hotel`, amount: nightly*days, g:'linear-gradient(135deg,#20878E,#92C4C6)', sub:`$${nightly}/night` },
-                { label:'Activities', amount: actSum, g:'linear-gradient(135deg,#92C4C6,#F3C375)', sub:'All stops' },
-                { label:'Misc & Transport', amount: miscTotal, g:'linear-gradient(135deg,#F3C375,#D66F29)', sub:'$40/day' },
-              ].map(({label,amount,g,sub}) => (
-                <div key={label} className={styles.budgetBox} style={{background:g}}>
-                  <div className={styles.budgetLabel}>{label}</div>
-                  <div className={styles.budgetAmount}>${Number(amount).toLocaleString(undefined,{maximumFractionDigits:0})}</div>
-                  <div className={styles.budgetSub}>{sub}</div>
+              // Category breakdown
+              const catCounts = actSpots.reduce((acc, s) => {
+                acc[s.category] = (acc[s.category] ?? 0) + 1
+                return acc
+              }, {})
+              const catTotal = actSpots.length || 1
+              const CAT_COLORS_HL = {
+                Food: '#c8860a', Sightseeing: '#20878E', Culture: '#7C3AED',
+                Nature: '#16a34a', History: '#b45309', Art: '#db2777',
+              }
+
+              // Most expensive day
+              const dayCosts = Array.from({ length: totalDays }, (_, i) => {
+                const d = i + 1
+                const ds = spots.filter(s => s.day_num === d)
+                const dh = ds.filter(s => s.category === 'Hotel')
+                const dn = dh.length ? Math.max(...dh.map(s => s.cost)) : 0
+                const da = [...new Map(ds.filter(s=>s.category!=='Hotel').map(s=>[s.name,s])).values()]
+                  .reduce((a,r) => a + r.cost, 0)
+                return { day: d, total: dn + da + 40 }
+              })
+              const peakDay = dayCosts.reduce((a, b) => b.total > a.total ? b : a, dayCosts[0] ?? { day: 1, total: 0 })
+
+              // Pacing — slot distribution
+              const slotCounts = { Morning: 0, Afternoon: 0, Evening: 0 }
+              actSpots.forEach(s => {
+                const key = Object.keys(slotCounts).find(k => s.slot?.startsWith(k))
+                if (key) slotCounts[key]++
+              })
+
+              // Free vs paid
+              const freeCount = actSpots.filter(s => s.cost === 0).length
+              const paidCount = actSpots.length - freeCount
+
+              return (
+                <div className={styles.highlights}>
+
+                  {/* Category breakdown bar */}
+                  <div className={styles.hlCard}>
+                    <div className={styles.hlLabel}>What you're doing</div>
+                    <div className={styles.catBar}>
+                      {Object.entries(catCounts)
+                        .sort((a,b) => b[1]-a[1])
+                        .map(([cat, count]) => (
+                          <div
+                            key={cat}
+                            className={styles.catBarSegment}
+                            style={{
+                              width: `${(count/catTotal)*100}%`,
+                              background: CAT_COLORS_HL[cat] ?? '#20878E',
+                            }}
+                            title={`${cat}: ${count} stop${count>1?'s':''}`}
+                          />
+                        ))
+                      }
+                    </div>
+                    <div className={styles.catLegend}>
+                      {Object.entries(catCounts)
+                        .sort((a,b) => b[1]-a[1])
+                        .map(([cat, count]) => (
+                          <div key={cat} className={styles.catLegendItem}>
+                            <span className={styles.catLegendDot} style={{ background: CAT_COLORS_HL[cat] ?? '#20878E' }} />
+                            <span className={styles.catLegendName}>{cat}</span>
+                            <span className={styles.catLegendCount}>{count}</span>
+                          </div>
+                        ))
+                      }
+                    </div>
+                  </div>
+
+                  {/* Stat row */}
+                  <div className={styles.hlStatRow}>
+                    <div className={styles.hlStat}>
+                      <div className={styles.hlStatIcon}><IcoCalendar /></div>
+                      <div className={styles.hlStatBody}>
+                        <div className={styles.hlStatVal}>Day {peakDay.day}</div>
+                        <div className={styles.hlStatDesc}>Priciest day · ${Number(peakDay.total).toLocaleString(undefined,{maximumFractionDigits:0})}</div>
+                      </div>
+                    </div>
+
+                    <div className={styles.hlStat}>
+                      <div className={styles.hlStatIcon}><IcoTicket /></div>
+                      <div className={styles.hlStatBody}>
+                        <div className={styles.hlStatVal}>{freeCount} free</div>
+                        <div className={styles.hlStatDesc}>{paidCount} paid stop{paidCount!==1?'s':''}</div>
+                      </div>
+                    </div>
+
+                    <div className={styles.hlStat}>
+                      <div className={styles.hlStatIcon}><IcoClock /></div>
+                      <div className={styles.hlStatBody}>
+                        <div className={styles.hlStatVal}>
+                          {Object.entries(slotCounts).sort((a,b)=>b[1]-a[1])[0]?.[0] ?? '—'}
+                        </div>
+                        <div className={styles.hlStatDesc}>Most active slot</div>
+                      </div>
+
+                    </div>
+                  </div>       
                 </div>
-              ))}
-            </div>
+              )
+            })()}
 
             {/* Full trip map */}
             <div className={styles.overviewMapWrap}>
@@ -416,18 +718,20 @@ export default function TripDetails() {
                       onClick={() => setExpanded(p=>({...p,[d]:!p[d]}))}>
                       <span className={styles.dayToggleLabel}>Day {d}</span>
                       <span className={styles.dayToggleMeta}>{ds.length} stops</span>
-                      <span className={styles.dayToggleArrow}>{expandedDays[d]?'▲':'▼'}</span>
+                      <span className={styles.dayToggleArrow}>{expandedDays[d] ? <IcoChevronUp /> : <IcoChevronDown />}</span>
                     </button>
-                    {expandedDays[d] && ds.map((s,i) => (
-                      <div key={i} className={styles.spotRow}>
-                        <div className={styles.spotCard}><ScheduleCard spot={s} /></div>
-                        {isSwappable(s) ? (
-                          <button className={styles.swapBtn} onClick={() => setEditingSpot(s)}>
-                            Swap
-                          </button>
-                        ) : <div className={styles.swapPlaceholder}/>}
+                    {expandedDays[d] && (
+                      <div className={styles.timeline}>
+                        {ds.map((s,i) => (
+                          <ScheduleCard
+                            key={i}
+                            spot={s}
+                            swappable={isSwappable(s)}
+                            onSwap={() => setEditingSpot(s)}
+                          />
+                        ))}
                       </div>
-                    ))}
+                    )}
                   </div>
                 )
               })}
@@ -442,7 +746,7 @@ export default function TripDetails() {
             <div className={styles.dayMapWrap}>
               <DayMap
                 spots={daySpots}
-                dayKey={`day-${selectedDay}`}
+                dayKey={`day-${selectedDay}-${regenKey}`}
                 onDistanceCalculated={setRouteKm}
               />
               <div className={styles.mapLegend}>
@@ -457,14 +761,18 @@ export default function TripDetails() {
               <h3 className={styles.sectionTitle}>Day {selectedDay} Schedule</h3>
               {daySpots.length === 0
                 ? <div className={styles.empty}>No spots for this day.</div>
-                : daySpots.map((s,i) => (
-                  <div key={i} className={styles.spotRow}>
-                    <div className={styles.spotCard}><ScheduleCard spot={s} /></div>
-                    {isSwappable(s) ? (
-                      <button className={styles.swapBtn} onClick={() => setEditingSpot(s)}>Swap</button>
-                    ) : <div className={styles.swapPlaceholder}/>}
+                : (
+                  <div className={styles.timeline}>
+                    {daySpots.map((s,i) => (
+                      <ScheduleCard
+                        key={i}
+                        spot={s}
+                        swappable={isSwappable(s)}
+                        onSwap={() => setEditingSpot(s)}
+                      />
+                    ))}
                   </div>
-                ))}
+                )}
             </div>
 
             {/* Memories */}
@@ -479,34 +787,68 @@ export default function TripDetails() {
           <div className={styles.rpLabel}>
             {tab === 'day' ? `Day ${selectedDay} Weather` : 'Current Weather'}
           </div>
+
+          {/* Weather: icon box + temp + condition */}
           <div className={styles.weatherRow}>
-            <span className={styles.weatherEmoji}>{weatherIcon(fc_cond)}</span>
-            <div>
-              <div className={styles.weatherCond}>{fc_cond}</div>
+            <div className={styles.weatherIconBox}>
+              {(() => { const W = weatherIcon(fc_cond); return <W /> })()}
+            </div>
+            <div className={styles.weatherInfo}>
               <div className={styles.weatherTemp}>{fc_temp}°C</div>
+              <div className={styles.weatherCond}>{fc_cond}</div>
             </div>
           </div>
+
+          {/* Distance — same row style as budget rows */}
           {routeKm !== null && routeKm > 0 && (
-            <div className={styles.distRow}>Drive distance: <strong>{routeKm.toFixed(1)} km</strong></div>
+            <div className={styles.distRow}>
+              <div className={styles.distIconBox}><IcoRoute /></div>
+              <div className={styles.distBody}>
+                <div className={styles.distLabel}>Drive distance</div>
+                <div className={styles.distValue}>{routeKm.toFixed(1)} km</div>
+              </div>
+            </div>
           )}
         </div>
 
         {tab === 'day' && (
           <div className={styles.rpCard}>
             <div className={styles.rpLabel}>Day {selectedDay} Budget</div>
-            <div className={styles.dayBudgetGrid}>
-              {[
-                ['Hotel', dayNightly, 'linear-gradient(135deg,#20878E,#92C4C6)'],
-                ['Activities', dayActSum, 'linear-gradient(135deg,#92C4C6,#F3C375)'],
-                ['Misc', 40, 'linear-gradient(135deg,#F3C375,#D66F29)'],
-                ['Total', dayNightly+dayActSum+40, 'linear-gradient(135deg,#1a1a1a,#333)'],
-              ].map(([l,a,g]) => (
-                <div key={l} className={styles.dbBox} style={{background:g}}>
-                  <div className={styles.dbLabel}>{l}</div>
-                  <div className={styles.dbAmount}>${Number(a).toLocaleString(undefined,{maximumFractionDigits:0})}</div>
+            {(() => {
+              const total = dayNightly + dayActSum + 40
+              const rows = [
+                { label: 'Hotel',      amount: dayNightly, Icon: IcoBuilding, iconBg: 'color-mix(in srgb, var(--primary) 12%, var(--bg-subtle))', iconColor: 'var(--primary)',     barColor: 'var(--primary)' },
+                { label: 'Activities', amount: dayActSum,  Icon: IcoMapPin,   iconBg: 'color-mix(in srgb, var(--light) 35%, var(--bg-subtle))',   iconColor: 'var(--primary-dark)', barColor: 'var(--light)'   },
+                { label: 'Misc',       amount: 40,         Icon: IcoBag,      iconBg: 'color-mix(in srgb, var(--orange) 14%, var(--bg-subtle))',  iconColor: 'var(--orange)',      barColor: 'var(--orange)'  },
+              ]
+              return (
+                <div className={styles.dayBudgetGrid}>
+                  {rows.map(({ label, amount, Icon, iconBg, iconColor, barColor }) => {
+                    const pct = total > 0 ? Math.round((amount / total) * 100) : 0
+                    return (
+                      <div key={label} className={styles.dbBox}>
+                        <div className={styles.dbIcon} style={{ background: iconBg, color: iconColor }}>
+                          <Icon />
+                        </div>
+                        <div className={styles.dbBody}>
+                          <div className={styles.dbTop}>
+                            <span className={styles.dbLabel}>{label}</span>
+                            <span className={styles.dbAmount}>${Number(amount).toLocaleString(undefined,{maximumFractionDigits:0})}</span>
+                          </div>
+                          <div className={styles.dbTrack}>
+                            <div className={styles.dbFill} style={{ width:`${pct}%`, background: barColor }} />
+                          </div>
+                        </div>
+                      </div>
+                    )
+                  })}
+                  <div className={styles.dbBoxTotal}>
+                    <span className={styles.dbTotalLabel}>Day total</span>
+                    <span className={styles.dbTotalAmount}>${Number(total).toLocaleString(undefined,{maximumFractionDigits:0})}</span>
+                  </div>
                 </div>
-              ))}
-            </div>
+              )
+            })()}
           </div>
         )}
 
@@ -544,7 +886,7 @@ export default function TripDetails() {
           <div className={styles.sheet} onClick={e => e.stopPropagation()}>
             <div className={styles.sheetHandle} />
             <div className={styles.sheetScroll}>
-              <SidebarContent />
+              <MobileSheetContent />
             </div>
           </div>
         </div>
@@ -555,6 +897,7 @@ export default function TripDetails() {
         <EditSpotModal
           spot={editingSpot}
           tripId={id}
+          trips={spots}
           locations={locations}
           onClose={() => setEditingSpot(null)}
           onSwapped={handleSpotSwapped}

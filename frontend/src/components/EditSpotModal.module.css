@@ -81,3 +81,18 @@
   font-weight: 800;
   color: var(--primary);
 }
+
+.sectionDivider {
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 0.6rem 0 0.4rem;
+  border-top: 1px solid var(--border-soft);
+  margin-top: 0.4rem;
+}
+
+.candidateDimmed {
+  opacity: 0.55;
+}
